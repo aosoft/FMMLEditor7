@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
 
-namespace FMPMMLEditor7
+namespace FMMLEditor7
 {
 	[Flags]
 	enum LoadLibraryFlags : uint

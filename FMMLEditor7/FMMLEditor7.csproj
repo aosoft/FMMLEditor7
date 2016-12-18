@@ -8,8 +8,8 @@
     <ProjectGuid>{5451A5B1-23BC-4440-9349-CB4D21005AA6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FMPMMLEditor7</RootNamespace>
-    <AssemblyName>FMPMMLEditor7</AssemblyName>
+    <RootNamespace>FMMLEditor7</RootNamespace>
+    <AssemblyName>FMMLEditor7</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <KeyContainerName>TAN-Y</KeyContainerName>
@@ -56,6 +56,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Azuki\Azuki.dll</HintPath>
     </Reference>
+    <Reference Include="FMP7Api.CLR2, Version=1.2.8.0, Culture=neutral, PublicKeyToken=d4db338362555156, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\FMP7ApiCLR\FMP7Api.CLR2.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -98,6 +102,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
@@ -116,12 +121,6 @@
       <DependentUpon>SettingDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FMP7Api\FMP7Api_CLR2.csproj">
-      <Project>{8104E38B-C7B6-4DE1-BDE1-DC3DDCD1BB84}</Project>
-      <Name>FMP7Api_CLR2</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

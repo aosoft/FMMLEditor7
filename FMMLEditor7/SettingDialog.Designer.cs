@@ -1,4 +1,4 @@
-﻿namespace FMPMMLEditor7
+﻿namespace FMMLEditor7
 {
 	partial class SettingDialog
 	{

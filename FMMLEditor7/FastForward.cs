@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading;
 using FMP.FMP7;
 
-namespace FMPMMLEditor7
+namespace FMMLEditor7
 {
 	/// <summary>
 	/// 早送り制御

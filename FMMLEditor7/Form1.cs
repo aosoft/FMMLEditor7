@@ -11,7 +11,7 @@ using Sgry.Azuki.WinForms;
 using Sgry.Azuki;
 using FMP.FMP7;
 
-namespace FMPMMLEditor7
+namespace FMMLEditor7
 {
 	public partial class Form1 : Form
 	{

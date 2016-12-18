@@ -7,7 +7,7 @@ using System.Text;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace FMPMMLEditor7
+namespace FMMLEditor7
 {
 	public partial class SettingDialog : Form
 	{

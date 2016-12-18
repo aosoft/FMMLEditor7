@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace FMPMMLEditor7
+namespace FMMLEditor7
 {
 	static class Program
 	{

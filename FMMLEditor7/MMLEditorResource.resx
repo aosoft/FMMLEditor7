@@ -145,7 +145,7 @@
     <value>FMP7.exe</value>
   </data>
   <data name="SettingFile" xml:space="preserve">
-    <value>FMP\FMP7 MML Editor\FMPMMLEditor7Setting.xml</value>
+    <value>FMP\FMP7 MML Editor\FMMLEditor7Setting.xml</value>
   </data>
   <data name="Error_LoadCompilerModule" xml:space="preserve">
     <value>コンパイラモジュール(fmc.dll)のロードに失敗しました。

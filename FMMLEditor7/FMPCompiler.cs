@@ -4,7 +4,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using FMP.FMP7;
 
-namespace FMPMMLEditor7
+namespace FMMLEditor7
 {
 	[Flags]
 	public enum FMCCompileFlag

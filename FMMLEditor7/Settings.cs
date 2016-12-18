@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using System.Drawing;
 
 
-namespace FMPMMLEditor7
+namespace FMMLEditor7
 {
 	/// <summary>
 	/// 設定管理クラス
