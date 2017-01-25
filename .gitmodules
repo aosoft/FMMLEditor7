@@ -1,3 +1,7 @@
 [submodule "FMP7ApiCLR"]
 	path = FMP7ApiCLR
 	url = https://github.com/aosoft/FMP7ApiCLR.git
+[submodule "azuki"]
+	path = azuki
+	url = https://github.com/aosoft/azuki.git
+	branch = clr4
