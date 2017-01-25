@@ -311,7 +311,7 @@ namespace FMMLEditor7 {
         }
         
         /// <summary>
-        ///   http://azuki.sourceforge.jp/ に類似しているローカライズされた文字列を検索します。
+        ///   http://sgry.b.osdn.me/ に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string URL_Azuki {
             get {
@@ -320,7 +320,7 @@ namespace FMMLEditor7 {
         }
         
         /// <summary>
-        ///   http://www.fmp.jp/ に類似しているローカライズされた文字列を検索します。
+        ///   http://archive.fmp.jp/ に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string URL_FMP {
             get {

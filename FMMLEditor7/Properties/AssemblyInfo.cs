@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("FMP7 MML Editor")]
-[assembly: AssemblyCopyright("Copyright (C) 2010-2016 TAN-Y")]
+[assembly: AssemblyCopyright("Copyright (C) 2010-2017 TAN-Y")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -30,6 +30,8 @@
 		{
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabpageFMPSetting = new System.Windows.Forms.TabPage();
+			this.label8 = new System.Windows.Forms.Label();
+			this.checkProcessStartFMP7 = new System.Windows.Forms.CheckBox();
 			this.btnOpenDialogFMC7 = new System.Windows.Forms.Button();
 			this.textboxFMC7Path = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
@@ -57,8 +59,6 @@
 			this.btnOK = new System.Windows.Forms.Button();
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.fontDialog1 = new System.Windows.Forms.FontDialog();
-			this.checkProcessStartFMP7 = new System.Windows.Forms.CheckBox();
-			this.label8 = new System.Windows.Forms.Label();
 			this.tabControl1.SuspendLayout();
 			this.tabpageFMPSetting.SuspendLayout();
 			this.tabpageEditorSetting.SuspendLayout();
@@ -68,9 +68,9 @@
 			// 
 			// tabControl1
 			// 
-			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-						| System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.tabControl1.Controls.Add(this.tabpageFMPSetting);
 			this.tabControl1.Controls.Add(this.tabpageEditorSetting);
 			this.tabControl1.Controls.Add(this.tabpageAbout);
@@ -97,6 +97,25 @@
 			this.tabpageFMPSetting.TabIndex = 0;
 			this.tabpageFMPSetting.Text = "FMP / FMC";
 			this.tabpageFMPSetting.UseVisualStyleBackColor = true;
+			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.Location = new System.Drawing.Point(19, 193);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(364, 12);
+			this.label8.TabIndex = 7;
+			this.label8.Text = "※通常の再生、停止コントロールはFMP7が起動している時のみ機能します。";
+			// 
+			// checkProcessStartFMP7
+			// 
+			this.checkProcessStartFMP7.AutoSize = true;
+			this.checkProcessStartFMP7.Location = new System.Drawing.Point(21, 159);
+			this.checkProcessStartFMP7.Name = "checkProcessStartFMP7";
+			this.checkProcessStartFMP7.Size = new System.Drawing.Size(378, 16);
+			this.checkProcessStartFMP7.TabIndex = 6;
+			this.checkProcessStartFMP7.Text = "\"MMLコンパイルと再生\"を実行時、FMP7が起動していなかったら起動する。";
+			this.checkProcessStartFMP7.UseVisualStyleBackColor = true;
 			// 
 			// btnOpenDialogFMC7
 			// 
@@ -304,9 +323,9 @@
 			this.label6.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.label6.Location = new System.Drawing.Point(95, 200);
 			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(128, 15);
+			this.label6.Size = new System.Drawing.Size(133, 15);
 			this.label6.TabIndex = 3;
-			this.label6.Text = "Guu and TeamFMP";
+			this.label6.Text = "FMP archive center";
 			// 
 			// label5
 			// 
@@ -378,25 +397,6 @@
 			// 
 			this.fontDialog1.AllowVerticalFonts = false;
 			this.fontDialog1.ShowEffects = false;
-			// 
-			// checkProcessStartFMP7
-			// 
-			this.checkProcessStartFMP7.AutoSize = true;
-			this.checkProcessStartFMP7.Location = new System.Drawing.Point(21, 159);
-			this.checkProcessStartFMP7.Name = "checkProcessStartFMP7";
-			this.checkProcessStartFMP7.Size = new System.Drawing.Size(378, 16);
-			this.checkProcessStartFMP7.TabIndex = 6;
-			this.checkProcessStartFMP7.Text = "\"MMLコンパイルと再生\"を実行時、FMP7が起動していなかったら起動する。";
-			this.checkProcessStartFMP7.UseVisualStyleBackColor = true;
-			// 
-			// label8
-			// 
-			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(19, 193);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(364, 12);
-			this.label8.TabIndex = 7;
-			this.label8.Text = "※通常の再生、停止コントロールはFMP7が起動している時のみ機能します。";
 			// 
 			// SettingDialog
 			// 

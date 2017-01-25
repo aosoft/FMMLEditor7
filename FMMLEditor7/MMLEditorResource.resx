@@ -189,10 +189,10 @@
     <value>http://www.aosoft.jp/</value>
   </data>
   <data name="URL_Azuki" xml:space="preserve">
-    <value>http://azuki.sourceforge.jp/</value>
+    <value>http://sgry.b.osdn.me/</value>
   </data>
   <data name="URL_FMP" xml:space="preserve">
-    <value>http://www.fmp.jp/</value>
+    <value>http://archive.fmp.jp/</value>
   </data>
   <data name="Error_FailedStartupFMP" xml:space="preserve">
     <value>FMP7 の起動に失敗しました。
