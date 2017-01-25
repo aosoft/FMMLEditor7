@@ -1,6 +1,3 @@
-[submodule "azuki"]
-	path = azuki
-	url = https://github.com/aosoft/azuki.git
 [submodule "FMP7ApiCLR"]
 	path = FMP7ApiCLR
 	url = https://github.com/aosoft/FMP7ApiCLR.git
