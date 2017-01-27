@@ -15,7 +15,7 @@ namespace FMMLEditor7
 	/// </summary>
 	public class Settings
 	{
-		private string m_SettingFilePath;
+		private string _settingFilePath;
 
 		public string FMP7Path
 		{
@@ -116,7 +116,7 @@ namespace FMMLEditor7
 
 		public Settings()
 		{
-			m_SettingFilePath =
+			_settingFilePath =
 				Path.Combine(
 					Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
 					MMLEditorResource.SettingFile);
@@ -152,7 +152,7 @@ namespace FMMLEditor7
 
 		public void Load()
 		{
-			var doc = new XPathDocument(m_SettingFilePath);
+			var doc = new XPathDocument(_settingFilePath);
 			var xnav = doc.CreateNavigator();
 
 			var xnavBase = xnav.SelectSingleNode("/Setting");
@@ -251,13 +251,13 @@ namespace FMMLEditor7
 			xmlws.IndentChars = "  ";
 			xmlws.Encoding = Encoding.UTF8;
 
-			string dir = Path.GetDirectoryName(Path.GetFullPath(m_SettingFilePath));
+			string dir = Path.GetDirectoryName(Path.GetFullPath(_settingFilePath));
 			if (Directory.Exists(dir) == false)
 			{
 				Directory.CreateDirectory(dir);
 			}
 
-			using (XmlWriter w = XmlWriter.Create(m_SettingFilePath, xmlws))
+			using (XmlWriter w = XmlWriter.Create(_settingFilePath, xmlws))
 			{
 				w.WriteStartDocument();
 				w.WriteStartElement("Setting");

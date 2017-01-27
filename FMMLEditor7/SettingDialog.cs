@@ -11,15 +11,15 @@ namespace FMMLEditor7
 {
 	public partial class SettingDialog : Form
 	{
-		private Settings m_setting;
-		private Font m_font;
-		private Font m_deffont;
+		private Settings _setting;
+		private Font _font;
+		private Font _deffont;
 
 		public SettingDialog(Settings setting)
 		{
 			InitializeComponent();
-			m_setting = setting;
-			m_deffont = labelEditorFontSample.Font;
+			_setting = setting;
+			_deffont = labelEditorFontSample.Font;
 
 			var assem = Assembly.GetExecutingAssembly();
 			var assemName = assem.GetName();
@@ -41,7 +41,7 @@ namespace FMMLEditor7
 
 		private void EndDialog(DialogResult result)
 		{
-			labelEditorFontSample.Font = m_deffont;
+			labelEditorFontSample.Font = _deffont;
 			/*
 			if (m_font != null)
 			{
@@ -49,7 +49,7 @@ namespace FMMLEditor7
 				m_font = null;
 			}
 			 */
-			m_font = null;
+			_font = null;
 			DialogResult = result;
 		}
 
@@ -63,32 +63,32 @@ namespace FMMLEditor7
 
 		private void SettingDialog_Shown(object sender, EventArgs e)
 		{
-			textboxFMP7Path.Text = m_setting.FMP7Path;
-			textboxFMC7Path.Text = m_setting.FMC7Path;
-			checkProcessStartFMP7.Checked = m_setting.ProcessStartFMP7;
-			m_font =
+			textboxFMP7Path.Text = _setting.FMP7Path;
+			textboxFMC7Path.Text = _setting.FMC7Path;
+			checkProcessStartFMP7.Checked = _setting.ProcessStartFMP7;
+			_font =
 				new Font(
-					m_setting.EditorFontName,
-					m_setting.EditorFontSize,
-					m_setting.EditorFontStyle);
-			labelEditorFontSample.Font = m_font;
+					_setting.EditorFontName,
+					_setting.EditorFontSize,
+					_setting.EditorFontStyle);
+			labelEditorFontSample.Font = _font;
 
-			nudTextWrapWidth.Value = m_setting.EditorTextWidth;
-			checkTextWrap.Checked = m_setting.EditorTextWrap;
-			checkAutoTextWrap.Checked = m_setting.EditorAutoTextWrap;
+			nudTextWrapWidth.Value = _setting.EditorTextWidth;
+			checkTextWrap.Checked = _setting.EditorTextWrap;
+			checkAutoTextWrap.Checked = _setting.EditorAutoTextWrap;
 		}
 
 		private void btnOK_Click(object sender, EventArgs e)
 		{
-			m_setting.FMP7Path = textboxFMP7Path.Text;
-			m_setting.FMC7Path = textboxFMC7Path.Text;
-			m_setting.ProcessStartFMP7 = checkProcessStartFMP7.Checked;
-			m_setting.EditorFontName = m_font.FontFamily.Name;
-			m_setting.EditorFontSize = m_font.Size;
-			m_setting.EditorFontStyle = m_font.Style;
-			m_setting.EditorTextWidth = (int)nudTextWrapWidth.Value;
-			m_setting.EditorTextWrap = checkTextWrap.Checked;
-			m_setting.EditorAutoTextWrap = checkAutoTextWrap.Checked;
+			_setting.FMP7Path = textboxFMP7Path.Text;
+			_setting.FMC7Path = textboxFMC7Path.Text;
+			_setting.ProcessStartFMP7 = checkProcessStartFMP7.Checked;
+			_setting.EditorFontName = _font.FontFamily.Name;
+			_setting.EditorFontSize = _font.Size;
+			_setting.EditorFontStyle = _font.Style;
+			_setting.EditorTextWidth = (int)nudTextWrapWidth.Value;
+			_setting.EditorTextWrap = checkTextWrap.Checked;
+			_setting.EditorAutoTextWrap = checkAutoTextWrap.Checked;
 
 			EndDialog(DialogResult.OK);
 		}
@@ -120,15 +120,15 @@ namespace FMMLEditor7
 
 		private void buttonSelectFont_Click(object sender, EventArgs e)
 		{
-			fontDialog1.Font = m_font;
+			fontDialog1.Font = _font;
 			if (fontDialog1.ShowDialog() == DialogResult.OK)
 			{
 				labelEditorFontSample.Font = fontDialog1.Font;
-				if (m_font != null)
+				if (_font != null)
 				{
-					m_font.Dispose();
+					_font.Dispose();
 				}
-				m_font = fontDialog1.Font;
+				_font = fontDialog1.Font;
 			}
 		}
 

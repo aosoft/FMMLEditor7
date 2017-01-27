@@ -186,7 +186,7 @@ namespace FMMLEditor7
 
 	class FMCResult : IEnumerable<FMCInfo>
 	{
-		private FMCInfo[] m_infos;
+		private FMCInfo[] _infos;
 
 		public FMCStatus Result
 		{
@@ -198,7 +198,7 @@ namespace FMMLEditor7
 		{
 			get
 			{
-				return m_infos.Length;
+				return _infos.Length;
 			}
 		}
 
@@ -206,24 +206,24 @@ namespace FMMLEditor7
 		{
 			get
 			{
-				return m_infos[index];
+				return _infos[index];
 			}
 		}
 
 		internal FMCResult(FMCStatus result, FMCInfo[] infos)
 		{
 			Result = result;
-			m_infos = infos;
+			_infos = infos;
 		}
 
 		public IEnumerator<FMCInfo> GetEnumerator()
 		{
-			return (m_infos as IEnumerable<FMCInfo>).GetEnumerator();
+			return (_infos as IEnumerable<FMCInfo>).GetEnumerator();
 		}
 
 		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
 		{
-			return m_infos.GetEnumerator();
+			return _infos.GetEnumerator();
 		}
 	}
 
@@ -264,14 +264,14 @@ namespace FMMLEditor7
 		}
 
 
-		private IntPtr m_fmcdll = IntPtr.Zero;
-		private string m_fmcdllpath = null;
+		private IntPtr _fmcdll = IntPtr.Zero;
+		private string _fmcdllpath = null;
 
-		private CompileDelegate m_Compile = null;
-		private FreeDelegate m_Free = null;
-		private GetInfoDelegate m_GetInfo = null;
-		private GetInfoNumDelegate m_GetInfoNum = null;
-		private GetVersionDelegate m_GetVersion = null;
+		private CompileDelegate _funcCompile = null;
+		private FreeDelegate _funcFree = null;
+		private GetInfoDelegate _funcGetInfo = null;
+		private GetInfoNumDelegate _funcGetInfoNum = null;
+		private GetVersionDelegate _funcGetVersion = null;
 
 		private static readonly string FMCVer = "7.08f";
 		private const int FMCVerSys = 7;
@@ -292,20 +292,20 @@ namespace FMMLEditor7
 					Marshal.GetHRForLastWin32Error());
 			}
 
-			m_fmcdll = fmcdll;
-			m_fmcdllpath = fmcdllPath;
+			_fmcdll = fmcdll;
+			_fmcdllpath = fmcdllPath;
 
 			try
 			{
-				m_Compile = Kernel32Wrapper.GetUnmangedFunc<CompileDelegate>(
+				_funcCompile = Kernel32Wrapper.GetUnmangedFunc<CompileDelegate>(
 					fmcdll, "Compile");
-				m_Free = Kernel32Wrapper.GetUnmangedFunc<FreeDelegate>(
+				_funcFree = Kernel32Wrapper.GetUnmangedFunc<FreeDelegate>(
 					fmcdll, "Free");
-				m_GetInfo = Kernel32Wrapper.GetUnmangedFunc<GetInfoDelegate>(
+				_funcGetInfo = Kernel32Wrapper.GetUnmangedFunc<GetInfoDelegate>(
 					fmcdll, "GetInfo");
-				m_GetInfoNum = Kernel32Wrapper.GetUnmangedFunc<GetInfoNumDelegate>(
+				_funcGetInfoNum = Kernel32Wrapper.GetUnmangedFunc<GetInfoNumDelegate>(
 					fmcdll, "GetInfoNum");
-				m_GetVersion = Kernel32Wrapper.GetUnmangedFunc<GetVersionDelegate>(
+				_funcGetVersion = Kernel32Wrapper.GetUnmangedFunc<GetVersionDelegate>(
 					fmcdll, "GetVer");
 
 				var ver = GetFMCVersion();
@@ -337,17 +337,17 @@ namespace FMMLEditor7
 
 		public void FinalizeFMC()
 		{
-			if (m_fmcdll != IntPtr.Zero)
+			if (_fmcdll != IntPtr.Zero)
 			{
-				Kernel32Wrapper.FreeLibrary(m_fmcdll);
+				Kernel32Wrapper.FreeLibrary(_fmcdll);
 			}
-			m_fmcdll = IntPtr.Zero;
-			m_fmcdllpath = null;
-			m_Compile = null;
-			m_Free = null;
-			m_GetInfo = null;
-			m_GetInfoNum = null;
-			m_GetVersion = null;
+			_fmcdll = IntPtr.Zero;
+			_fmcdllpath = null;
+			_funcCompile = null;
+			_funcFree = null;
+			_funcGetInfo = null;
+			_funcGetInfoNum = null;
+			_funcGetVersion = null;
 		}
 
 		public FMPVersion GetFMCVersion()
@@ -361,7 +361,7 @@ namespace FMMLEditor7
 			int major = 0;
 			int minor = 0;
 
-			m_GetVersion(ref system, ref major, ref minor);
+			_funcGetVersion(ref system, ref major, ref minor);
 
 			return new FMPVersion(system, major, minor);
 		}
@@ -373,19 +373,19 @@ namespace FMMLEditor7
 				throw new InvalidOperationException();
 			}
 
-			var status = m_Compile(
+			var status = _funcCompile(
 				srcfile, null,
 				compileAndPlay ? FMCCompileFlag.PlayAfter : FMCCompileFlag.None);
 
 			try
 			{
-				int count = m_GetInfoNum();
+				int count = _funcGetInfoNum();
 
 				var infos = new FMCInfo[count];
 
 				for (int i = 0; i < count; i++)
 				{
-					var pinfo = m_GetInfo(i);
+					var pinfo = _funcGetInfo(i);
 					
 					var baseinfo =
 						(NativeCompileResult)Marshal.PtrToStructure(pinfo, typeof(NativeCompileResult));
@@ -434,7 +434,7 @@ namespace FMMLEditor7
 			}
 			finally
 			{
-				m_Free();
+				_funcFree();
 			}
 		}
 
@@ -448,7 +448,7 @@ namespace FMMLEditor7
 		{
 			get
 			{
-				return m_fmcdll != IntPtr.Zero;
+				return _fmcdll != IntPtr.Zero;
 			}
 		}
 
@@ -456,7 +456,7 @@ namespace FMMLEditor7
 		{
 			get
 			{
-				return m_fmcdllpath;
+				return _fmcdllpath;
 			}
 		}
 	}

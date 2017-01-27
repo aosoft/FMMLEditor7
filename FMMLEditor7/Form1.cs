@@ -15,42 +15,42 @@ namespace FMMLEditor7
 {
 	public partial class Form1 : Form
 	{
-		private Settings m_setting = new Settings();
-		private FMPCompiler m_compiler = new FMPCompiler();
-		private FMPWork m_work = new FMPWork();
-		private FastForward m_fastforward;
+		private Settings _setting = new Settings();
+		private FMPCompiler _compiler = new FMPCompiler();
+		private FMPWork _work = new FMPWork();
+		private FastForward _fastforward;
 
-		private AzukiControl m_editor = null;
+		private AzukiControl _editor = null;
 		
-		private string m_mmlFileName = null;
-		private SettingDialog m_settingDialog = null;
+		private string _mmlFileName = null;
+		private SettingDialog _settingDialog = null;
 
 		public Form1()
 		{
 			InitializeComponent();
 
-			m_settingDialog = new SettingDialog(m_setting);
+			_settingDialog = new SettingDialog(_setting);
 
 			MMLFileName = null;
 
-			m_editor = new AzukiControl();
-			m_editor.ShowsHRuler = true;
-			m_editor.Resize += (_s, _e) =>
+			_editor = new AzukiControl();
+			_editor.ShowsHRuler = true;
+			_editor.Resize += (_s, _e) =>
 				{
 					UpdateEditorState();
 				};
 
-			m_editor.KeyDown += editor_KeyDown;
-			m_editor.KeyUp += editor_KeyUp;
-			m_editor.LostFocus += editor_LostFocus;
+			_editor.KeyDown += editor_KeyDown;
+			_editor.KeyUp += editor_KeyUp;
+			_editor.LostFocus += editor_LostFocus;
 
 			openFileDialog1.Filter = MMLEditorResource.FileFilter_MML;
 			saveFileDialog1.Filter = MMLEditorResource.FileFilter_MML;
 
-			splitContainer1.Panel1.Controls.Add(m_editor);
-			m_editor.Dock = DockStyle.Fill;
+			splitContainer1.Panel1.Controls.Add(_editor);
+			_editor.Dock = DockStyle.Fill;
 
-			m_fastforward = new FastForward(m_work);
+			_fastforward = new FastForward(_work);
 		}
 
 		/*-------------------------------------------------------------------
@@ -68,35 +68,35 @@ namespace FMMLEditor7
 
 		private void UpdateEditorState()
 		{
-			if (m_setting.EditorTextWrap)
+			if (_setting.EditorTextWrap)
 			{
-				m_editor.ViewType = Sgry.Azuki.ViewType.WrappedProportional;
-				if (m_setting.EditorAutoTextWrap)
+				_editor.ViewType = Sgry.Azuki.ViewType.WrappedProportional;
+				if (_setting.EditorAutoTextWrap)
 				{
-					m_editor.ViewWidth = ClientSize.Width;
+					_editor.ViewWidth = ClientSize.Width;
 				}
 				else
 				{
-					m_editor.ViewWidth =
-						m_editor.View.LineNumAreaWidth +
-						m_setting.EditorTextWidth *
-						m_editor.View.HRulerUnitWidth;
+					_editor.ViewWidth =
+						_editor.View.LineNumAreaWidth +
+						_setting.EditorTextWidth *
+						_editor.View.HRulerUnitWidth;
 				}
 			}
 			else
 			{
-				m_editor.ViewType = Sgry.Azuki.ViewType.Proportional;
+				_editor.ViewType = Sgry.Azuki.ViewType.Proportional;
 			}
 		}
 
 		private void UpdateEditorFont()
 		{
-			var oldfont = m_editor.Font;
+			var oldfont = _editor.Font;
 			var newfont = new Font(
-				m_setting.EditorFontName,
-				m_setting.EditorFontSize,
-				m_setting.EditorFontStyle);
-			m_editor.Font = newfont;
+				_setting.EditorFontName,
+				_setting.EditorFontSize,
+				_setting.EditorFontStyle);
+			_editor.Font = newfont;
 			/*
 			if (oldfont != null)
 			{
@@ -127,9 +127,9 @@ namespace FMMLEditor7
 				}
 
 				sw = new StreamWriter(fileName, false, Encoding.GetEncoding("shift_jis"));
-				sw.Write(m_editor.Document.Text);
+				sw.Write(_editor.Document.Text);
 				MMLFileName = fileName;
-				m_editor.Document.IsDirty = false;
+				_editor.Document.IsDirty = false;
 				return true;
 			}
 			finally
@@ -149,12 +149,12 @@ namespace FMMLEditor7
 				try
 				{
 					sr = new StreamReader(fileName, Encoding.GetEncoding("shift_jis"));
-					m_editor.Document = new Document();
-					m_editor.Document.Text = sr.ReadToEnd();
-					m_editor.Document.ClearHistory();
+					_editor.Document = new Document();
+					_editor.Document.Text = sr.ReadToEnd();
+					_editor.Document.ClearHistory();
 
 					MMLFileName = fileName;
-					m_editor.Document.IsDirty = false;
+					_editor.Document.IsDirty = false;
 
 					return true;
 				}
@@ -194,7 +194,7 @@ namespace FMMLEditor7
 
 		private bool CheckUpdateAndSave()
 		{
-			if (m_editor.Document.IsDirty)
+			if (_editor.Document.IsDirty)
 			{
 				switch (MessageBox.Show(
 					"編集中のファイルが保存されていません。保存しますか？",
@@ -234,12 +234,12 @@ namespace FMMLEditor7
 		{
 			try
 			{
-				if (m_setting.FMC7Path != m_compiler.DllPath)
+				if (_setting.FMC7Path != _compiler.DllPath)
 				{
-					m_compiler.FinalizeFMC();
-					m_compiler.InitializeFMC(m_setting.FMC7Path);
+					_compiler.FinalizeFMC();
+					_compiler.InitializeFMC(_setting.FMC7Path);
 
-					var version = m_compiler.GetFMCVersion();
+					var version = _compiler.GetFMCVersion();
 				}
 			}
 			catch (Exception e)
@@ -356,31 +356,31 @@ namespace FMMLEditor7
 					break;
 			}
 
-			m_editor.Focus();
+			_editor.Focus();
 		}
 
 		private void Compile(bool compileAndPlay)
 		{
-			if (m_compiler.IsInitialized)
+			if (_compiler.IsInitialized)
 			{
 				if (Save())
 				{
-					var r = m_compiler.Compile(m_mmlFileName, compileAndPlay);
+					var r = _compiler.Compile(_mmlFileName, compileAndPlay);
 					UpdateCompileResult(r);
 
 					if (r.Result == FMCStatus.Success &&
 						compileAndPlay &&
-						m_setting.ProcessStartFMP7 &&
+						_setting.ProcessStartFMP7 &&
 						FMPControl.CheckAvailableFMP() == false)
 					{
 						try
 						{
 							string arg =
 								string.Format("\"{0}{1}{2}.owi\"",
-									Path.GetDirectoryName(m_mmlFileName),
+									Path.GetDirectoryName(_mmlFileName),
 									Path.DirectorySeparatorChar,
-									Path.GetFileNameWithoutExtension(m_mmlFileName));
-							Process.Start(m_setting.FMP7Path, arg);
+									Path.GetFileNameWithoutExtension(_mmlFileName));
+							Process.Start(_setting.FMP7Path, arg);
 
 							for (int i = 0; i < 20; i++)
 							{
@@ -409,7 +409,7 @@ namespace FMMLEditor7
 			}
 		}
 
-		private readonly string[]  m_lineparse = new string[] { "\r\n", "\n", "\r" }; 
+		private readonly string[]  _lineparse = new string[] { "\r\n", "\n", "\r" }; 
 
 		private void JumpToErrorMML()
 		{
@@ -421,35 +421,35 @@ namespace FMMLEditor7
 			var item = listviewCompileErrorReport.SelectedItems[0];
 			int line = int.Parse(item.SubItems[2].Text) - 1;
 
-			var linetext = m_editor.Document.GetLineContent(line);
+			var linetext = _editor.Document.GetLineContent(line);
 			var mml = item.SubItems[5].Text;
 
-			var mmllines = mml.Split(m_lineparse, StringSplitOptions.None);
+			var mmllines = mml.Split(_lineparse, StringSplitOptions.None);
 
 			if (mmllines.Length > 1)
 			{
 				//	複数行にまたぐMMLの場合
-				m_editor.Document.SetSelection(
-					m_editor.Document.GetCharIndexFromLineColumnIndex(line, 0),
-					m_editor.Document.GetCharIndexFromLineColumnIndex(line + mmllines.Length, 0) - 1);
+				_editor.Document.SetSelection(
+					_editor.Document.GetCharIndexFromLineColumnIndex(line, 0),
+					_editor.Document.GetCharIndexFromLineColumnIndex(line + mmllines.Length, 0) - 1);
 			}
 			else
 			{
 				int col = linetext.IndexOf(mml);
 				if (col < 0)
 				{
-					m_editor.Document.SetCaretIndex(line, 0);
+					_editor.Document.SetCaretIndex(line, 0);
 				}
 				else
 				{
 					int anchor =
-						m_editor.Document.GetCharIndexFromLineColumnIndex(
+						_editor.Document.GetCharIndexFromLineColumnIndex(
 							line, col);
-					m_editor.Document.SetSelection(anchor, anchor + mml.Length);
+					_editor.Document.SetSelection(anchor, anchor + mml.Length);
 				}
 			}
-			m_editor.ScrollToCaret();
-			m_editor.Focus();
+			_editor.ScrollToCaret();
+			_editor.Focus();
 		}
 
 		/*-------------------------------------------------------------------
@@ -460,7 +460,7 @@ namespace FMMLEditor7
 		{
 			get
 			{
-				return m_mmlFileName;
+				return _mmlFileName;
 			}
 
 			set
@@ -473,7 +473,7 @@ namespace FMMLEditor7
 
 				Text = string.Format("{0} - {1}", name, MMLEditorResource.AppName);
 
-				m_mmlFileName = value;
+				_mmlFileName = value;
 			}
 		}
 
@@ -485,7 +485,7 @@ namespace FMMLEditor7
 		{
 			try
 			{
-				m_setting.Load();
+				_setting.Load();
 			}
 			catch
 			{
@@ -493,14 +493,14 @@ namespace FMMLEditor7
 
 			try
 			{
-				if (m_setting.AvailableWindowPosInfo)
+				if (_setting.AvailableWindowPosInfo)
 				{
 					SetBounds(
-						m_setting.WindowLeft, m_setting.WindowTop,
-						m_setting.WindowWidth, m_setting.WindowHeight);
+						_setting.WindowLeft, _setting.WindowTop,
+						_setting.WindowWidth, _setting.WindowHeight);
 
-					WindowState = m_setting.WindowState;
-					splitContainer1.SplitterDistance = m_setting.EditorHeight;
+					WindowState = _setting.WindowState;
+					splitContainer1.SplitterDistance = _setting.EditorHeight;
 				}
 
 				UpdateEditorFont();
@@ -533,7 +533,7 @@ namespace FMMLEditor7
 				//	閉じる前にウィンドウの状態を控える
 				//
 
-				m_setting.AvailableWindowPosInfo = true;
+				_setting.AvailableWindowPosInfo = true;
 				Rectangle rect;
 				if (WindowState != FormWindowState.Normal)
 				{
@@ -543,12 +543,12 @@ namespace FMMLEditor7
 				{
 					rect = Bounds;
 				}
-				m_setting.WindowLeft = rect.X;
-				m_setting.WindowTop = rect.Y;
-				m_setting.WindowWidth = rect.Width;
-				m_setting.WindowHeight = rect.Height;
-				m_setting.WindowState = WindowState;
-				m_setting.EditorHeight = splitContainer1.SplitterDistance;
+				_setting.WindowLeft = rect.X;
+				_setting.WindowTop = rect.Y;
+				_setting.WindowWidth = rect.Width;
+				_setting.WindowHeight = rect.Height;
+				_setting.WindowState = WindowState;
+				_setting.EditorHeight = splitContainer1.SplitterDistance;
 			}
 			catch
 			{
@@ -561,24 +561,24 @@ namespace FMMLEditor7
 		{
 			try
 			{
-				m_setting.Save();
+				_setting.Save();
 			}
 			catch
 			{
 			}
 			finally
 			{
-				if (m_fastforward != null)
+				if (_fastforward != null)
 				{
-					m_fastforward.Dispose();
+					_fastforward.Dispose();
 				}
-				if (m_compiler != null)
+				if (_compiler != null)
 				{
-					m_compiler.Dispose();
+					_compiler.Dispose();
 				}
-				if (m_work != null)
+				if (_work != null)
 				{
-					m_work.Dispose();
+					_work.Dispose();
 				}
 			}
 		}
@@ -634,12 +634,12 @@ namespace FMMLEditor7
 			if (e.Alt && e.Control)
 			{
 				//FastPlay = true;
-				m_fastforward.Start();
+				_fastforward.Start();
 			}
 			else
 			{
 				//FastPlay = false;
-				m_fastforward.Stop();
+				_fastforward.Stop();
 			}
 		}
 
@@ -651,7 +651,7 @@ namespace FMMLEditor7
 		private void editor_LostFocus(object sender, EventArgs e)
 		{
 			//FastPlay = false;
-			m_fastforward.Stop();
+			_fastforward.Stop();
 		}
 
 		private void menuitemNewFile_Click(object sender, EventArgs e)
@@ -660,9 +660,9 @@ namespace FMMLEditor7
 			{
 				if (CheckUpdateAndSave())
 				{
-					m_editor.Document = new Document();
+					_editor.Document = new Document();
 					MMLFileName = null;
-					m_editor.Document.IsDirty = false;
+					_editor.Document.IsDirty = false;
 				}
 			}
 			catch (Exception ex)
@@ -723,15 +723,15 @@ namespace FMMLEditor7
 			try
 			{
 				FMPStat pstat;
-				m_work.Open();
+				_work.Open();
 				try
 				{
-					var gwork = m_work.GlobalWorkPointer;
+					var gwork = _work.GlobalWorkPointer;
 					pstat = (*gwork).Status & (FMPStat.Play | FMPStat.Pause);
 				}
 				finally
 				{
-					m_work.Close();
+					_work.Close();
 				}
 
 				if (pstat == FMPStat.None)
@@ -775,7 +775,7 @@ namespace FMMLEditor7
 
 		private void menuitemSetting_Click(object sender, EventArgs e)
 		{
-			if (m_settingDialog.ShowDialog(this) == DialogResult.OK)
+			if (_settingDialog.ShowDialog(this) == DialogResult.OK)
 			{
 				UpdateEditorFont();
 				UpdateEditorState();
@@ -809,7 +809,7 @@ namespace FMMLEditor7
 
 		private void menuitemMoveToTextEditor_Click(object sender, EventArgs e)
 		{
-			m_editor.Focus();
+			_editor.Focus();
 		}
 
 		private void menuitemMovieToCompileResult_Click(object sender, EventArgs e)
@@ -852,7 +852,7 @@ namespace FMMLEditor7
 		{
 			try
 			{
-				var current = m_fastforward.Current;
+				var current = _fastforward.Current;
 
 				progressPlayPosition.Maximum = (int)current.Count;
 				progressPlayPosition.Value = (int)current.CountNow;

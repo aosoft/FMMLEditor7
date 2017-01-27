@@ -19,15 +19,15 @@ namespace FMMLEditor7
 
 	class Kernel32Wrapper
 	{
-		private const string m_dllName = "kernel32.dll";
+		private const string _dllName = "kernel32.dll";
 
-		[DllImport(m_dllName, EntryPoint = "LoadLibraryExW", CharSet = CharSet.Unicode, SetLastError = true, ExactSpelling = false)]
+		[DllImport(_dllName, EntryPoint = "LoadLibraryExW", CharSet = CharSet.Unicode, SetLastError = true, ExactSpelling = false)]
 		public static extern IntPtr LoadLibraryEx(string fileName, IntPtr reserved, LoadLibraryFlags flag);
 
-		[DllImport(m_dllName, SetLastError = true)]
+		[DllImport(_dllName, SetLastError = true)]
 		public static extern bool FreeLibrary(IntPtr module);
 
-		[DllImport(m_dllName, CharSet = CharSet.Ansi, ExactSpelling = true)]
+		[DllImport(_dllName, CharSet = CharSet.Ansi, ExactSpelling = true)]
 		public static extern IntPtr GetProcAddress(IntPtr module, string procName);
 
 		public static TDelegate GetUnmangedFunc<TDelegate>(IntPtr module, string procName)

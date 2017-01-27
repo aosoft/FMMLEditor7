@@ -17,63 +17,63 @@ namespace FMMLEditor7
 			public uint CountNow;
 		}
 
-		private Thread m_thread;
-		private FMPWork m_work;
+		private Thread _thread;
+		private FMPWork _work;
 
-		private bool m_threadloop;
-		private EventWaitHandle m_eventWait;
-		private EventWaitHandle m_eventComplete;
+		private bool _threadloop;
+		private EventWaitHandle _eventWait;
+		private EventWaitHandle _eventComplete;
 
-		private bool m_fastfoward;
-		private bool m_playing;
-		private PlayCountInfo m_fastfowardCurrent;
-		private int m_fastforwardStartTickCount;
-		private byte[] m_fastfowardMaskFlags;
+		private bool _fastfoward;
+		private bool _playing;
+		private PlayCountInfo _fastfowardCurrent;
+		private int _fastforwardStartTickCount;
+		private byte[] _fastfowardMaskFlags;
 
-		private static byte[] m_allmaskon;
+		private static byte[] _allmaskon;
 
 		static FastForward()
 		{
-			m_allmaskon = new byte[FMPGlobalWork.MaxPart];
-			for (int i = 0; i < m_allmaskon.Length; i++)
+			_allmaskon = new byte[FMPGlobalWork.MaxPart];
+			for (int i = 0; i < _allmaskon.Length; i++)
 			{
-				m_allmaskon[i] = 1;
+				_allmaskon[i] = 1;
 			}
 		}
 
 		public FastForward(FMPWork work)
 		{
-			m_work = work;
+			_work = work;
 
-			m_fastfowardMaskFlags = new byte[FMPGlobalWork.MaxPart];
+			_fastfowardMaskFlags = new byte[FMPGlobalWork.MaxPart];
 
-			m_eventWait = new ManualResetEvent(false);
-			m_eventComplete = new ManualResetEvent(false);
-			m_threadloop = true;
+			_eventWait = new ManualResetEvent(false);
+			_eventComplete = new ManualResetEvent(false);
+			_threadloop = true;
 
-			m_fastfoward = false;
+			_fastfoward = false;
 
-			m_thread = new Thread(ThreadMain);
-			m_thread.Start();
+			_thread = new Thread(ThreadMain);
+			_thread.Start();
 		}
 
 		public void Dispose()
 		{
-			m_threadloop = false;
-			if (m_eventWait != null)
+			_threadloop = false;
+			if (_eventWait != null)
 			{
-				if (m_thread != null)
+				if (_thread != null)
 				{
-					m_eventWait.Set();
-					m_thread.Join();
+					_eventWait.Set();
+					_thread.Join();
 				}
 
-				m_eventWait.Close();
+				_eventWait.Close();
 			}
 
-			if (m_eventComplete != null)
+			if (_eventComplete != null)
 			{
-				m_eventComplete.Close();
+				_eventComplete.Close();
 			}
 		}
 
@@ -81,58 +81,58 @@ namespace FMMLEditor7
 		{
 			try
 			{
-				if (m_fastfoward)
+				if (_fastfoward)
 				{
 					return;
 				}
 
 
-				var work = m_work.GetGlobalWork();
+				var work = _work.GetGlobalWork();
 				//FMPControl.MusicPause();
 
-				m_playing = (work.Status & FMPStat.Play) != 0;
+				_playing = (work.Status & FMPStat.Play) != 0;
 
-				if (m_playing == false)
+				if (_playing == false)
 				{
 					return;
 				}
 
-				m_fastfowardCurrent.Count = work.Count;
-				m_fastfowardCurrent.CountNow = work.CountNow;
-				m_fastforwardStartTickCount = Environment.TickCount;
+				_fastfowardCurrent.Count = work.Count;
+				_fastfowardCurrent.CountNow = work.CountNow;
+				_fastforwardStartTickCount = Environment.TickCount;
 
 				unsafe
 				{
-					for (int i = 0; i < m_fastfowardMaskFlags.Length; i++)
+					for (int i = 0; i < _fastfowardMaskFlags.Length; i++)
 					{
-						m_fastfowardMaskFlags[i] = work.Mask[i];
+						_fastfowardMaskFlags[i] = work.Mask[i];
 					}
 				}
-				FMPControl.SetMask(m_allmaskon);
+				FMPControl.SetMask(_allmaskon);
 
 				Thread.Sleep(200);
 
-				m_eventWait.Set();
-				m_fastfoward = true;
+				_eventWait.Set();
+				_fastfoward = true;
 			}
 			catch
 			{
-				m_fastfoward = false;
+				_fastfoward = false;
 			}
 		}
 
 		public void Stop()
 		{
-			if (m_fastfoward)
+			if (_fastfoward)
 			{
 				try
 				{
-					m_eventWait.Reset();
-					m_eventComplete.WaitOne();
+					_eventWait.Reset();
+					_eventComplete.WaitOne();
 
-					FMPControl.SetMask(m_fastfowardMaskFlags);
+					FMPControl.SetMask(_fastfowardMaskFlags);
 
-					if (m_playing)
+					if (_playing)
 					{
 						//FMPControl.MusicPause();
 					}
@@ -141,21 +141,21 @@ namespace FMMLEditor7
 				{
 				}
 
-				m_fastfoward = false;
+				_fastfoward = false;
 			}
 		}
 
 		private void ThreadMain()
 		{
-			while (m_threadloop)
+			while (_threadloop)
 			{
-				m_eventWait.WaitOne();
-				if (m_threadloop == false)
+				_eventWait.WaitOne();
+				if (_threadloop == false)
 				{
 					break;
 				}
 
-				m_eventComplete.Reset();
+				_eventComplete.Reset();
 
 				try
 				{
@@ -164,7 +164,7 @@ namespace FMMLEditor7
 				catch
 				{
 				}
-				m_eventComplete.Set();
+				_eventComplete.Set();
 			}
 		}
 
@@ -172,10 +172,10 @@ namespace FMMLEditor7
 		{
 			get
 			{
-				if (m_fastfoward)
+				if (_fastfoward)
 				{
-					var current = m_fastfowardCurrent;
-					int pos = Environment.TickCount - m_fastforwardStartTickCount;
+					var current = _fastfowardCurrent;
+					int pos = Environment.TickCount - _fastforwardStartTickCount;
 					if (pos < 0)
 					{
 						pos += int.MaxValue;
@@ -185,7 +185,7 @@ namespace FMMLEditor7
 					if (current.CountNow >
 						current.Count)
 					{
-						current.CountNow -= m_fastfowardCurrent.Count;
+						current.CountNow -= _fastfowardCurrent.Count;
 					}
 
 					return current;
@@ -197,9 +197,9 @@ namespace FMMLEditor7
 					bool opened = false;
 					try
 					{
-						m_work.Open();
+						_work.Open();
 						opened = true;
-						var w = m_work.GlobalWorkPointer;
+						var w = _work.GlobalWorkPointer;
 
 						ret.Count = w->Count;
 						ret.CountNow = w->CountNow;
@@ -210,7 +210,7 @@ namespace FMMLEditor7
 					{
 						if (opened)
 						{
-							m_work.Close();
+							_work.Close();
 						}
 					}
 				}
