@@ -55,30 +55,33 @@
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabpageCompileResult = new System.Windows.Forms.TabPage();
 			this.listviewCompileResult = new System.Windows.Forms.ListView();
-			this.colheadResultPart = new System.Windows.Forms.ColumnHeader();
-			this.colheadResultSoundUnitType = new System.Windows.Forms.ColumnHeader();
-			this.colheadResultTotalClock = new System.Windows.Forms.ColumnHeader();
-			this.colheadResultLoopClock = new System.Windows.Forms.ColumnHeader();
-			this.colheadResultBytes = new System.Windows.Forms.ColumnHeader();
+			this.colheadResultPart = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.colheadResultSoundUnitType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.colheadResultTotalClock = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.colheadResultLoopClock = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.colheadResultBytes = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.tabpageCompileErrorReport = new System.Windows.Forms.TabPage();
 			this.listviewCompileErrorReport = new System.Windows.Forms.ListView();
-			this.colheadErrorLogKind = new System.Windows.Forms.ColumnHeader();
-			this.colheadErrorPart = new System.Windows.Forms.ColumnHeader();
-			this.colheadErrorLineNumber = new System.Windows.Forms.ColumnHeader();
-			this.colheadErrorMessage = new System.Windows.Forms.ColumnHeader();
-			this.colheadErrorAlias = new System.Windows.Forms.ColumnHeader();
-			this.colheadErrorMML = new System.Windows.Forms.ColumnHeader();
+			this.colheadErrorLogKind = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.colheadErrorPart = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.colheadErrorLineNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.colheadErrorMessage = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.colheadErrorAlias = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.colheadErrorMML = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.tabpageCompileFileInfo = new System.Windows.Forms.TabPage();
 			this.listviewFileInfo = new System.Windows.Forms.ListView();
-			this.colheadFileInfoTitle = new System.Windows.Forms.ColumnHeader();
-			this.colheadData = new System.Windows.Forms.ColumnHeader();
+			this.colheadFileInfoTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.colheadData = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.tabpageCompileMessages = new System.Windows.Forms.TabPage();
 			this.textboxMessages = new System.Windows.Forms.TextBox();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.labelCursorPosition = new System.Windows.Forms.ToolStripStatusLabel();
 			this.progressPlayPosition = new System.Windows.Forms.ToolStripProgressBar();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
+			this.menuitemRecentFiles = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
 			this.menuStrip1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -97,7 +100,7 @@
             this.menuitemTool});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(688, 26);
+			this.menuStrip1.Size = new System.Drawing.Size(688, 24);
 			this.menuStrip1.TabIndex = 0;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -109,16 +112,18 @@
             this.menuitemSave,
             this.menuitemSaveAs,
             this.toolStripSeparator1,
+            this.menuitemRecentFiles,
+            this.toolStripSeparator4,
             this.menuitemQuit});
 			this.menuitemFile.Name = "menuitemFile";
-			this.menuitemFile.Size = new System.Drawing.Size(85, 22);
+			this.menuitemFile.Size = new System.Drawing.Size(66, 20);
 			this.menuitemFile.Text = "ファイル(&F)";
 			// 
 			// menuitemNewFile
 			// 
 			this.menuitemNewFile.Name = "menuitemNewFile";
 			this.menuitemNewFile.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-			this.menuitemNewFile.Size = new System.Drawing.Size(274, 22);
+			this.menuitemNewFile.Size = new System.Drawing.Size(235, 22);
 			this.menuitemNewFile.Text = "新規作成(&N)";
 			this.menuitemNewFile.Click += new System.EventHandler(this.menuitemNewFile_Click);
 			// 
@@ -126,7 +131,7 @@
 			// 
 			this.menuitemOpen.Name = "menuitemOpen";
 			this.menuitemOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-			this.menuitemOpen.Size = new System.Drawing.Size(274, 22);
+			this.menuitemOpen.Size = new System.Drawing.Size(235, 22);
 			this.menuitemOpen.Text = "ファイルを開く(&O)";
 			this.menuitemOpen.Click += new System.EventHandler(this.menuitemOpen_Click);
 			// 
@@ -134,26 +139,26 @@
 			// 
 			this.menuitemSave.Name = "menuitemSave";
 			this.menuitemSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-			this.menuitemSave.Size = new System.Drawing.Size(274, 22);
+			this.menuitemSave.Size = new System.Drawing.Size(235, 22);
 			this.menuitemSave.Text = "ファイルを保存する(&S)";
 			this.menuitemSave.Click += new System.EventHandler(this.menuitemSave_Click);
 			// 
 			// menuitemSaveAs
 			// 
 			this.menuitemSaveAs.Name = "menuitemSaveAs";
-			this.menuitemSaveAs.Size = new System.Drawing.Size(274, 22);
+			this.menuitemSaveAs.Size = new System.Drawing.Size(235, 22);
 			this.menuitemSaveAs.Text = "ファイルに名前をつけて保存する(&A)";
 			this.menuitemSaveAs.Click += new System.EventHandler(this.menuitemSaveAs_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(271, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(232, 6);
 			// 
 			// menuitemQuit
 			// 
 			this.menuitemQuit.Name = "menuitemQuit";
-			this.menuitemQuit.Size = new System.Drawing.Size(274, 22);
+			this.menuitemQuit.Size = new System.Drawing.Size(235, 22);
 			this.menuitemQuit.Text = "終了する(&X)";
 			this.menuitemQuit.Click += new System.EventHandler(this.menuitemQuit_Click);
 			// 
@@ -167,14 +172,14 @@
             this.menuitemMovieToCompileResult,
             this.menuitemMoveToCompileErrorReport});
 			this.menuitemCompileMenu.Name = "menuitemCompileMenu";
-			this.menuitemCompileMenu.Size = new System.Drawing.Size(80, 22);
+			this.menuitemCompileMenu.Size = new System.Drawing.Size(64, 20);
 			this.menuitemCompileMenu.Text = "コンパイル";
 			// 
 			// menuitemMMLCompileAndPlay
 			// 
 			this.menuitemMMLCompileAndPlay.Name = "menuitemMMLCompileAndPlay";
 			this.menuitemMMLCompileAndPlay.ShortcutKeys = System.Windows.Forms.Keys.F5;
-			this.menuitemMMLCompileAndPlay.Size = new System.Drawing.Size(221, 22);
+			this.menuitemMMLCompileAndPlay.Size = new System.Drawing.Size(199, 22);
 			this.menuitemMMLCompileAndPlay.Text = "MMLコンパイルと再生";
 			this.menuitemMMLCompileAndPlay.Click += new System.EventHandler(this.menuitemMMLCompileAndPlay_Click);
 			// 
@@ -182,20 +187,20 @@
 			// 
 			this.menuitemMMLCompile.Name = "menuitemMMLCompile";
 			this.menuitemMMLCompile.ShortcutKeys = System.Windows.Forms.Keys.F7;
-			this.menuitemMMLCompile.Size = new System.Drawing.Size(221, 22);
+			this.menuitemMMLCompile.Size = new System.Drawing.Size(199, 22);
 			this.menuitemMMLCompile.Text = "MMLコンパイル";
 			this.menuitemMMLCompile.Click += new System.EventHandler(this.menuitemMMLCompile_Click);
 			// 
 			// toolStripSeparator3
 			// 
 			this.toolStripSeparator3.Name = "toolStripSeparator3";
-			this.toolStripSeparator3.Size = new System.Drawing.Size(218, 6);
+			this.toolStripSeparator3.Size = new System.Drawing.Size(196, 6);
 			// 
 			// menuitemMoveToTextEditor
 			// 
 			this.menuitemMoveToTextEditor.Name = "menuitemMoveToTextEditor";
 			this.menuitemMoveToTextEditor.ShortcutKeys = System.Windows.Forms.Keys.F8;
-			this.menuitemMoveToTextEditor.Size = new System.Drawing.Size(221, 22);
+			this.menuitemMoveToTextEditor.Size = new System.Drawing.Size(199, 22);
 			this.menuitemMoveToTextEditor.Text = "MMLソースへ移動";
 			this.menuitemMoveToTextEditor.Click += new System.EventHandler(this.menuitemMoveToTextEditor_Click);
 			// 
@@ -203,7 +208,7 @@
 			// 
 			this.menuitemMovieToCompileResult.Name = "menuitemMovieToCompileResult";
 			this.menuitemMovieToCompileResult.ShortcutKeys = System.Windows.Forms.Keys.F9;
-			this.menuitemMovieToCompileResult.Size = new System.Drawing.Size(221, 22);
+			this.menuitemMovieToCompileResult.Size = new System.Drawing.Size(199, 22);
 			this.menuitemMovieToCompileResult.Text = "コンパイル結果へ移動";
 			this.menuitemMovieToCompileResult.Click += new System.EventHandler(this.menuitemMovieToCompileResult_Click);
 			// 
@@ -211,7 +216,7 @@
 			// 
 			this.menuitemMoveToCompileErrorReport.Name = "menuitemMoveToCompileErrorReport";
 			this.menuitemMoveToCompileErrorReport.ShortcutKeys = System.Windows.Forms.Keys.F10;
-			this.menuitemMoveToCompileErrorReport.Size = new System.Drawing.Size(221, 22);
+			this.menuitemMoveToCompileErrorReport.Size = new System.Drawing.Size(199, 22);
 			this.menuitemMoveToCompileErrorReport.Text = "エラーリストへ移動";
 			this.menuitemMoveToCompileErrorReport.Click += new System.EventHandler(this.menuitemMoveToCompileErrorReport_Click);
 			// 
@@ -223,14 +228,14 @@
             this.toolStripSeparator2,
             this.menuitemSetting});
 			this.menuitemTool.Name = "menuitemTool";
-			this.menuitemTool.Size = new System.Drawing.Size(74, 22);
+			this.menuitemTool.Size = new System.Drawing.Size(60, 20);
 			this.menuitemTool.Text = "ツール(&T)";
 			// 
 			// menuitemPlay
 			// 
 			this.menuitemPlay.Name = "menuitemPlay";
 			this.menuitemPlay.ShortcutKeys = System.Windows.Forms.Keys.F2;
-			this.menuitemPlay.Size = new System.Drawing.Size(206, 22);
+			this.menuitemPlay.Size = new System.Drawing.Size(201, 22);
 			this.menuitemPlay.Text = "再生開始／一時停止";
 			this.menuitemPlay.Click += new System.EventHandler(this.menuitemPlay_Click);
 			// 
@@ -238,19 +243,19 @@
 			// 
 			this.menuitemStop.Name = "menuitemStop";
 			this.menuitemStop.ShortcutKeys = System.Windows.Forms.Keys.F3;
-			this.menuitemStop.Size = new System.Drawing.Size(206, 22);
+			this.menuitemStop.Size = new System.Drawing.Size(201, 22);
 			this.menuitemStop.Text = "再生停止";
 			this.menuitemStop.Click += new System.EventHandler(this.menuitemStop_Click);
 			// 
 			// toolStripSeparator2
 			// 
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(203, 6);
+			this.toolStripSeparator2.Size = new System.Drawing.Size(198, 6);
 			// 
 			// menuitemSetting
 			// 
 			this.menuitemSetting.Name = "menuitemSetting";
-			this.menuitemSetting.Size = new System.Drawing.Size(206, 22);
+			this.menuitemSetting.Size = new System.Drawing.Size(201, 22);
 			this.menuitemSetting.Text = "設定";
 			this.menuitemSetting.Click += new System.EventHandler(this.menuitemSetting_Click);
 			// 
@@ -260,9 +265,9 @@
 			// 
 			// splitContainer1
 			// 
-			this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-						| System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.splitContainer1.Location = new System.Drawing.Point(0, 26);
 			this.splitContainer1.Name = "splitContainer1";
 			this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -486,6 +491,17 @@
 			// 
 			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
 			// 
+			// menuitemRecentFiles
+			// 
+			this.menuitemRecentFiles.Name = "menuitemRecentFiles";
+			this.menuitemRecentFiles.Size = new System.Drawing.Size(235, 22);
+			this.menuitemRecentFiles.Text = "ファイルの履歴";
+			// 
+			// toolStripSeparator4
+			// 
+			this.toolStripSeparator4.Name = "toolStripSeparator4";
+			this.toolStripSeparator4.Size = new System.Drawing.Size(232, 6);
+			// 
 			// Form1
 			// 
 			this.AllowDrop = true;
@@ -498,14 +514,15 @@
 			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "Form1";
 			this.Text = "Form1";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
-			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
 			this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
-			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
 			this.splitContainer1.Panel2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
 			this.splitContainer1.ResumeLayout(false);
 			this.tabControl1.ResumeLayout(false);
 			this.tabpageCompileResult.ResumeLayout(false);
@@ -571,6 +588,8 @@
 		private System.Windows.Forms.ToolStripProgressBar progressPlayPosition;
 		private System.Windows.Forms.ToolStripStatusLabel labelCursorPosition;
 		private System.Windows.Forms.Timer timer1;
+		private System.Windows.Forms.ToolStripMenuItem menuitemRecentFiles;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
 	}
 }
 

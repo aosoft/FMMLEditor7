@@ -15,7 +15,18 @@ namespace FMMLEditor7
 	/// </summary>
 	public class Settings
 	{
+		public const int MaxRecentFiles = 5;
+
 		private string _settingFilePath;
+		private List<string> _recentFiles = new List<string>(MaxRecentFiles);
+
+		public List<String> RecentFiles
+		{
+			get
+			{
+				return _recentFiles;
+			}
+		}
 
 		public string FMP7Path
 		{
@@ -159,6 +170,26 @@ namespace FMMLEditor7
 
 			if (xnavBase != null)
 			{
+				var xnavRecentFiles = xnavBase.Select("RecentFiles/MMLFile");
+				_recentFiles.Clear();
+				foreach (XPathNavigator item in xnavRecentFiles)
+				{
+					if (_recentFiles.Count >= MaxRecentFiles)
+					{
+						break;
+					}
+
+					if (item.Value == null)
+					{
+						continue;
+					}
+					var file = item.Value.ToString().Trim();
+					if (File.Exists(file))
+					{
+						_recentFiles.Add(file);
+					}
+				}
+
 				var xnavFMP = xnavBase.SelectSingleNode("FMP");
 				if (xnavFMP != null)
 				{
@@ -262,6 +293,16 @@ namespace FMMLEditor7
 				w.WriteStartDocument();
 				w.WriteStartElement("Setting");
 				{
+					if (_recentFiles.Count > 0)
+					{
+						w.WriteStartElement("RecentFiles");
+						foreach (var item in _recentFiles)
+						{
+							w.WriteElementString("MMLFile", item);
+						}
+						w.WriteEndElement();
+					}
+
 					w.WriteStartElement("FMP");
 					{
 						w.WriteElementString("FMP7Path", FMP7Path);
