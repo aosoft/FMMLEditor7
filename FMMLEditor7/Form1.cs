@@ -130,6 +130,7 @@ namespace FMMLEditor7
 				sw.Write(_editor.Document.Text);
 				MMLFileName = fileName;
 				_editor.Document.IsDirty = false;
+				UpdateRecentFilesMenu(fileName);
 				return true;
 			}
 			finally
@@ -155,6 +156,7 @@ namespace FMMLEditor7
 
 					MMLFileName = fileName;
 					_editor.Document.IsDirty = false;
+					UpdateRecentFilesMenu(fileName);
 
 					return true;
 				}
@@ -218,6 +220,36 @@ namespace FMMLEditor7
 				}
 			}
 			return true;
+		}
+
+		private void UpdateRecentFilesMenu(string newFile)
+		{
+			_setting.UpdateRecentFiles(newFile);
+			UpdateRecentFilesMenu();
+		}
+
+		private void UpdateRecentFilesMenu()
+		{
+			menuitemRecentFiles.DropDownItems.Clear();
+			if (_setting.RecentFiles.Count > 0)
+			{
+				menuitemRecentFiles.Enabled = true;
+				foreach (var item in _setting.RecentFiles)
+				{
+					var menuitem = new ToolStripMenuItem();
+					menuitem.Text = Path.GetFileName(item);
+					menuitem.ToolTipText = item;
+					menuitem.Click += (s, e) =>
+					{
+						Open(item);
+					};
+					menuitemRecentFiles.DropDownItems.Add(menuitem);
+				}
+			}
+			else
+			{
+				menuitemRecentFiles.Enabled = false;
+			}
 		}
 
 		private bool CheckSupportMMLExt(string path)
@@ -486,6 +518,7 @@ namespace FMMLEditor7
 			try
 			{
 				_setting.Load();
+				UpdateRecentFilesMenu();
 			}
 			catch
 			{

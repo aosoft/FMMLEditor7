@@ -18,7 +18,7 @@ namespace FMMLEditor7
 		public const int MaxRecentFiles = 5;
 
 		private string _settingFilePath;
-		private List<string> _recentFiles = new List<string>(MaxRecentFiles);
+		private List<string> _recentFiles = new List<string>(MaxRecentFiles + 1);
 
 		public List<String> RecentFiles
 		{
@@ -341,5 +341,23 @@ namespace FMMLEditor7
 			}
 		}
 
+		public void UpdateRecentFiles(string newFile)
+		{
+			if (string.IsNullOrWhiteSpace(newFile) == false &&
+				File.Exists(newFile))
+			{
+				var index = _recentFiles.IndexOf(newFile);
+				if (index >= 0)
+				{
+					_recentFiles.RemoveAt(index);
+				}
+
+				_recentFiles.Insert(0, newFile);
+				if (_recentFiles.Count > MaxRecentFiles)
+				{
+					_recentFiles.RemoveAt(_recentFiles.Count - 1);
+				}
+			}
+		}
 	}
 }
