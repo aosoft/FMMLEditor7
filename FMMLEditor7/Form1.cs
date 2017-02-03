@@ -245,6 +245,19 @@ namespace FMMLEditor7
 					};
 					menuitemRecentFiles.DropDownItems.Add(menuitem);
 				}
+
+				menuitemRecentFiles.DropDownItems.Add(new ToolStripSeparator());
+
+				{
+					var menuitem = new ToolStripMenuItem();
+					menuitem.Text = MMLEditorResource.MenuItem_ClearRecentFiles;
+					menuitem.Click += (s, e) =>
+					{
+						_setting.RecentFiles.Clear();
+						UpdateRecentFilesMenu();
+					};
+					menuitemRecentFiles.DropDownItems.Add(menuitem);
+				}
 			}
 			else
 			{
