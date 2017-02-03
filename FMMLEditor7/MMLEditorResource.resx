@@ -130,13 +130,13 @@
     <value>12</value>
   </data>
   <data name="FileFilter_FMC7DLL" xml:space="preserve">
-    <value>FMC7 モジュールファイル(fmc*.dll)|fmc*.dll|全てのファイル(*.*)|*.*</value>
+    <value>FMC7 モジュールファイル (fmc*.dll)|fmc*.dll|全てのファイル(*.*)|*.*</value>
   </data>
   <data name="FileFilter_FMP7EXE" xml:space="preserve">
-    <value>FMP7 実行ファイル(FMP*.exe)|FMP*.exe|全てのファイル(*.*)|*.*</value>
+    <value>FMP7 実行ファイル (FMP*.exe)|FMP*.exe|全てのファイル(*.*)|*.*</value>
   </data>
   <data name="FileFilter_MML" xml:space="preserve">
-    <value>FMP7 MMLファイル(*.mwi)|*.mwi|FMP(98) MMLファイル(*.mpi;*.mvi;*.mzi)|*.mpi;*.mvi;*.mzi|全てのファイル(*.*)|*.*</value>
+    <value>FMP7 MMLファイル (*.mwi)|*.mwi|FMP(98) MMLファイル(*.mpi;*.mvi;*.mzi)|*.mpi;*.mvi;*.mzi|全てのファイル(*.*)|*.*</value>
   </data>
   <data name="FMC7DllName" xml:space="preserve">
     <value>fmc.dll</value>
@@ -148,7 +148,7 @@
     <value>FMP\FMP7 MML Editor\FMPMMLEditor7Setting.xml</value>
   </data>
   <data name="Error_LoadCompilerModule" xml:space="preserve">
-    <value>コンパイラモジュール(fmc.dll)のロードに失敗しました。
+    <value>コンパイラモジュール (fmc.dll) のロードに失敗しました。
 設定画面で再度設定を行ってください。
 正しく設定で行われていない場合はコンパイルが実行できません。
 
@@ -156,7 +156,7 @@
   </data>
   <data name="Error_NotInitializedCompiler" xml:space="preserve">
     <value>コンパイラモジュールが初期化されていません。
-コンパイラモジュール(fmc.dll)へのパスが正しく設定されているか確認してください。</value>
+コンパイラモジュール (fmc.dll) へのパスが正しく設定されているか確認してください。</value>
   </data>
   <data name="FileInfo_FileName" xml:space="preserve">
     <value>ファイル名</value>
@@ -171,19 +171,19 @@
     <value>エンベロープ数</value>
   </data>
   <data name="FileInfo_PartOPNA" xml:space="preserve">
-    <value>FM(OPNA)パート数</value>
+    <value>FM (OPNA) パート数</value>
   </data>
   <data name="FileInfo_PartPCM" xml:space="preserve">
-    <value>PCMパート数</value>
+    <value>PCM パート数</value>
   </data>
   <data name="FileInfo_PartSSG" xml:space="preserve">
-    <value>SSGパート数</value>
+    <value>SSG パート数</value>
   </data>
   <data name="FileInfo_ToneFM4" xml:space="preserve">
-    <value>FM音色数</value>
+    <value>FM 音色数</value>
   </data>
   <data name="FileInfo_WavePCM" xml:space="preserve">
-    <value>WAVE数</value>
+    <value>WAVE 数</value>
   </data>
   <data name="URL_AOSoft" xml:space="preserve">
     <value>http://www.aosoft.jp/</value>
@@ -203,12 +203,21 @@ FMP' へのパスが正しく設定されているか確認してください。
 FMP7 へのパスが正しく設定されているか確認してください。</value>
   </data>
   <data name="FileInfo_PartOPM" xml:space="preserve">
-    <value>FM(OPM)パート数</value>
+    <value>FM (OPM) パート数</value>
   </data>
   <data name="Error_FMCVersion" xml:space="preserve">
     <value>非対応バージョンの FMC です。{0} 以上の FMC を使用してください。</value>
   </data>
   <data name="Error_FMCModule" xml:space="preserve">
     <value>正常な FMC モジュールではありません。{0} 以上の FMC を使用してください。</value>
+  </data>
+  <data name="MenuItem_ClearRecentFiles" xml:space="preserve">
+    <value>履歴をクリアする</value>
+  </data>
+  <data name="Message_CheckOverwriteFile" xml:space="preserve">
+    <value>'{0}' はすでに存在します。上書きしてよろしいですか？</value>
+  </data>
+  <data name="Message_SaveFile" xml:space="preserve">
+    <value>編集中のファイルが保存されていません。保存しますか？</value>
   </data>
 </root>

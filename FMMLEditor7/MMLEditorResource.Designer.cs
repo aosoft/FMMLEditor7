@@ -135,7 +135,7 @@ namespace FMMLEditor7 {
         }
         
         /// <summary>
-        ///   コンパイラモジュール(fmc.dll)のロードに失敗しました。
+        ///   コンパイラモジュール (fmc.dll) のロードに失敗しました。
         ///設定画面で再度設定を行ってください。
         ///正しく設定で行われていない場合はコンパイルが実行できません。
         ///
@@ -149,7 +149,7 @@ namespace FMMLEditor7 {
         
         /// <summary>
         ///   コンパイラモジュールが初期化されていません。
-        ///コンパイラモジュール(fmc.dll)へのパスが正しく設定されているか確認してください。 に類似しているローカライズされた文字列を検索します。
+        ///コンパイラモジュール (fmc.dll) へのパスが正しく設定されているか確認してください。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Error_NotInitializedCompiler {
             get {
@@ -158,7 +158,7 @@ namespace FMMLEditor7 {
         }
         
         /// <summary>
-        ///   FMC7 モジュールファイル(fmc*.dll)|fmc*.dll|全てのファイル(*.*)|*.* に類似しているローカライズされた文字列を検索します。
+        ///   FMC7 モジュールファイル (fmc*.dll)|fmc*.dll|全てのファイル(*.*)|*.* に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string FileFilter_FMC7DLL {
             get {
@@ -167,7 +167,7 @@ namespace FMMLEditor7 {
         }
         
         /// <summary>
-        ///   FMP7 実行ファイル(FMP*.exe)|FMP*.exe|全てのファイル(*.*)|*.* に類似しているローカライズされた文字列を検索します。
+        ///   FMP7 実行ファイル (FMP*.exe)|FMP*.exe|全てのファイル(*.*)|*.* に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string FileFilter_FMP7EXE {
             get {
@@ -176,7 +176,7 @@ namespace FMMLEditor7 {
         }
         
         /// <summary>
-        ///   FMP7 MMLファイル(*.mwi)|*.mwi|FMP(98) MMLファイル(*.mpi;*.mvi;*.mzi)|*.mpi;*.mvi;*.mzi|全てのファイル(*.*)|*.* に類似しているローカライズされた文字列を検索します。
+        ///   FMP7 MMLファイル (*.mwi)|*.mwi|FMP(98) MMLファイル(*.mpi;*.mvi;*.mzi)|*.mpi;*.mvi;*.mzi|全てのファイル(*.*)|*.* に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string FileFilter_MML {
             get {
@@ -203,7 +203,7 @@ namespace FMMLEditor7 {
         }
         
         /// <summary>
-        ///   FM(OPM)パート数 に類似しているローカライズされた文字列を検索します。
+        ///   FM (OPM) パート数 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string FileInfo_PartOPM {
             get {
@@ -212,7 +212,7 @@ namespace FMMLEditor7 {
         }
         
         /// <summary>
-        ///   FM(OPNA)パート数 に類似しているローカライズされた文字列を検索します。
+        ///   FM (OPNA) パート数 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string FileInfo_PartOPNA {
             get {
@@ -221,7 +221,7 @@ namespace FMMLEditor7 {
         }
         
         /// <summary>
-        ///   PCMパート数 に類似しているローカライズされた文字列を検索します。
+        ///   PCM パート数 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string FileInfo_PartPCM {
             get {
@@ -230,7 +230,7 @@ namespace FMMLEditor7 {
         }
         
         /// <summary>
-        ///   SSGパート数 に類似しているローカライズされた文字列を検索します。
+        ///   SSG パート数 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string FileInfo_PartSSG {
             get {
@@ -248,7 +248,7 @@ namespace FMMLEditor7 {
         }
         
         /// <summary>
-        ///   FM音色数 に類似しているローカライズされた文字列を検索します。
+        ///   FM 音色数 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string FileInfo_ToneFM4 {
             get {
@@ -257,7 +257,7 @@ namespace FMMLEditor7 {
         }
         
         /// <summary>
-        ///   WAVE数 に類似しているローカライズされた文字列を検索します。
+        ///   WAVE 数 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string FileInfo_WavePCM {
             get {
@@ -280,6 +280,33 @@ namespace FMMLEditor7 {
         internal static string FMP7ProgramName {
             get {
                 return ResourceManager.GetString("FMP7ProgramName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   履歴をクリアする に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MenuItem_ClearRecentFiles {
+            get {
+                return ResourceManager.GetString("MenuItem_ClearRecentFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   &apos;{0}&apos; はすでに存在します。上書きしてよろしいですか？ に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Message_CheckOverwriteFile {
+            get {
+                return ResourceManager.GetString("Message_CheckOverwriteFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   編集中のファイルが保存されていません。保存しますか？ に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Message_SaveFile {
+            get {
+                return ResourceManager.GetString("Message_SaveFile", resourceCulture);
             }
         }
         

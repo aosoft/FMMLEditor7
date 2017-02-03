@@ -116,7 +116,7 @@ namespace FMMLEditor7
 					if (File.Exists(fileName))
 					{
 						if (MessageBox.Show(
-							string.Format("'{0}' はすでに存在します。上書きしてよろしいですか？", fileName),
+							string.Format(MMLEditorResource.Message_CheckOverwriteFile, fileName),
 							MMLEditorResource.AppName,
 							MessageBoxButtons.OKCancel,
 							MessageBoxIcon.Exclamation) != DialogResult.OK)
@@ -199,7 +199,7 @@ namespace FMMLEditor7
 			if (_editor.Document.IsDirty)
 			{
 				switch (MessageBox.Show(
-					"編集中のファイルが保存されていません。保存しますか？",
+					MMLEditorResource.Message_SaveFile,
 					MMLEditorResource.AppName,
 					MessageBoxButtons.YesNoCancel,
 					MessageBoxIcon.Warning))
