@@ -413,7 +413,7 @@ namespace FMMLEditor7
 					var r = _compiler.Compile(_mmlFileName, compileAndPlay);
 					UpdateCompileResult(r);
 
-					if (r.Result == FMCStatus.Success &&
+					if (r.Result == FMCStatus.ErrorPlay &&
 						compileAndPlay &&
 						_setting.ProcessStartFMP7 &&
 						FMPControl.CheckAvailableFMP() == false)
