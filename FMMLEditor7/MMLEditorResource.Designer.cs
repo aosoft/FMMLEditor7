@@ -275,11 +275,29 @@ namespace FMMLEditor7 {
         }
         
         /// <summary>
+        ///   FMC.EXE に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string FMCProgramName {
+            get {
+                return ResourceManager.GetString("FMCProgramName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   FMP7.exe に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string FMP7ProgramName {
             get {
                 return ResourceManager.GetString("FMP7ProgramName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   MC.EXE に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MCProgramName {
+            get {
+                return ResourceManager.GetString("MCProgramName", resourceCulture);
             }
         }
         
@@ -307,6 +325,15 @@ namespace FMMLEditor7 {
         internal static string Message_SaveFile {
             get {
                 return ResourceManager.GetString("Message_SaveFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   msdos.exe に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MSDOSPlayerProgramName {
+            get {
+                return ResourceManager.GetString("MSDOSPlayerProgramName", resourceCulture);
             }
         }
         

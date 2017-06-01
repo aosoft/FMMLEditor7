@@ -40,6 +40,24 @@ namespace FMMLEditor7
 			set;
 		}
 
+		public string MSDOSPlayerPath
+		{
+			get;
+			set;
+		}
+
+		public string FMCPath
+		{
+			get;
+			set;
+		}
+
+		public string MCPath
+		{
+			get;
+			set;
+		}
+
 		public bool ProcessStartFMP7
 		{
 			get;
@@ -139,6 +157,9 @@ namespace FMMLEditor7
 
 			FMP7Path = Path.Combine(appdir, MMLEditorResource.FMP7ProgramName);
 			FMC7Path = Path.Combine(appdir, MMLEditorResource.FMC7DllName);
+			MSDOSPlayerPath = Path.Combine(appdir, MMLEditorResource.MSDOSPlayerProgramName);
+			FMCPath = Path.Combine(appdir, MMLEditorResource.FMCProgramName);
+			MCPath = Path.Combine(appdir, MMLEditorResource.MCProgramName);
 			ProcessStartFMP7 = true;
 
 			EditorFontName = MMLEditorResource.DefaultFont_FontFamiliyName;
@@ -201,6 +222,14 @@ namespace FMMLEditor7
 								xnavFMP,
 								"ProcessStartFMP7",
 								ProcessStartFMP7.ToString()));
+				}
+
+				var xnavCompiler = xnavBase.SelectSingleNode("Compiler");
+				if (xnavCompiler != null)
+				{
+					MSDOSPlayerPath = GetNodeValue(xnavCompiler, "MSDOSPlayerPath", MSDOSPlayerPath);
+					FMCPath = GetNodeValue(xnavCompiler, "FMCPath", FMCPath);
+					MCPath = GetNodeValue(xnavCompiler, "MCPath", MCPath);
 				}
 
 				var xnavEditor = xnavBase.SelectSingleNode("Editor");
@@ -308,6 +337,14 @@ namespace FMMLEditor7
 						w.WriteElementString("FMP7Path", FMP7Path);
 						w.WriteElementString("FMC7Path", FMC7Path);
 						w.WriteElementString("ProcessStartFMP7", ProcessStartFMP7.ToString());
+					}
+					w.WriteEndElement();
+
+					w.WriteStartElement("Compiler");
+					{
+						w.WriteElementString("MSDOSPlayerPath", MSDOSPlayerPath);
+						w.WriteElementString("FMCPath", FMCPath);
+						w.WriteElementString("MCPath", MCPath);
 					}
 					w.WriteEndElement();
 
