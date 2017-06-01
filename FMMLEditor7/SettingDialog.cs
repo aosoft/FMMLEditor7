@@ -65,6 +65,9 @@ namespace FMMLEditor7
 		{
 			textboxFMP7Path.Text = _setting.FMP7Path;
 			textboxFMC7Path.Text = _setting.FMC7Path;
+			textboxMSDOSPlayerPath.Text = _setting.MSDOSPlayerPath;
+			textboxFMCPath.Text = _setting.FMCPath;
+			textboxMCPath.Text = _setting.MCPath;
 			checkProcessStartFMP7.Checked = _setting.ProcessStartFMP7;
 			_font =
 				new Font(
@@ -82,6 +85,9 @@ namespace FMMLEditor7
 		{
 			_setting.FMP7Path = textboxFMP7Path.Text;
 			_setting.FMC7Path = textboxFMC7Path.Text;
+			_setting.MSDOSPlayerPath = textboxMSDOSPlayerPath.Text;
+			_setting.FMCPath = textboxFMCPath.Text;
+			_setting.MCPath = textboxMCPath.Text;
 			_setting.ProcessStartFMP7 = checkProcessStartFMP7.Checked;
 			_setting.EditorFontName = _font.FontFamily.Name;
 			_setting.EditorFontSize = _font.Size;
@@ -115,6 +121,36 @@ namespace FMMLEditor7
 			if (openFileDialog1.ShowDialog() == DialogResult.OK)
 			{
 				textboxFMC7Path.Text = openFileDialog1.FileName;
+			}
+		}
+
+		private void btnOpenDialogMSDOSPlayer_Click(object sender, EventArgs e)
+		{
+			openFileDialog1.Filter = MMLEditorResource.FileFilter_MSDOSPlayerEXE;
+			openFileDialog1.FileName = textboxMSDOSPlayerPath.Text;
+			if (openFileDialog1.ShowDialog() == DialogResult.OK)
+			{
+				textboxMSDOSPlayerPath.Text = openFileDialog1.FileName;
+			}
+		}
+
+		private void btnOpenDialogFMC_Click(object sender, EventArgs e)
+		{
+			openFileDialog1.Filter = MMLEditorResource.FileFilter_FMCEXE;
+			openFileDialog1.FileName = textboxFMCPath.Text;
+			if (openFileDialog1.ShowDialog() == DialogResult.OK)
+			{
+				textboxFMCPath.Text = openFileDialog1.FileName;
+			}
+		}
+
+		private void btnOpenDialogMC_Click(object sender, EventArgs e)
+		{
+			openFileDialog1.Filter = MMLEditorResource.FileFilter_MCEXE;
+			openFileDialog1.FileName = textboxMCPath.Text;
+			if (openFileDialog1.ShowDialog() == DialogResult.OK)
+			{
+				textboxMCPath.Text = openFileDialog1.FileName;
 			}
 		}
 

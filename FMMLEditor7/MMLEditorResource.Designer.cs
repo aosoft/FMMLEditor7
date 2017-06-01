@@ -167,6 +167,15 @@ namespace FMMLEditor7 {
         }
         
         /// <summary>
+        ///   FMPv4 MML コンパイラ実行ファイル (16bit) (FMC.EXE)|FMC.EXE|全てのファイル(*.*)|*.* に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string FileFilter_FMCEXE {
+            get {
+                return ResourceManager.GetString("FileFilter_FMCEXE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   FMP7 実行ファイル (FMP*.exe)|FMP*.exe|全てのファイル(*.*)|*.* に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string FileFilter_FMP7EXE {
@@ -176,11 +185,29 @@ namespace FMMLEditor7 {
         }
         
         /// <summary>
-        ///   FMP7 MMLファイル (*.mwi)|*.mwi|FMP(98) MMLファイル(*.mpi;*.mvi;*.mzi)|*.mpi;*.mvi;*.mzi|全てのファイル(*.*)|*.* に類似しているローカライズされた文字列を検索します。
+        ///   PMD MML コンパイラ実行ファイル (16bit) (MC.EXE)|MC.EXE|全てのファイル(*.*)|*.* に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string FileFilter_MCEXE {
+            get {
+                return ResourceManager.GetString("FileFilter_MCEXE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   全ての対応 MMLファイル (*.mwi;*.mpi;*.mvi;*.mzi;*.mml)|*.mwi;*.mpi;*.mvi;*.mzi;*.mml|FMP7 MMLファイル (*.mwi)|*.mwi|FMP(98) MMLファイル(*.mpi;*.mvi;*.mzi)|*.mpi;*.mvi;*.mzi|PMD MMLファイル(*.mml)|*.mml|全てのファイル(*.*)|*.* に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string FileFilter_MML {
             get {
                 return ResourceManager.GetString("FileFilter_MML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   MS-DOS Player 実行ファイル (msdos*.exe)|msdos*.exe|全てのファイル(*.*)|*.* に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string FileFilter_MSDOSPlayerEXE {
+            get {
+                return ResourceManager.GetString("FileFilter_MSDOSPlayerEXE", resourceCulture);
             }
         }
         

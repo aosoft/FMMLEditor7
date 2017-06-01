@@ -30,6 +30,15 @@
 		{
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabpageFMPSetting = new System.Windows.Forms.TabPage();
+			this.btnOpenDialogMC = new System.Windows.Forms.Button();
+			this.textboxMCPath = new System.Windows.Forms.TextBox();
+			this.label11 = new System.Windows.Forms.Label();
+			this.btnOpenDialogFMC = new System.Windows.Forms.Button();
+			this.textboxFMCPath = new System.Windows.Forms.TextBox();
+			this.label10 = new System.Windows.Forms.Label();
+			this.btnOpenDialogMsDosPlayer = new System.Windows.Forms.Button();
+			this.textboxMSDOSPlayerPath = new System.Windows.Forms.TextBox();
+			this.label9 = new System.Windows.Forms.Label();
 			this.label8 = new System.Windows.Forms.Label();
 			this.checkProcessStartFMP7 = new System.Windows.Forms.CheckBox();
 			this.btnOpenDialogFMC7 = new System.Windows.Forms.Button();
@@ -59,15 +68,6 @@
 			this.btnOK = new System.Windows.Forms.Button();
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.fontDialog1 = new System.Windows.Forms.FontDialog();
-			this.btnOpenDialogMsDosPlayer = new System.Windows.Forms.Button();
-			this.textboxMSDOSPlayerPath = new System.Windows.Forms.TextBox();
-			this.label9 = new System.Windows.Forms.Label();
-			this.btnOpenDialogFMC = new System.Windows.Forms.Button();
-			this.textboxFMCPath = new System.Windows.Forms.TextBox();
-			this.label10 = new System.Windows.Forms.Label();
-			this.btnOpenDialogMC = new System.Windows.Forms.Button();
-			this.textboxMCPath = new System.Windows.Forms.TextBox();
-			this.label11 = new System.Windows.Forms.Label();
 			this.tabControl1.SuspendLayout();
 			this.tabpageFMPSetting.SuspendLayout();
 			this.tabpageEditorSetting.SuspendLayout();
@@ -115,6 +115,84 @@
 			this.tabpageFMPSetting.TabIndex = 0;
 			this.tabpageFMPSetting.Text = "FMP / コンパイラ";
 			this.tabpageFMPSetting.UseVisualStyleBackColor = true;
+			// 
+			// btnOpenDialogMC
+			// 
+			this.btnOpenDialogMC.Location = new System.Drawing.Point(364, 221);
+			this.btnOpenDialogMC.Name = "btnOpenDialogMC";
+			this.btnOpenDialogMC.Size = new System.Drawing.Size(36, 23);
+			this.btnOpenDialogMC.TabIndex = 16;
+			this.btnOpenDialogMC.Text = "...";
+			this.btnOpenDialogMC.UseVisualStyleBackColor = true;
+			this.btnOpenDialogMC.Click += new System.EventHandler(this.btnOpenDialogMC_Click);
+			// 
+			// textboxMCPath
+			// 
+			this.textboxMCPath.Location = new System.Drawing.Point(21, 223);
+			this.textboxMCPath.Name = "textboxMCPath";
+			this.textboxMCPath.Size = new System.Drawing.Size(337, 19);
+			this.textboxMCPath.TabIndex = 15;
+			// 
+			// label11
+			// 
+			this.label11.AutoSize = true;
+			this.label11.Location = new System.Drawing.Point(19, 208);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(149, 12);
+			this.label11.TabIndex = 14;
+			this.label11.Text = "MC (PMD コンパイラ) へのパス";
+			// 
+			// btnOpenDialogFMC
+			// 
+			this.btnOpenDialogFMC.Location = new System.Drawing.Point(364, 172);
+			this.btnOpenDialogFMC.Name = "btnOpenDialogFMC";
+			this.btnOpenDialogFMC.Size = new System.Drawing.Size(36, 23);
+			this.btnOpenDialogFMC.TabIndex = 13;
+			this.btnOpenDialogFMC.Text = "...";
+			this.btnOpenDialogFMC.UseVisualStyleBackColor = true;
+			this.btnOpenDialogFMC.Click += new System.EventHandler(this.btnOpenDialogFMC_Click);
+			// 
+			// textboxFMCPath
+			// 
+			this.textboxFMCPath.Location = new System.Drawing.Point(21, 174);
+			this.textboxFMCPath.Name = "textboxFMCPath";
+			this.textboxFMCPath.Size = new System.Drawing.Size(337, 19);
+			this.textboxFMCPath.TabIndex = 12;
+			// 
+			// label10
+			// 
+			this.label10.AutoSize = true;
+			this.label10.Location = new System.Drawing.Point(19, 159);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(167, 12);
+			this.label10.TabIndex = 11;
+			this.label10.Text = "FMC (FMPv4 コンパイラ) へのパス";
+			// 
+			// btnOpenDialogMsDosPlayer
+			// 
+			this.btnOpenDialogMsDosPlayer.Location = new System.Drawing.Point(364, 125);
+			this.btnOpenDialogMsDosPlayer.Name = "btnOpenDialogMsDosPlayer";
+			this.btnOpenDialogMsDosPlayer.Size = new System.Drawing.Size(36, 23);
+			this.btnOpenDialogMsDosPlayer.TabIndex = 10;
+			this.btnOpenDialogMsDosPlayer.Text = "...";
+			this.btnOpenDialogMsDosPlayer.UseVisualStyleBackColor = true;
+			this.btnOpenDialogMsDosPlayer.Click += new System.EventHandler(this.btnOpenDialogMSDOSPlayer_Click);
+			// 
+			// textboxMSDOSPlayerPath
+			// 
+			this.textboxMSDOSPlayerPath.Location = new System.Drawing.Point(21, 127);
+			this.textboxMSDOSPlayerPath.Name = "textboxMSDOSPlayerPath";
+			this.textboxMSDOSPlayerPath.Size = new System.Drawing.Size(337, 19);
+			this.textboxMSDOSPlayerPath.TabIndex = 9;
+			// 
+			// label9
+			// 
+			this.label9.AutoSize = true;
+			this.label9.Location = new System.Drawing.Point(19, 112);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(129, 12);
+			this.label9.TabIndex = 8;
+			this.label9.Text = "MS-DOS Player へのパス";
 			// 
 			// label8
 			// 
@@ -415,81 +493,6 @@
 			// 
 			this.fontDialog1.AllowVerticalFonts = false;
 			this.fontDialog1.ShowEffects = false;
-			// 
-			// btnOpenDialogMsDosPlayer
-			// 
-			this.btnOpenDialogMsDosPlayer.Location = new System.Drawing.Point(364, 125);
-			this.btnOpenDialogMsDosPlayer.Name = "btnOpenDialogMsDosPlayer";
-			this.btnOpenDialogMsDosPlayer.Size = new System.Drawing.Size(36, 23);
-			this.btnOpenDialogMsDosPlayer.TabIndex = 10;
-			this.btnOpenDialogMsDosPlayer.Text = "...";
-			this.btnOpenDialogMsDosPlayer.UseVisualStyleBackColor = true;
-			// 
-			// textboxMSDOSPlayerPath
-			// 
-			this.textboxMSDOSPlayerPath.Location = new System.Drawing.Point(21, 127);
-			this.textboxMSDOSPlayerPath.Name = "textboxMSDOSPlayerPath";
-			this.textboxMSDOSPlayerPath.Size = new System.Drawing.Size(337, 19);
-			this.textboxMSDOSPlayerPath.TabIndex = 9;
-			// 
-			// label9
-			// 
-			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(19, 112);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(129, 12);
-			this.label9.TabIndex = 8;
-			this.label9.Text = "MS-DOS Player へのパス";
-			// 
-			// btnOpenDialogFMC
-			// 
-			this.btnOpenDialogFMC.Location = new System.Drawing.Point(364, 172);
-			this.btnOpenDialogFMC.Name = "btnOpenDialogFMC";
-			this.btnOpenDialogFMC.Size = new System.Drawing.Size(36, 23);
-			this.btnOpenDialogFMC.TabIndex = 13;
-			this.btnOpenDialogFMC.Text = "...";
-			this.btnOpenDialogFMC.UseVisualStyleBackColor = true;
-			// 
-			// textboxFMCPath
-			// 
-			this.textboxFMCPath.Location = new System.Drawing.Point(21, 174);
-			this.textboxFMCPath.Name = "textboxFMCPath";
-			this.textboxFMCPath.Size = new System.Drawing.Size(337, 19);
-			this.textboxFMCPath.TabIndex = 12;
-			// 
-			// label10
-			// 
-			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(19, 159);
-			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(167, 12);
-			this.label10.TabIndex = 11;
-			this.label10.Text = "FMC (FMPv4 コンパイラ) へのパス";
-			// 
-			// btnOpenDialogMC
-			// 
-			this.btnOpenDialogMC.Location = new System.Drawing.Point(364, 221);
-			this.btnOpenDialogMC.Name = "btnOpenDialogMC";
-			this.btnOpenDialogMC.Size = new System.Drawing.Size(36, 23);
-			this.btnOpenDialogMC.TabIndex = 16;
-			this.btnOpenDialogMC.Text = "...";
-			this.btnOpenDialogMC.UseVisualStyleBackColor = true;
-			// 
-			// textboxMCPath
-			// 
-			this.textboxMCPath.Location = new System.Drawing.Point(21, 223);
-			this.textboxMCPath.Name = "textboxMCPath";
-			this.textboxMCPath.Size = new System.Drawing.Size(337, 19);
-			this.textboxMCPath.TabIndex = 15;
-			// 
-			// label11
-			// 
-			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(19, 208);
-			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(149, 12);
-			this.label11.TabIndex = 14;
-			this.label11.Text = "MC (PMD コンパイラ) へのパス";
 			// 
 			// SettingDialog
 			// 
