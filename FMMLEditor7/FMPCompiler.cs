@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
 using FMP.FMP7;
+using System.IO;
 
 namespace FMMLEditor7
 {
@@ -194,6 +195,25 @@ namespace FMMLEditor7
 			private set;
 		}
 
+		/// <summary>
+		/// コンパイルされた曲データバイナリのファイルパス
+		/// </summary>
+		public string CompiledFilePath
+		{
+			get;
+			private set;
+		}
+
+		/// <summary>
+		/// コンソール出力そのもの
+		/// FMC7 では設定されない。
+		/// </summary>
+		public string ConsoleOut
+		{
+			get;
+			private set;
+		}
+
 		public int Count
 		{
 			get
@@ -210,9 +230,11 @@ namespace FMMLEditor7
 			}
 		}
 
-		internal FMCResult(FMCStatus result, FMCInfo[] infos)
+		internal FMCResult(FMCStatus result, FMCInfo[] infos, string compiledFilePath, string consoleOut = null)
 		{
 			Result = result;
+			CompiledFilePath = compiledFilePath;
+			ConsoleOut = consoleOut;
 			_infos = infos;
 		}
 
@@ -430,7 +452,16 @@ namespace FMMLEditor7
 					}
 				}
 
-				return new FMCResult(status, infos);
+				string path = null;
+				if (status == FMCStatus.Success || status == FMCStatus.ErrorPlay)
+				{
+					path =
+						string.Format("{0}{1}{2}.owi",
+							Path.GetDirectoryName(srcfile),
+							Path.DirectorySeparatorChar,
+							Path.GetFileNameWithoutExtension(srcfile));
+				}
+				return new FMCResult(status, infos, path);
 			}
 			finally
 			{

@@ -420,11 +420,7 @@ namespace FMMLEditor7
 					{
 						try
 						{
-							string arg =
-								string.Format("\"{0}{1}{2}.owi\"",
-									Path.GetDirectoryName(_mmlFileName),
-									Path.DirectorySeparatorChar,
-									Path.GetFileNameWithoutExtension(_mmlFileName));
+							var arg = string.Format("\"{0}\"", r.CompiledFilePath);
 							Process.Start(_setting.FMP7Path, arg);
 
 							for (int i = 0; i < 20; i++)

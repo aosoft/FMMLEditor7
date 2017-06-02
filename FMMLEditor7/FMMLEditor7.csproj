@@ -64,6 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Compiler.cs" />
     <Compile Include="FastForward.cs" />
     <Compile Include="FMPCompiler.cs" />
     <Compile Include="Form1.cs">
