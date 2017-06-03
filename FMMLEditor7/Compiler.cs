@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -81,7 +82,60 @@ namespace FMMLEditor7
 
 		public FMCResult Compile(string mmlPath, bool compileAndPlay)
 		{
+			var ci = GetCompilerType(mmlPath);
+			switch (ci.CompilerType)
+			{
+				case CompilerType.Unknown:
+					{
+						return new FMCResult(FMCStatus.ErrorNoData, null, null);
+					}
+
+				case CompilerType.FMP7:
+					{
+						return _compilerFMC7.Compile(mmlPath, compileAndPlay);
+					}
+					break;
+
+				case CompilerType.FMPv4:
+					{
+					}
+					break;
+			}
+
 			return null;
+		}
+
+		private void StartCompilerProcess(CompilerType ct, string mmlPath)
+		{
+			if (string.IsNullOrEmpty(_setting.MSDOSPlayerPath))
+			{
+				return;
+			}
+
+			string compilerExe = null;
+			switch (ct)
+			{
+				case CompilerType.FMPv4:
+					{
+						compilerExe = _setting.FMCPath;
+					}
+					break;
+
+				case CompilerType.PMD:
+					{
+						compilerExe = _setting.MCPath;
+					}
+					break;
+
+				default:
+					{
+						return;
+					}
+			}
+
+			var p = Process.Start(
+				_setting.MSDOSPlayerPath,
+
 		}
 
 		static public CompileInfo GetCompilerType(string mmlPath)
