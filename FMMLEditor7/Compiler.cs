@@ -155,12 +155,77 @@ namespace FMMLEditor7
 
 					case CompiledFileType.PMD_m:
 						{
+							//	ソースを読み込み、中の #Filename をチェックする
+
+							var path = GetPMDFilenameOptionValue(mmlPath);
+							if (path != null)
+							{
+								return path;
+							}
+
+							return basepath + ".m";
 						}
 				}
 			}
 			catch
 			{
 			}
+			return null;
+		}
+
+		static private string GetPMDFilenameOptionValue(string pmdMmlPath)
+		{
+			try
+			{
+				string filename = null;
+				using (var sr = new StreamReader(pmdMmlPath))
+				{
+					while (true)
+					{
+						var l = sr.ReadLine();
+						if (l == null)
+						{
+							break;
+						}
+						var splits = l.Split(' ', '\t');
+
+						int count = splits.Length - 1;
+						for (int i = 0; i < count; i++)
+						{
+							if (splits[i] != null &&
+								splits[i].Equals("#Filename", StringComparison.OrdinalIgnoreCase))
+							{
+								filename = splits[i + 1];
+								break;
+							}
+						}
+					}
+				}
+
+				if (string.IsNullOrEmpty(filename) == false)
+				{
+					if (filename[0] == '.')
+					{
+						//	指定が拡張子のみ
+						return
+							Path.Combine(
+								Path.GetDirectoryName(pmdMmlPath),
+								Path.GetFileNameWithoutExtension(pmdMmlPath) + filename);
+					}
+					else
+					{
+						//	指定がファイル名
+						return
+							Path.Combine(
+								Path.GetDirectoryName(pmdMmlPath),
+								filename);
+					}
+				}
+			}
+			catch
+			{
+			}
+
 			return null;
 		}
 	}
