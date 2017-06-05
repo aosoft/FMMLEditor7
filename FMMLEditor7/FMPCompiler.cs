@@ -8,7 +8,7 @@ using System.IO;
 namespace FMMLEditor7
 {
 	[Flags]
-	public enum FMCCompileFlag
+	public enum FMC7CompileFlag
 	{
 		None = 0,
 		OnlyPrepro = 0x00000001,	// 展開チェックのみ
@@ -16,7 +16,7 @@ namespace FMMLEditor7
 		PlayAfter = 0x00000100,	// コンパイル成功後自動演奏
 	}
 
-	public enum FMCStatus
+	public enum FMC7Status
 	{
 		Success = 0,		// 正常終了
 		ErrorCompile = 1,		// コンパイルエラー
@@ -28,7 +28,7 @@ namespace FMMLEditor7
 		ErrorPlay = 7,		// データ演奏エラー
 	}
 
-	public enum FMCKind
+	public enum FMC7Kind
 	{
 		File = 0,		// ファイル情報
 		Part = 1,		// パート情報
@@ -36,7 +36,7 @@ namespace FMMLEditor7
 		Info = 3,		// インフォメーション
 	}
 
-	public enum FMCType
+	public enum FMC7Type
 	{
 		OPNA = 0,		// OPNA音源
 		SSG = 1,		// SSG音源
@@ -44,7 +44,7 @@ namespace FMMLEditor7
 		OPM = 3,		// OPM音源
 	}
 
-	public enum FMCLogKind
+	public enum FMC7LogKind
 	{
 		Error = 0,		// エラー
 		Warning = 1,		// ワーニング
@@ -52,9 +52,9 @@ namespace FMMLEditor7
 	}
 
 	[StructLayout(LayoutKind.Sequential, Pack = 1, CharSet = CharSet.Unicode)]
-	public struct FMCLog
+	public struct FMC7Log
 	{
-		public FMCLogKind Kind;							// ログ識別
+		public FMC7LogKind Kind;							// ログ識別
 		
 		[MarshalAs(UnmanagedType.LPWStr)]
 		public string Message;						// エラーメッセージ
@@ -76,19 +76,19 @@ namespace FMMLEditor7
 	}
 
 	[StructLayout(LayoutKind.Sequential, Pack = 1, CharSet = CharSet.Unicode)]
-	public struct FMCPartInfo
+	public struct FMC7PartInfo
 	{
 		[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)]
 		public string Part;							// パート名
 
-		public FMCType Type;							// 音源タイプ
+		public FMC7Type Type;							// 音源タイプ
 		public int Total;								// 総クロック
 		public int Loop;								// ループクロック
 		public int Bytes;								// 出力byte数
 	}
 
 	[StructLayout(LayoutKind.Sequential, Pack = 1, CharSet = CharSet.Unicode)]
-	public struct FMCFileInfo
+	public struct FMC7FileInfo
 	{
 		[MarshalAs(UnmanagedType.LPWStr)]
 		public string FileName;						// エラーファイル名
@@ -104,17 +104,17 @@ namespace FMMLEditor7
 	}
 
 	[StructLayout(LayoutKind.Sequential, Pack = 1, CharSet = CharSet.Unicode)]
-	public struct FMCStandardInfo
+	public struct FMC7StandardInfo
 	{
 		[MarshalAs(UnmanagedType.LPWStr)]
 		public string Message;						// エラーファイル名
 	}
 
 	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-	delegate FMCStatus CompileDelegate(
+	delegate FMC7Status CompileDelegate(
 		[MarshalAs(UnmanagedType.LPWStr)] string inputFile,
 		[MarshalAs(UnmanagedType.LPWStr)] string outputFile,
-		FMCCompileFlag flags);
+		FMC7CompileFlag flags);
 
 	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
 	delegate void FreeDelegate();
@@ -128,68 +128,68 @@ namespace FMMLEditor7
 	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
 	delegate void GetVersionDelegate(ref int system, ref int major, ref int minor);	
 
-	public class FMCInfo
+	public class FMC7Info
 	{
-		public FMCKind Kind
+		public FMC7Kind Kind
 		{
 			get;
 			private set;
 		}
 
-		public FMCLog Log
+		public FMC7Log Log
 		{
 			get;
 			private set;
 		}
 
-		public FMCFileInfo File
+		public FMC7FileInfo File
 		{
 			get;
 			private set;
 		}
 
-		public FMCPartInfo Part
+		public FMC7PartInfo Part
 		{
 			get;
 			private set;
 		}
 
-		public FMCStandardInfo Info
+		public FMC7StandardInfo Info
 		{
 			get;
 			private set;
 		}
 
-		internal FMCInfo(FMCLog info)
+		internal FMC7Info(FMC7Log info)
 		{
-			Kind = FMCKind.Log;
+			Kind = FMC7Kind.Log;
 			Log = info;
 		}
 
-		internal FMCInfo(FMCFileInfo info)
+		internal FMC7Info(FMC7FileInfo info)
 		{
-			Kind = FMCKind.File;
+			Kind = FMC7Kind.File;
 			File = info;
 		}
 
-		internal FMCInfo(FMCPartInfo info)
+		internal FMC7Info(FMC7PartInfo info)
 		{
-			Kind = FMCKind.Part;
+			Kind = FMC7Kind.Part;
 			Part = info;
 		}
 
-		internal FMCInfo(FMCStandardInfo info)
+		internal FMC7Info(FMC7StandardInfo info)
 		{
-			Kind = FMCKind.Info;
+			Kind = FMC7Kind.Info;
 			Info = info;
 		}
 	}
 
-	class FMCResult : IEnumerable<FMCInfo>
+	class FMC7Result : IEnumerable<FMC7Info>
 	{
-		private FMCInfo[] _infos;
+		private FMC7Info[] _infos;
 
-		public FMCStatus Result
+		public FMC7Status Result
 		{
 			get;
 			private set;
@@ -222,7 +222,7 @@ namespace FMMLEditor7
 			}
 		}
 
-		public FMCInfo this[int index]
+		public FMC7Info this[int index]
 		{
 			get
 			{
@@ -230,7 +230,7 @@ namespace FMMLEditor7
 			}
 		}
 
-		internal FMCResult(FMCStatus result, FMCInfo[] infos, string compiledFilePath, string consoleOut = null)
+		internal FMC7Result(FMC7Status result, FMC7Info[] infos, string compiledFilePath, string consoleOut = null)
 		{
 			Result = result;
 			CompiledFilePath = compiledFilePath;
@@ -238,9 +238,9 @@ namespace FMMLEditor7
 			_infos = infos;
 		}
 
-		public IEnumerator<FMCInfo> GetEnumerator()
+		public IEnumerator<FMC7Info> GetEnumerator()
 		{
-			return (_infos as IEnumerable<FMCInfo>).GetEnumerator();
+			return (_infos as IEnumerable<FMC7Info>).GetEnumerator();
 		}
 
 		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
@@ -249,40 +249,40 @@ namespace FMMLEditor7
 		}
 	}
 
-	class FMPCompiler : IDisposable
+	class FMP7Compiler : IDisposable
 	{
 		[StructLayout(LayoutKind.Sequential, Pack = 1, CharSet = CharSet.Unicode)]
 		private struct NativeCompileResult
 		{
-			public FMCKind Kind;
+			public FMC7Kind Kind;
 		}
 
 		[StructLayout(LayoutKind.Sequential, Pack = 1, CharSet = CharSet.Unicode)]
 		private struct NativeCompileResultLog
 		{
-			public FMCKind Kind;
-			public FMCLog Log;
+			public FMC7Kind Kind;
+			public FMC7Log Log;
 		}
 
 		[StructLayout(LayoutKind.Sequential, Pack = 1, CharSet = CharSet.Unicode)]
 		private struct NativeCompileResultFile
 		{
-			public FMCKind Kind;
-			public FMCFileInfo File;
+			public FMC7Kind Kind;
+			public FMC7FileInfo File;
 		}
 
 		[StructLayout(LayoutKind.Sequential, Pack = 1, CharSet = CharSet.Unicode)]
 		private struct NativeCompileResultPart
 		{
-			public FMCKind Kind;
-			public FMCPartInfo Part;
+			public FMC7Kind Kind;
+			public FMC7PartInfo Part;
 		}
 
 		[StructLayout(LayoutKind.Sequential, Pack = 1, CharSet = CharSet.Unicode)]
 		private struct NativeCompileResultStandard
 		{
-			public FMCKind Kind;
-			public FMCStandardInfo Info;
+			public FMC7Kind Kind;
+			public FMC7StandardInfo Info;
 		}
 
 
@@ -388,7 +388,7 @@ namespace FMMLEditor7
 			return new FMPVersion(system, major, minor);
 		}
 
-		public FMCResult Compile(string srcfile, bool compileAndPlay)
+		public FMC7Result Compile(string srcfile, bool compileAndPlay)
 		{
 			if (IsInitialized == false)
 			{
@@ -397,13 +397,13 @@ namespace FMMLEditor7
 
 			var status = _funcCompile(
 				srcfile, null,
-				compileAndPlay ? FMCCompileFlag.PlayAfter : FMCCompileFlag.None);
+				compileAndPlay ? FMC7CompileFlag.PlayAfter : FMC7CompileFlag.None);
 
 			try
 			{
 				int count = _funcGetInfoNum();
 
-				var infos = new FMCInfo[count];
+				var infos = new FMC7Info[count];
 
 				for (int i = 0; i < count; i++)
 				{
@@ -414,46 +414,46 @@ namespace FMMLEditor7
 
 					switch (baseinfo.Kind)
 					{
-						case FMCKind.Log:
+						case FMC7Kind.Log:
 							{
 								var r = (NativeCompileResultLog)Marshal.PtrToStructure(
 									pinfo, typeof(NativeCompileResultLog));
 
-								infos[i] = new FMCInfo(r.Log);
+								infos[i] = new FMC7Info(r.Log);
 							}
 							break;
 
-						case FMCKind.File:
+						case FMC7Kind.File:
 							{
 								var r = (NativeCompileResultFile)Marshal.PtrToStructure(
 									pinfo, typeof(NativeCompileResultFile));
 
-								infos[i] = new FMCInfo(r.File);
+								infos[i] = new FMC7Info(r.File);
 							}
 							break;
 
-						case FMCKind.Part:
+						case FMC7Kind.Part:
 							{
 								var r = (NativeCompileResultPart)Marshal.PtrToStructure(
 									pinfo, typeof(NativeCompileResultPart));
 
-								infos[i] = new FMCInfo(r.Part);
+								infos[i] = new FMC7Info(r.Part);
 							}
 							break;
 
-						case FMCKind.Info:
+						case FMC7Kind.Info:
 							{
 								var r = (NativeCompileResultStandard)Marshal.PtrToStructure(
 									pinfo, typeof(NativeCompileResultStandard));
 
-								infos[i] = new FMCInfo(r.Info);
+								infos[i] = new FMC7Info(r.Info);
 							}
 							break;
 					}
 				}
 
 				string path = null;
-				if (status == FMCStatus.Success || status == FMCStatus.ErrorPlay)
+				if (status == FMC7Status.Success || status == FMC7Status.ErrorPlay)
 				{
 					path =
 						string.Format("{0}{1}{2}.owi",
@@ -461,7 +461,7 @@ namespace FMMLEditor7
 							Path.DirectorySeparatorChar,
 							Path.GetFileNameWithoutExtension(srcfile));
 				}
-				return new FMCResult(status, infos, path);
+				return new FMC7Result(status, infos, path);
 			}
 			finally
 			{

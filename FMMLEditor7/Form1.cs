@@ -16,7 +16,7 @@ namespace FMMLEditor7
 	public partial class Form1 : Form
 	{
 		private Settings _setting = new Settings();
-		private FMPCompiler _compiler = new FMPCompiler();
+		private FMP7Compiler _compiler = new FMP7Compiler();
 		private FMPWork _work = new FMPWork();
 		private FastForward _fastforward;
 
@@ -296,7 +296,7 @@ namespace FMMLEditor7
 			}
 		}
 
-		private void UpdateCompileResult(FMCResult result)
+		private void UpdateCompileResult(FMC7Result result)
 		{
 			listviewCompileResult.Items.Clear();
 			listviewCompileErrorReport.Items.Clear();
@@ -309,7 +309,7 @@ namespace FMMLEditor7
 			{
 				switch (info.Kind)
 				{
-					case FMCKind.Part:
+					case FMC7Kind.Part:
 						{
 							var item = new ListViewItem(info.Part.Part);
 							item.SubItems.Add(info.Part.Type.ToString());
@@ -321,7 +321,7 @@ namespace FMMLEditor7
 						}
 						break;
 
-					case FMCKind.Log:
+					case FMC7Kind.Log:
 						{
 							var item = new ListViewItem(info.Log.Kind.ToString());
 							item.SubItems.Add(info.Log.Part);
@@ -334,13 +334,13 @@ namespace FMMLEditor7
 						}
 						break;
 
-					case FMCKind.Info:
+					case FMC7Kind.Info:
 						{
 							msgs.AppendLine(info.Info.Message);
 						}
 						break;
 
-					case FMCKind.File:
+					case FMC7Kind.File:
 						{
 							ListViewItem lvi = null;
 
@@ -388,13 +388,13 @@ namespace FMMLEditor7
 
 			switch (result.Result)
 			{
-				case FMCStatus.Success:
+				case FMC7Status.Success:
 					{
 						tabControl1.SelectedIndex = 0;
 					}
 					break;
 
-				case FMCStatus.ErrorCompile:
+				case FMC7Status.ErrorCompile:
 					{
 						tabControl1.SelectedIndex = 1;
 					}
@@ -413,7 +413,7 @@ namespace FMMLEditor7
 					var r = _compiler.Compile(_mmlFileName, compileAndPlay);
 					UpdateCompileResult(r);
 
-					if (r.Result == FMCStatus.ErrorPlay &&
+					if (r.Result == FMC7Status.ErrorPlay &&
 						compileAndPlay &&
 						_setting.ProcessStartFMP7 &&
 						FMPControl.CheckAvailableFMP() == false)

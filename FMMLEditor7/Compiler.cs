@@ -49,7 +49,7 @@ namespace FMMLEditor7
 
 	class Compiler : IDisposable
 	{
-		private FMPCompiler _compilerFMC7 = new FMPCompiler();
+		private FMP7Compiler _compilerFMC7 = new FMP7Compiler();
 		private Settings _setting = null;
 
 		public Compiler(Settings setting)
@@ -80,14 +80,14 @@ namespace FMMLEditor7
 			_compilerFMC7.InitializeFMC(_setting.FMC7Path);
 		}
 
-		public FMCResult Compile(string mmlPath, bool compileAndPlay)
+		public FMC7Result Compile(string mmlPath, bool compileAndPlay)
 		{
 			var ci = GetCompilerType(mmlPath);
 			switch (ci.CompilerType)
 			{
 				case CompilerType.Unknown:
 					{
-						return new FMCResult(FMCStatus.ErrorNoData, null, null);
+						return new FMC7Result(FMC7Status.ErrorNoData, null, null);
 					}
 
 				case CompilerType.FMP7:
@@ -105,11 +105,11 @@ namespace FMMLEditor7
 			return null;
 		}
 
-		private void StartCompilerProcess(CompilerType ct, string mmlPath)
+		private FMC7Result StartCompilerProcess(CompilerType ct, string mmlPath)
 		{
 			if (string.IsNullOrEmpty(_setting.MSDOSPlayerPath))
 			{
-				return;
+				return new FMC7Result(FMC7Status.ErrorCompile, null, null);
 			}
 
 			string compilerExe = null;
@@ -129,13 +129,23 @@ namespace FMMLEditor7
 
 				default:
 					{
-						return;
+						return new FMC7Result(FMC7Status.ErrorCompile, null, null);
 					}
 			}
 
-			var p = Process.Start(
-				_setting.MSDOSPlayerPath,
+			var psi = new ProcessStartInfo();
+			psi.FileName = _setting.MSDOSPlayerPath;
+			psi.Arguments = string.Format("\"{0}\" \"{1}\"", compilerExe, mmlPath);
+			psi.CreateNoWindow = true;
+			psi.UseShellExecute = false;
+			psi.RedirectStandardOutput = true;
 
+			using (var p = Process.Start(psi))
+			{
+				string s = p.StandardOutput.ReadToEnd();
+			}
+
+			return new FMC7Result(FMC7Status.ErrorCompile, null, null);
 		}
 
 		static public CompileInfo GetCompilerType(string mmlPath)
