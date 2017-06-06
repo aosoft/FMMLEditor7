@@ -268,12 +268,7 @@ namespace FMMLEditor7
 
 		private bool CheckSupportMMLExt(string path)
 		{
-			string ext = Path.GetExtension(path).ToLower();
-			if (ext == ".mwi")
-			{
-				return true;
-			}
-			return false;
+			return Compiler.GetCompilerType(path).CompilerType != CompilerType.Unknown;
 		}
 
 		private void CheckCompilerDllSettingAndUpdate()
@@ -303,100 +298,115 @@ namespace FMMLEditor7
 
 			var msgs = new StringBuilder();
 
-			foreach (var info in result.FMC7Result)
+			if (result.FMC7Result != null)
 			{
-				switch (info.Kind)
+				foreach (var info in result.FMC7Result)
 				{
-					case FMC7Kind.Part:
-						{
-							var item = new ListViewItem(info.Part.Part);
-							item.SubItems.Add(info.Part.Type.ToString());
-							item.SubItems.Add(info.Part.Total.ToString());
-							item.SubItems.Add(info.Part.Loop.ToString());
-							item.SubItems.Add(info.Part.Bytes.ToString());
+					switch (info.Kind)
+					{
+						case FMC7Kind.Part:
+							{
+								var item = new ListViewItem(info.Part.Part);
+								item.SubItems.Add(info.Part.Type.ToString());
+								item.SubItems.Add(info.Part.Total.ToString());
+								item.SubItems.Add(info.Part.Loop.ToString());
+								item.SubItems.Add(info.Part.Bytes.ToString());
 
-							listviewCompileResult.Items.Add(item);
-						}
-						break;
+								listviewCompileResult.Items.Add(item);
+							}
+							break;
 
-					case FMC7Kind.Log:
-						{
-							var item = new ListViewItem(info.Log.Kind.ToString());
-							item.SubItems.Add(info.Log.Part);
-							item.SubItems.Add(info.Log.Line.ToString());
-							item.SubItems.Add(info.Log.Message);
-							item.SubItems.Add(info.Log.AliasName);
-							item.SubItems.Add(info.Log.MML.Trim());
+						case FMC7Kind.Log:
+							{
+								var item = new ListViewItem(info.Log.Kind.ToString());
+								item.SubItems.Add(info.Log.Part);
+								item.SubItems.Add(info.Log.Line.ToString());
+								item.SubItems.Add(info.Log.Message);
+								item.SubItems.Add(info.Log.AliasName);
+								item.SubItems.Add(info.Log.MML.Trim());
 
-							listviewCompileErrorReport.Items.Add(item);
-						}
-						break;
+								listviewCompileErrorReport.Items.Add(item);
+							}
+							break;
 
-					case FMC7Kind.Info:
-						{
-							msgs.AppendLine(info.Info.Message);
-						}
-						break;
+						case FMC7Kind.Info:
+							{
+								msgs.AppendLine(info.Info.Message);
+							}
+							break;
 
-					case FMC7Kind.File:
-						{
-							ListViewItem lvi = null;
+						case FMC7Kind.File:
+							{
+								ListViewItem lvi = null;
 
-							lvi = new ListViewItem(MMLEditorResource.FileInfo_FileName);
-							lvi.SubItems.Add(info.File.FileName);
-							listviewFileInfo.Items.Add(lvi);
+								lvi = new ListViewItem(MMLEditorResource.FileInfo_FileName);
+								lvi.SubItems.Add(info.File.FileName);
+								listviewFileInfo.Items.Add(lvi);
 
-							lvi = new ListViewItem(MMLEditorResource.FileInfo_PartTotal);
-							lvi.SubItems.Add(info.File.PartTotal.ToString());
-							listviewFileInfo.Items.Add(lvi);
+								lvi = new ListViewItem(MMLEditorResource.FileInfo_PartTotal);
+								lvi.SubItems.Add(info.File.PartTotal.ToString());
+								listviewFileInfo.Items.Add(lvi);
 
-							lvi = new ListViewItem(MMLEditorResource.FileInfo_PartOPNA);
-							lvi.SubItems.Add(info.File.PartOPNA.ToString());
-							listviewFileInfo.Items.Add(lvi);
+								lvi = new ListViewItem(MMLEditorResource.FileInfo_PartOPNA);
+								lvi.SubItems.Add(info.File.PartOPNA.ToString());
+								listviewFileInfo.Items.Add(lvi);
 
-							lvi = new ListViewItem(MMLEditorResource.FileInfo_PartOPM);
-							lvi.SubItems.Add(info.File.PartOPM.ToString());
-							listviewFileInfo.Items.Add(lvi);
+								lvi = new ListViewItem(MMLEditorResource.FileInfo_PartOPM);
+								lvi.SubItems.Add(info.File.PartOPM.ToString());
+								listviewFileInfo.Items.Add(lvi);
 
-							lvi = new ListViewItem(MMLEditorResource.FileInfo_PartSSG);
-							lvi.SubItems.Add(info.File.PartSSG.ToString());
-							listviewFileInfo.Items.Add(lvi);
+								lvi = new ListViewItem(MMLEditorResource.FileInfo_PartSSG);
+								lvi.SubItems.Add(info.File.PartSSG.ToString());
+								listviewFileInfo.Items.Add(lvi);
 
-							lvi = new ListViewItem(MMLEditorResource.FileInfo_PartPCM);
-							lvi.SubItems.Add(info.File.PartPCM.ToString());
-							listviewFileInfo.Items.Add(lvi);
+								lvi = new ListViewItem(MMLEditorResource.FileInfo_PartPCM);
+								lvi.SubItems.Add(info.File.PartPCM.ToString());
+								listviewFileInfo.Items.Add(lvi);
 
-							lvi = new ListViewItem(MMLEditorResource.FileInfo_ToneFM4);
-							lvi.SubItems.Add(info.File.ToneFM4.ToString());
-							listviewFileInfo.Items.Add(lvi);
+								lvi = new ListViewItem(MMLEditorResource.FileInfo_ToneFM4);
+								lvi.SubItems.Add(info.File.ToneFM4.ToString());
+								listviewFileInfo.Items.Add(lvi);
 
-							lvi = new ListViewItem(MMLEditorResource.FileInfo_WavePCM);
-							lvi.SubItems.Add(info.File.WavePCM.ToString());
-							listviewFileInfo.Items.Add(lvi);
+								lvi = new ListViewItem(MMLEditorResource.FileInfo_WavePCM);
+								lvi.SubItems.Add(info.File.WavePCM.ToString());
+								listviewFileInfo.Items.Add(lvi);
 
-							lvi = new ListViewItem(MMLEditorResource.FileInfo_Envelop);
-							lvi.SubItems.Add(info.File.Envelop.ToString());
-							listviewFileInfo.Items.Add(lvi);
-						}
-						break;
+								lvi = new ListViewItem(MMLEditorResource.FileInfo_Envelop);
+								lvi.SubItems.Add(info.File.Envelop.ToString());
+								listviewFileInfo.Items.Add(lvi);
+							}
+							break;
+					}
 				}
+			}
+
+			if (result.ConsoleOut != null)
+			{
+				msgs.Append(result.ConsoleOut);
 			}
 
 			textboxMessages.Text = msgs.ToString();
 
-			switch (result.FMC7Result.Result)
+			if (result.FMC7Result.Count > 0)
 			{
-				case FMC7Status.Success:
-					{
-						tabControl1.SelectedIndex = 0;
-					}
-					break;
+				switch (result.FMC7Result.Result)
+				{
+					case FMC7Status.Success:
+						{
+							tabControl1.SelectedIndex = 0;
+						}
+						break;
 
-				case FMC7Status.ErrorCompile:
-					{
-						tabControl1.SelectedIndex = 1;
-					}
-					break;
+					case FMC7Status.ErrorCompile:
+						{
+							tabControl1.SelectedIndex = 1;
+						}
+						break;
+				}
+			}
+			else
+			{
+				tabControl1.SelectedIndex = 3;
 			}
 
 			_editor.Focus();
@@ -409,32 +419,36 @@ namespace FMMLEditor7
 				var r = _compiler.Compile(_mmlFileName, compileAndPlay);
 				UpdateCompileResult(r);
 
-				if (r.FMC7Result.Result == FMC7Status.ErrorPlay &&
-					compileAndPlay &&
-					_setting.ProcessStartFMP7 &&
-					FMPControl.CheckAvailableFMP() == false)
+				if (r.FMC7Result.Result == FMC7Status.ErrorPlay && compileAndPlay)
 				{
-					try
+					if (FMPControl.CheckAvailableFMP())
 					{
-						var arg = string.Format("\"{0}\"", r.CompiledFilePath);
-						Process.Start(_setting.FMP7Path, arg);
-
-						for (int i = 0; i < 20; i++)
-						{
-							if (FMPControl.CheckAvailableFMP())
-							{
-								Activate();
-								return;
-							}
-							System.Threading.Thread.Sleep(100);
-						}
-
-						ShowErrorDialog(
-							MMLEditorResource.Error_FMPNotAvailable);
+						FMPControl.MusicLoadAndPlay(r.CompiledFilePath);
 					}
-					catch
+					else if (_setting.ProcessStartFMP7)
 					{
-						throw new Exception(MMLEditorResource.Error_FailedStartupFMP);
+						try
+						{
+							var arg = string.Format("\"{0}\"", r.CompiledFilePath);
+							Process.Start(_setting.FMP7Path, arg);
+
+							for (int i = 0; i < 20; i++)
+							{
+								if (FMPControl.CheckAvailableFMP())
+								{
+									Activate();
+									return;
+								}
+								System.Threading.Thread.Sleep(100);
+							}
+
+							ShowErrorDialog(
+								MMLEditorResource.Error_FMPNotAvailable);
+						}
+						catch
+						{
+							throw new Exception(MMLEditorResource.Error_FailedStartupFMP);
+						}
 					}
 				}
 			}

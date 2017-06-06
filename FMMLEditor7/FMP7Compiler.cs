@@ -214,7 +214,7 @@ namespace FMMLEditor7
 		internal FMC7Result(FMC7Status result, FMC7Info[] infos)
 		{
 			Result = result;
-			_infos = infos;
+			_infos = infos != null ? infos : new FMC7Info[0];
 		}
 
 		public IEnumerator<FMC7Info> GetEnumerator()

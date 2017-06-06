@@ -179,12 +179,14 @@ namespace FMMLEditor7
 			var psi = new ProcessStartInfo();
 			psi.FileName = _setting.MSDOSPlayerPath;
 			psi.Arguments = string.Format("\"{0}\" \"{1}\"", compilerExe, mmlPath);
+			psi.WorkingDirectory = Path.GetDirectoryName(mmlPath);
 			psi.CreateNoWindow = true;
 			psi.UseShellExecute = false;
 			psi.RedirectStandardOutput = true;
 
 			using (var p = Process.Start(psi))
 			{
+				p.WaitForExit();
 				return new CompileResult(
 					new FMC7Result(
 						p.ExitCode == 0 ?
