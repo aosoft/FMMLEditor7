@@ -195,25 +195,6 @@ namespace FMMLEditor7
 			private set;
 		}
 
-		/// <summary>
-		/// コンパイルされた曲データバイナリのファイルパス
-		/// </summary>
-		public string CompiledFilePath
-		{
-			get;
-			private set;
-		}
-
-		/// <summary>
-		/// コンソール出力そのもの
-		/// FMC7 では設定されない。
-		/// </summary>
-		public string ConsoleOut
-		{
-			get;
-			private set;
-		}
-
 		public int Count
 		{
 			get
@@ -230,11 +211,9 @@ namespace FMMLEditor7
 			}
 		}
 
-		internal FMC7Result(FMC7Status result, FMC7Info[] infos, string compiledFilePath, string consoleOut = null)
+		internal FMC7Result(FMC7Status result, FMC7Info[] infos)
 		{
 			Result = result;
-			CompiledFilePath = compiledFilePath;
-			ConsoleOut = consoleOut;
 			_infos = infos;
 		}
 
@@ -452,16 +431,7 @@ namespace FMMLEditor7
 					}
 				}
 
-				string path = null;
-				if (status == FMC7Status.Success || status == FMC7Status.ErrorPlay)
-				{
-					path =
-						string.Format("{0}{1}{2}.owi",
-							Path.GetDirectoryName(srcfile),
-							Path.DirectorySeparatorChar,
-							Path.GetFileNameWithoutExtension(srcfile));
-				}
-				return new FMC7Result(status, infos, path);
+				return new FMC7Result(status, infos);
 			}
 			finally
 			{

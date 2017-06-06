@@ -16,7 +16,7 @@ namespace FMMLEditor7
 	public partial class Form1 : Form
 	{
 		private Settings _setting = new Settings();
-		private FMP7Compiler _compiler = new FMP7Compiler();
+		private Compiler _compiler = null;
 		private FMPWork _work = new FMPWork();
 		private FastForward _fastforward;
 
@@ -30,6 +30,7 @@ namespace FMMLEditor7
 			InitializeComponent();
 
 			_settingDialog = new SettingDialog(_setting);
+			_compiler = new Compiler(_setting);
 
 			MMLFileName = null;
 
@@ -279,12 +280,9 @@ namespace FMMLEditor7
 		{
 			try
 			{
-				if (_setting.FMC7Path != _compiler.DllPath)
+				if (_setting.FMC7Path != _compiler.DllPathFMC7)
 				{
-					_compiler.FinalizeFMC();
-					_compiler.InitializeFMC(_setting.FMC7Path);
-
-					var version = _compiler.GetFMCVersion();
+					_compiler.InitializeFMC7();
 				}
 			}
 			catch (Exception e)
@@ -296,7 +294,7 @@ namespace FMMLEditor7
 			}
 		}
 
-		private void UpdateCompileResult(FMC7Result result)
+		private void UpdateCompileResult(CompileResult result)
 		{
 			listviewCompileResult.Items.Clear();
 			listviewCompileErrorReport.Items.Clear();
@@ -305,7 +303,7 @@ namespace FMMLEditor7
 
 			var msgs = new StringBuilder();
 
-			foreach (var info in result)
+			foreach (var info in result.FMC7Result)
 			{
 				switch (info.Kind)
 				{
@@ -386,7 +384,7 @@ namespace FMMLEditor7
 
 			textboxMessages.Text = msgs.ToString();
 
-			switch (result.Result)
+			switch (result.FMC7Result.Result)
 			{
 				case FMC7Status.Success:
 					{
@@ -406,47 +404,39 @@ namespace FMMLEditor7
 
 		private void Compile(bool compileAndPlay)
 		{
-			if (_compiler.IsInitialized)
+			if (Save())
 			{
-				if (Save())
+				var r = _compiler.Compile(_mmlFileName, compileAndPlay);
+				UpdateCompileResult(r);
+
+				if (r.FMC7Result.Result == FMC7Status.ErrorPlay &&
+					compileAndPlay &&
+					_setting.ProcessStartFMP7 &&
+					FMPControl.CheckAvailableFMP() == false)
 				{
-					var r = _compiler.Compile(_mmlFileName, compileAndPlay);
-					UpdateCompileResult(r);
-
-					if (r.Result == FMC7Status.ErrorPlay &&
-						compileAndPlay &&
-						_setting.ProcessStartFMP7 &&
-						FMPControl.CheckAvailableFMP() == false)
+					try
 					{
-						try
-						{
-							var arg = string.Format("\"{0}\"", r.CompiledFilePath);
-							Process.Start(_setting.FMP7Path, arg);
+						var arg = string.Format("\"{0}\"", r.CompiledFilePath);
+						Process.Start(_setting.FMP7Path, arg);
 
-							for (int i = 0; i < 20; i++)
+						for (int i = 0; i < 20; i++)
+						{
+							if (FMPControl.CheckAvailableFMP())
 							{
-								if (FMPControl.CheckAvailableFMP())
-								{
-									Activate();
-									return;
-								}
-								System.Threading.Thread.Sleep(100);
+								Activate();
+								return;
 							}
+							System.Threading.Thread.Sleep(100);
+						}
 
-							ShowErrorDialog(
-								MMLEditorResource.Error_FMPNotAvailable);
-						}
-						catch
-						{
-							throw new Exception(MMLEditorResource.Error_FailedStartupFMP);
-						}
+						ShowErrorDialog(
+							MMLEditorResource.Error_FMPNotAvailable);
+					}
+					catch
+					{
+						throw new Exception(MMLEditorResource.Error_FailedStartupFMP);
 					}
 				}
-			}
-			else
-			{
-				ShowErrorDialog(
-					MMLEditorResource.Error_NotInitializedCompiler);
 			}
 		}
 

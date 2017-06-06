@@ -47,6 +47,41 @@ namespace FMMLEditor7
 		}
 	}
 
+	struct CompileResult
+	{
+		public CompileResult(FMC7Result r, string compiledFilePath, string consoleOut)
+		{
+			FMC7Result = r;
+			CompiledFilePath = compiledFilePath;
+			ConsoleOut = consoleOut;
+		}
+
+		public FMC7Result FMC7Result
+		{
+			get;
+			private set;
+		}
+
+		/// <summary>
+		/// コンパイルされた曲データバイナリのファイルパス
+		/// </summary>
+		public string CompiledFilePath
+		{
+			get;
+			private set;
+		}
+
+		/// <summary>
+		/// コンソール出力そのもの
+		/// FMC7 では設定されない。
+		/// </summary>
+		public string ConsoleOut
+		{
+			get;
+			private set;
+		}
+	}
+
 	class Compiler : IDisposable
 	{
 		private FMP7Compiler _compilerFMC7 = new FMP7Compiler();
@@ -64,7 +99,6 @@ namespace FMMLEditor7
 			_setting = null;
 		}
 
-
 		public bool IsInitializedFMC7
 		{
 			get
@@ -73,6 +107,13 @@ namespace FMMLEditor7
 			}
 		}
 
+		public string DllPathFMC7
+		{
+			get
+			{
+				return _compilerFMC7.DllPath;
+			}
+		}
 
 		public void InitializeFMC7()
 		{
@@ -80,37 +121,37 @@ namespace FMMLEditor7
 			_compilerFMC7.InitializeFMC(_setting.FMC7Path);
 		}
 
-		public FMC7Result Compile(string mmlPath, bool compileAndPlay)
+		public CompileResult Compile(string mmlPath, bool compileAndPlay)
 		{
 			var ci = GetCompilerType(mmlPath);
 			switch (ci.CompilerType)
 			{
-				case CompilerType.Unknown:
-					{
-						return new FMC7Result(FMC7Status.ErrorNoData, null, null);
-					}
-
 				case CompilerType.FMP7:
 					{
-						return _compilerFMC7.Compile(mmlPath, compileAndPlay);
+						if (_compilerFMC7.IsInitialized == false)
+						{
+							throw new Exception(MMLEditorResource.Error_NotInitializedCompiler);
+						}
+
+						return new CompileResult(
+							_compilerFMC7.Compile(mmlPath, compileAndPlay),
+							GetCompiledFilePath(mmlPath),
+							null);
 					}
-					break;
 
 				case CompilerType.FMPv4:
+				case CompilerType.PMD:
 					{
+						return StartCompilerProcess(ci.CompilerType, mmlPath, compileAndPlay);
 					}
-					break;
 			}
 
-			return null;
+			return new CompileResult(new FMC7Result(FMC7Status.ErrorNoData, null), null, null);
 		}
 
-		private FMC7Result StartCompilerProcess(CompilerType ct, string mmlPath)
+		private CompileResult StartCompilerProcess(CompilerType ct, string mmlPath, bool compileAndPlay)
 		{
-			if (string.IsNullOrEmpty(_setting.MSDOSPlayerPath))
-			{
-				return new FMC7Result(FMC7Status.ErrorCompile, null, null);
-			}
+			CheckExePath(_setting.MSDOSPlayerPath);
 
 			string compilerExe = null;
 			switch (ct)
@@ -129,9 +170,11 @@ namespace FMMLEditor7
 
 				default:
 					{
-						return new FMC7Result(FMC7Status.ErrorCompile, null, null);
+						throw new Exception(MMLEditorResource.Error_NotSettingCompilerExe);
 					}
 			}
+
+			CheckExePath(compilerExe);
 
 			var psi = new ProcessStartInfo();
 			psi.FileName = _setting.MSDOSPlayerPath;
@@ -142,10 +185,14 @@ namespace FMMLEditor7
 
 			using (var p = Process.Start(psi))
 			{
-				string s = p.StandardOutput.ReadToEnd();
+				return new CompileResult(
+					new FMC7Result(
+						p.ExitCode == 0 ?
+							compileAndPlay ? FMC7Status.ErrorPlay : FMC7Status.Success :
+							FMC7Status.ErrorCompile, null),
+					GetCompiledFilePath(mmlPath),
+					p.StandardOutput.ReadToEnd());
 			}
-
-			return new FMC7Result(FMC7Status.ErrorCompile, null, null);
 		}
 
 		static public CompileInfo GetCompilerType(string mmlPath)
@@ -184,6 +231,19 @@ namespace FMMLEditor7
 			{
 			}
 			return new CompileInfo(CompilerType.Unknown, CompiledFileType.Unknown);
+		}
+
+		static private void CheckExePath(string path)
+		{
+			if (string.IsNullOrEmpty(path))
+			{
+				throw new Exception(MMLEditorResource.Error_NotSettingCompilerExe);
+			}
+
+			if (File.Exists(path) == false)
+			{
+				throw new Exception(string.Format(MMLEditorResource.Error_NotExists, path));
+			}
 		}
 
 		static public string GetCompiledFilePath(string mmlPath)

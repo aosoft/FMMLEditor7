@@ -148,12 +148,30 @@ namespace FMMLEditor7 {
         }
         
         /// <summary>
+        ///   {0} が存在しません。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Error_NotExists {
+            get {
+                return ResourceManager.GetString("Error_NotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   コンパイラモジュールが初期化されていません。
         ///コンパイラモジュール (fmc.dll) へのパスが正しく設定されているか確認してください。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Error_NotInitializedCompiler {
             get {
                 return ResourceManager.GetString("Error_NotInitializedCompiler", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   必要なコンパイラ関連の .exe が設定されていません。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Error_NotSettingCompilerExe {
+            get {
+                return ResourceManager.GetString("Error_NotSettingCompilerExe", resourceCulture);
             }
         }
         
