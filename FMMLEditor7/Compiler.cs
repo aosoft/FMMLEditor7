@@ -183,17 +183,24 @@ namespace FMMLEditor7
 			psi.CreateNoWindow = true;
 			psi.UseShellExecute = false;
 			psi.RedirectStandardOutput = true;
+			psi.RedirectStandardError = true;
 
 			using (var p = Process.Start(psi))
 			{
+				var stdout = p.StandardOutput.ReadToEnd()?.Trim();
+				var stderr = p.StandardError.ReadToEnd()?.Trim();
 				p.WaitForExit();
+
+				//	compileAndPlay の場合は ErrorPlay を返すことにより
+				//	呼び出し元で再生開始処理を行わせる。
 				return new CompileResult(
 					new FMC7Result(
 						p.ExitCode == 0 ?
 							compileAndPlay ? FMC7Status.ErrorPlay : FMC7Status.Success :
-							FMC7Status.ErrorCompile, null),
+							FMC7Status.ErrorCompile,
+						null),
 					GetCompiledFilePath(mmlPath),
-					p.StandardOutput.ReadToEnd());
+					string.Format("{0}\r\n\r\n{1}", stderr, stdout).Trim());
 			}
 		}
 

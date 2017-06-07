@@ -36,6 +36,8 @@
 			this.menuitemSave = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuitemSaveAs = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.menuitemRecentFiles = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
 			this.menuitemQuit = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuitemCompileMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuitemMMLCompileAndPlay = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,8 +80,6 @@
 			this.labelCursorPosition = new System.Windows.Forms.ToolStripStatusLabel();
 			this.progressPlayPosition = new System.Windows.Forms.ToolStripProgressBar();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
-			this.menuitemRecentFiles = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -116,14 +116,14 @@
             this.toolStripSeparator4,
             this.menuitemQuit});
 			this.menuitemFile.Name = "menuitemFile";
-			this.menuitemFile.Size = new System.Drawing.Size(66, 20);
+			this.menuitemFile.Size = new System.Drawing.Size(67, 20);
 			this.menuitemFile.Text = "ファイル(&F)";
 			// 
 			// menuitemNewFile
 			// 
 			this.menuitemNewFile.Name = "menuitemNewFile";
 			this.menuitemNewFile.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-			this.menuitemNewFile.Size = new System.Drawing.Size(235, 22);
+			this.menuitemNewFile.Size = new System.Drawing.Size(236, 22);
 			this.menuitemNewFile.Text = "新規作成(&N)";
 			this.menuitemNewFile.Click += new System.EventHandler(this.menuitemNewFile_Click);
 			// 
@@ -131,7 +131,7 @@
 			// 
 			this.menuitemOpen.Name = "menuitemOpen";
 			this.menuitemOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-			this.menuitemOpen.Size = new System.Drawing.Size(235, 22);
+			this.menuitemOpen.Size = new System.Drawing.Size(236, 22);
 			this.menuitemOpen.Text = "ファイルを開く(&O)";
 			this.menuitemOpen.Click += new System.EventHandler(this.menuitemOpen_Click);
 			// 
@@ -139,26 +139,37 @@
 			// 
 			this.menuitemSave.Name = "menuitemSave";
 			this.menuitemSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-			this.menuitemSave.Size = new System.Drawing.Size(235, 22);
+			this.menuitemSave.Size = new System.Drawing.Size(236, 22);
 			this.menuitemSave.Text = "ファイルを保存する(&S)";
 			this.menuitemSave.Click += new System.EventHandler(this.menuitemSave_Click);
 			// 
 			// menuitemSaveAs
 			// 
 			this.menuitemSaveAs.Name = "menuitemSaveAs";
-			this.menuitemSaveAs.Size = new System.Drawing.Size(235, 22);
+			this.menuitemSaveAs.Size = new System.Drawing.Size(236, 22);
 			this.menuitemSaveAs.Text = "ファイルに名前をつけて保存する(&A)";
 			this.menuitemSaveAs.Click += new System.EventHandler(this.menuitemSaveAs_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(232, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(233, 6);
+			// 
+			// menuitemRecentFiles
+			// 
+			this.menuitemRecentFiles.Name = "menuitemRecentFiles";
+			this.menuitemRecentFiles.Size = new System.Drawing.Size(236, 22);
+			this.menuitemRecentFiles.Text = "ファイルの履歴";
+			// 
+			// toolStripSeparator4
+			// 
+			this.toolStripSeparator4.Name = "toolStripSeparator4";
+			this.toolStripSeparator4.Size = new System.Drawing.Size(233, 6);
 			// 
 			// menuitemQuit
 			// 
 			this.menuitemQuit.Name = "menuitemQuit";
-			this.menuitemQuit.Size = new System.Drawing.Size(235, 22);
+			this.menuitemQuit.Size = new System.Drawing.Size(236, 22);
 			this.menuitemQuit.Text = "終了する(&X)";
 			this.menuitemQuit.Click += new System.EventHandler(this.menuitemQuit_Click);
 			// 
@@ -172,14 +183,14 @@
             this.menuitemMovieToCompileResult,
             this.menuitemMoveToCompileErrorReport});
 			this.menuitemCompileMenu.Name = "menuitemCompileMenu";
-			this.menuitemCompileMenu.Size = new System.Drawing.Size(64, 20);
+			this.menuitemCompileMenu.Size = new System.Drawing.Size(65, 20);
 			this.menuitemCompileMenu.Text = "コンパイル";
 			// 
 			// menuitemMMLCompileAndPlay
 			// 
 			this.menuitemMMLCompileAndPlay.Name = "menuitemMMLCompileAndPlay";
 			this.menuitemMMLCompileAndPlay.ShortcutKeys = System.Windows.Forms.Keys.F5;
-			this.menuitemMMLCompileAndPlay.Size = new System.Drawing.Size(199, 22);
+			this.menuitemMMLCompileAndPlay.Size = new System.Drawing.Size(200, 22);
 			this.menuitemMMLCompileAndPlay.Text = "MMLコンパイルと再生";
 			this.menuitemMMLCompileAndPlay.Click += new System.EventHandler(this.menuitemMMLCompileAndPlay_Click);
 			// 
@@ -187,20 +198,20 @@
 			// 
 			this.menuitemMMLCompile.Name = "menuitemMMLCompile";
 			this.menuitemMMLCompile.ShortcutKeys = System.Windows.Forms.Keys.F7;
-			this.menuitemMMLCompile.Size = new System.Drawing.Size(199, 22);
+			this.menuitemMMLCompile.Size = new System.Drawing.Size(200, 22);
 			this.menuitemMMLCompile.Text = "MMLコンパイル";
 			this.menuitemMMLCompile.Click += new System.EventHandler(this.menuitemMMLCompile_Click);
 			// 
 			// toolStripSeparator3
 			// 
 			this.toolStripSeparator3.Name = "toolStripSeparator3";
-			this.toolStripSeparator3.Size = new System.Drawing.Size(196, 6);
+			this.toolStripSeparator3.Size = new System.Drawing.Size(197, 6);
 			// 
 			// menuitemMoveToTextEditor
 			// 
 			this.menuitemMoveToTextEditor.Name = "menuitemMoveToTextEditor";
 			this.menuitemMoveToTextEditor.ShortcutKeys = System.Windows.Forms.Keys.F8;
-			this.menuitemMoveToTextEditor.Size = new System.Drawing.Size(199, 22);
+			this.menuitemMoveToTextEditor.Size = new System.Drawing.Size(200, 22);
 			this.menuitemMoveToTextEditor.Text = "MMLソースへ移動";
 			this.menuitemMoveToTextEditor.Click += new System.EventHandler(this.menuitemMoveToTextEditor_Click);
 			// 
@@ -208,7 +219,7 @@
 			// 
 			this.menuitemMovieToCompileResult.Name = "menuitemMovieToCompileResult";
 			this.menuitemMovieToCompileResult.ShortcutKeys = System.Windows.Forms.Keys.F9;
-			this.menuitemMovieToCompileResult.Size = new System.Drawing.Size(199, 22);
+			this.menuitemMovieToCompileResult.Size = new System.Drawing.Size(200, 22);
 			this.menuitemMovieToCompileResult.Text = "コンパイル結果へ移動";
 			this.menuitemMovieToCompileResult.Click += new System.EventHandler(this.menuitemMovieToCompileResult_Click);
 			// 
@@ -216,7 +227,7 @@
 			// 
 			this.menuitemMoveToCompileErrorReport.Name = "menuitemMoveToCompileErrorReport";
 			this.menuitemMoveToCompileErrorReport.ShortcutKeys = System.Windows.Forms.Keys.F10;
-			this.menuitemMoveToCompileErrorReport.Size = new System.Drawing.Size(199, 22);
+			this.menuitemMoveToCompileErrorReport.Size = new System.Drawing.Size(200, 22);
 			this.menuitemMoveToCompileErrorReport.Text = "エラーリストへ移動";
 			this.menuitemMoveToCompileErrorReport.Click += new System.EventHandler(this.menuitemMoveToCompileErrorReport_Click);
 			// 
@@ -458,6 +469,7 @@
 			this.textboxMessages.Multiline = true;
 			this.textboxMessages.Name = "textboxMessages";
 			this.textboxMessages.ReadOnly = true;
+			this.textboxMessages.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this.textboxMessages.Size = new System.Drawing.Size(680, 100);
 			this.textboxMessages.TabIndex = 0;
 			// 
@@ -490,17 +502,6 @@
 			// timer1
 			// 
 			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-			// 
-			// menuitemRecentFiles
-			// 
-			this.menuitemRecentFiles.Name = "menuitemRecentFiles";
-			this.menuitemRecentFiles.Size = new System.Drawing.Size(235, 22);
-			this.menuitemRecentFiles.Text = "ファイルの履歴";
-			// 
-			// toolStripSeparator4
-			// 
-			this.toolStripSeparator4.Name = "toolStripSeparator4";
-			this.toolStripSeparator4.Size = new System.Drawing.Size(232, 6);
 			// 
 			// Form1
 			// 
