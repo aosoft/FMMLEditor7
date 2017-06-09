@@ -198,11 +198,68 @@ namespace FMMLEditor7
 						p.ExitCode == 0 ?
 							compileAndPlay ? FMC7Status.ErrorPlay : FMC7Status.Success :
 							FMC7Status.ErrorCompile,
-						null),
+						GetFMC7InfoFromErrorString(
+							mmlPath,
+							ct == CompilerType.FMPv4 ? stderr : stdout)),
 					GetCompiledFilePath(mmlPath),
-					string.Format("{0}\r\n\r\n{1}", stderr, stdout).Trim());
+					string.Format("{0}{2}{2}{1}", stderr, stdout, Environment.NewLine).Trim());
 			}
 		}
+
+		private FMC7Info[] GetFMC7InfoFromErrorString(string mmlPath, string msgstr)
+		{
+			if (msgstr == null)
+			{
+				return null;
+			}
+			var lines = msgstr.Split(
+				new string[]{ Environment.NewLine },
+				StringSplitOptions.RemoveEmptyEntries);
+			var fileName = Path.GetFileName(mmlPath);
+			for (int i = 0; i < lines.Length; i++)
+			{
+				var line = lines[i]?.Trim();
+				if (string.IsNullOrEmpty(line))
+				{
+					continue;
+				}
+
+				if (line.IndexOf(fileName, StringComparison.OrdinalIgnoreCase) < 0)
+				{
+					continue;
+				}
+
+				if ((i + 1) == lines.Length)
+				{
+					break;
+				}
+
+				var index1 = line.IndexOf('(') + 1;
+				var index2 = line.IndexOf(')');
+				if (index1 < 0 || index2 < 0 || index1 > index2)
+				{
+					break;
+				}
+
+				int linenumber;
+				var ls = line.Substring(index1, index2 - index1);
+				if (int.TryParse(ls, out linenumber) == false)
+				{
+					break;
+				}
+
+				var log = new FMC7Log();
+				log.Kind = FMC7LogKind.Error;
+				log.FileName = fileName;
+				log.Line = linenumber;
+				log.Message = lines[i + 1];
+
+				return new FMC7Info[] { new FMC7Info(log) };
+			}
+
+			return null;
+		}
+
 
 		static public CompileInfo GetCompilerType(string mmlPath)
 		{

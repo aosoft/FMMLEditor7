@@ -323,7 +323,7 @@ namespace FMMLEditor7
 								item.SubItems.Add(info.Log.Line.ToString());
 								item.SubItems.Add(info.Log.Message);
 								item.SubItems.Add(info.Log.AliasName);
-								item.SubItems.Add(info.Log.MML.Trim());
+								item.SubItems.Add(info.Log.MML?.Trim());
 
 								listviewCompileErrorReport.Items.Add(item);
 							}
