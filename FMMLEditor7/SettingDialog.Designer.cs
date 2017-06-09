@@ -68,6 +68,8 @@
 			this.btnOK = new System.Windows.Forms.Button();
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.fontDialog1 = new System.Windows.Forms.FontDialog();
+			this.label12 = new System.Windows.Forms.Label();
+			this.linkLabelMSDOS = new System.Windows.Forms.LinkLabel();
 			this.tabControl1.SuspendLayout();
 			this.tabpageFMPSetting.SuspendLayout();
 			this.tabpageEditorSetting.SuspendLayout();
@@ -86,7 +88,7 @@
 			this.tabControl1.Location = new System.Drawing.Point(12, 12);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(430, 326);
+			this.tabControl1.Size = new System.Drawing.Size(430, 391);
 			this.tabControl1.TabIndex = 0;
 			// 
 			// tabpageFMPSetting
@@ -111,7 +113,7 @@
 			this.tabpageFMPSetting.Location = new System.Drawing.Point(4, 22);
 			this.tabpageFMPSetting.Name = "tabpageFMPSetting";
 			this.tabpageFMPSetting.Padding = new System.Windows.Forms.Padding(3);
-			this.tabpageFMPSetting.Size = new System.Drawing.Size(422, 300);
+			this.tabpageFMPSetting.Size = new System.Drawing.Size(422, 340);
 			this.tabpageFMPSetting.TabIndex = 0;
 			this.tabpageFMPSetting.Text = "FMP / コンパイラ";
 			this.tabpageFMPSetting.UseVisualStyleBackColor = true;
@@ -354,6 +356,8 @@
 			// 
 			// tabpageAbout
 			// 
+			this.tabpageAbout.Controls.Add(this.linkLabelMSDOS);
+			this.tabpageAbout.Controls.Add(this.label12);
 			this.tabpageAbout.Controls.Add(this.linkLabelAOSoft);
 			this.tabpageAbout.Controls.Add(this.linkLabelAzuki);
 			this.tabpageAbout.Controls.Add(this.linkLabelFMP);
@@ -365,7 +369,7 @@
 			this.tabpageAbout.Controls.Add(this.label4);
 			this.tabpageAbout.Location = new System.Drawing.Point(4, 22);
 			this.tabpageAbout.Name = "tabpageAbout";
-			this.tabpageAbout.Size = new System.Drawing.Size(422, 300);
+			this.tabpageAbout.Size = new System.Drawing.Size(422, 365);
 			this.tabpageAbout.TabIndex = 2;
 			this.tabpageAbout.Text = "このアプリケーションについて";
 			this.tabpageAbout.UseVisualStyleBackColor = true;
@@ -466,7 +470,7 @@
 			// btnCancel
 			// 
 			this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnCancel.Location = new System.Drawing.Point(367, 344);
+			this.btnCancel.Location = new System.Drawing.Point(367, 409);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(75, 23);
 			this.btnCancel.TabIndex = 1;
@@ -477,7 +481,7 @@
 			// btnOK
 			// 
 			this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnOK.Location = new System.Drawing.Point(286, 344);
+			this.btnOK.Location = new System.Drawing.Point(286, 409);
 			this.btnOK.Name = "btnOK";
 			this.btnOK.Size = new System.Drawing.Size(75, 23);
 			this.btnOK.TabIndex = 2;
@@ -494,11 +498,32 @@
 			this.fontDialog1.AllowVerticalFonts = false;
 			this.fontDialog1.ShowEffects = false;
 			// 
+			// label12
+			// 
+			this.label12.AutoSize = true;
+			this.label12.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.label12.Location = new System.Drawing.Point(95, 296);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(206, 15);
+			this.label12.TabIndex = 8;
+			this.label12.Text = "MS-DOS Player for Win32-x64";
+			// 
+			// linkLabelMSDOS
+			// 
+			this.linkLabelMSDOS.AutoSize = true;
+			this.linkLabelMSDOS.Location = new System.Drawing.Point(124, 318);
+			this.linkLabelMSDOS.Name = "linkLabelMSDOS";
+			this.linkLabelMSDOS.Size = new System.Drawing.Size(70, 12);
+			this.linkLabelMSDOS.TabIndex = 9;
+			this.linkLabelMSDOS.TabStop = true;
+			this.linkLabelMSDOS.Text = "MSDOS URL";
+			this.linkLabelMSDOS.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelMSDOS_LinkClicked);
+			// 
 			// SettingDialog
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(454, 376);
+			this.ClientSize = new System.Drawing.Size(454, 441);
 			this.Controls.Add(this.btnOK);
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.tabControl1);
@@ -565,5 +590,7 @@
 		private System.Windows.Forms.Button btnOpenDialogMsDosPlayer;
 		private System.Windows.Forms.TextBox textboxMSDOSPlayerPath;
 		private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.LinkLabel linkLabelMSDOS;
+		private System.Windows.Forms.Label label12;
 	}
 }

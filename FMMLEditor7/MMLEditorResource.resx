@@ -244,4 +244,7 @@ FMP7 へのパスが正しく設定されているか確認してください。
   <data name="Error_NotSettingCompilerExe" xml:space="preserve">
     <value>必要なコンパイラ関連の .exe が設定されていません。</value>
   </data>
+  <data name="URL_MSDOS" xml:space="preserve">
+    <value>http://takeda-toshiya.my.coocan.jp/msdos/</value>
+  </data>
 </root>

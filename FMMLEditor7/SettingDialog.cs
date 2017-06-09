@@ -33,6 +33,7 @@ namespace FMMLEditor7
 			linkLabelFMP.Text = MMLEditorResource.URL_FMP;
 			linkLabelAzuki.Text = MMLEditorResource.URL_Azuki;
 			linkLabelAOSoft.Text = MMLEditorResource.URL_AOSoft;
+			linkLabelMSDOS.Text = MMLEditorResource.URL_MSDOS;
 		}
 
 		/*-------------------------------------------------------------------
@@ -181,6 +182,11 @@ namespace FMMLEditor7
 		private void linkLabelAOSoft_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			System.Diagnostics.Process.Start(MMLEditorResource.URL_AOSoft);
+		}
+
+		private void linkLabelMSDOS_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			System.Diagnostics.Process.Start(MMLEditorResource.URL_MSDOS);
 		}
 	}
 }

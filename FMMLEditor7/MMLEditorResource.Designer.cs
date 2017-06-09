@@ -426,5 +426,14 @@ namespace FMMLEditor7 {
                 return ResourceManager.GetString("URL_FMP", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   http://takeda-toshiya.my.coocan.jp/msdos/ に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string URL_MSDOS {
+            get {
+                return ResourceManager.GetString("URL_MSDOS", resourceCulture);
+            }
+        }
     }
 }
