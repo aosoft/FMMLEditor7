@@ -61,7 +61,7 @@ namespace FMMLEditor7 {
         }
         
         /// <summary>
-        ///   FMP7 MML Editor に類似しているローカライズされた文字列を検索します。
+        ///   MML Editor 7 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string AppName {
             get {

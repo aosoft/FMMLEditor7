@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppName" xml:space="preserve">
-    <value>FMP7 MML Editor</value>
+    <value>MML Editor 7</value>
   </data>
   <data name="DefaultEditor_TextWidth" xml:space="preserve">
     <value>80</value>

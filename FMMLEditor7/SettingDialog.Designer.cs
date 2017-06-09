@@ -55,6 +55,8 @@
 			this.checkAutoTextWrap = new System.Windows.Forms.CheckBox();
 			this.checkTextWrap = new System.Windows.Forms.CheckBox();
 			this.tabpageAbout = new System.Windows.Forms.TabPage();
+			this.linkLabelMSDOS = new System.Windows.Forms.LinkLabel();
+			this.label12 = new System.Windows.Forms.Label();
 			this.linkLabelAOSoft = new System.Windows.Forms.LinkLabel();
 			this.linkLabelAzuki = new System.Windows.Forms.LinkLabel();
 			this.linkLabelFMP = new System.Windows.Forms.LinkLabel();
@@ -68,8 +70,6 @@
 			this.btnOK = new System.Windows.Forms.Button();
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.fontDialog1 = new System.Windows.Forms.FontDialog();
-			this.label12 = new System.Windows.Forms.Label();
-			this.linkLabelMSDOS = new System.Windows.Forms.LinkLabel();
 			this.tabControl1.SuspendLayout();
 			this.tabpageFMPSetting.SuspendLayout();
 			this.tabpageEditorSetting.SuspendLayout();
@@ -113,7 +113,7 @@
 			this.tabpageFMPSetting.Location = new System.Drawing.Point(4, 22);
 			this.tabpageFMPSetting.Name = "tabpageFMPSetting";
 			this.tabpageFMPSetting.Padding = new System.Windows.Forms.Padding(3);
-			this.tabpageFMPSetting.Size = new System.Drawing.Size(422, 340);
+			this.tabpageFMPSetting.Size = new System.Drawing.Size(422, 365);
 			this.tabpageFMPSetting.TabIndex = 0;
 			this.tabpageFMPSetting.Text = "FMP / コンパイラ";
 			this.tabpageFMPSetting.UseVisualStyleBackColor = true;
@@ -278,7 +278,7 @@
 			this.tabpageEditorSetting.Location = new System.Drawing.Point(4, 22);
 			this.tabpageEditorSetting.Name = "tabpageEditorSetting";
 			this.tabpageEditorSetting.Padding = new System.Windows.Forms.Padding(3);
-			this.tabpageEditorSetting.Size = new System.Drawing.Size(422, 300);
+			this.tabpageEditorSetting.Size = new System.Drawing.Size(422, 365);
 			this.tabpageEditorSetting.TabIndex = 1;
 			this.tabpageEditorSetting.Text = "編集";
 			this.tabpageEditorSetting.UseVisualStyleBackColor = true;
@@ -374,6 +374,27 @@
 			this.tabpageAbout.Text = "このアプリケーションについて";
 			this.tabpageAbout.UseVisualStyleBackColor = true;
 			// 
+			// linkLabelMSDOS
+			// 
+			this.linkLabelMSDOS.AutoSize = true;
+			this.linkLabelMSDOS.Location = new System.Drawing.Point(124, 318);
+			this.linkLabelMSDOS.Name = "linkLabelMSDOS";
+			this.linkLabelMSDOS.Size = new System.Drawing.Size(70, 12);
+			this.linkLabelMSDOS.TabIndex = 9;
+			this.linkLabelMSDOS.TabStop = true;
+			this.linkLabelMSDOS.Text = "MSDOS URL";
+			this.linkLabelMSDOS.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelMSDOS_LinkClicked);
+			// 
+			// label12
+			// 
+			this.label12.AutoSize = true;
+			this.label12.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.label12.Location = new System.Drawing.Point(95, 296);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(206, 15);
+			this.label12.TabIndex = 8;
+			this.label12.Text = "MS-DOS Player for Win32-x64";
+			// 
 			// linkLabelAOSoft
 			// 
 			this.linkLabelAOSoft.AutoSize = true;
@@ -463,9 +484,9 @@
 			this.label4.Font = new System.Drawing.Font("Segoe UI Symbol", 27.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label4.Location = new System.Drawing.Point(26, 26);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(330, 50);
+			this.label4.Size = new System.Drawing.Size(255, 50);
 			this.label4.TabIndex = 0;
-			this.label4.Text = "FMP7 MML Editor";
+			this.label4.Text = "MML Editor 7";
 			// 
 			// btnCancel
 			// 
@@ -497,27 +518,6 @@
 			// 
 			this.fontDialog1.AllowVerticalFonts = false;
 			this.fontDialog1.ShowEffects = false;
-			// 
-			// label12
-			// 
-			this.label12.AutoSize = true;
-			this.label12.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.label12.Location = new System.Drawing.Point(95, 296);
-			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(206, 15);
-			this.label12.TabIndex = 8;
-			this.label12.Text = "MS-DOS Player for Win32-x64";
-			// 
-			// linkLabelMSDOS
-			// 
-			this.linkLabelMSDOS.AutoSize = true;
-			this.linkLabelMSDOS.Location = new System.Drawing.Point(124, 318);
-			this.linkLabelMSDOS.Name = "linkLabelMSDOS";
-			this.linkLabelMSDOS.Size = new System.Drawing.Size(70, 12);
-			this.linkLabelMSDOS.TabIndex = 9;
-			this.linkLabelMSDOS.TabStop = true;
-			this.linkLabelMSDOS.Text = "MSDOS URL";
-			this.linkLabelMSDOS.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelMSDOS_LinkClicked);
 			// 
 			// SettingDialog
 			// 
