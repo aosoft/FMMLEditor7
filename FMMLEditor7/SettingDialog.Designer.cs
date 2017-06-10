@@ -383,7 +383,6 @@
 			this.linkLabelMSDOS.TabIndex = 9;
 			this.linkLabelMSDOS.TabStop = true;
 			this.linkLabelMSDOS.Text = "MSDOS URL";
-			this.linkLabelMSDOS.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelMSDOS_LinkClicked);
 			// 
 			// label12
 			// 
@@ -404,7 +403,6 @@
 			this.linkLabelAOSoft.TabIndex = 7;
 			this.linkLabelAOSoft.TabStop = true;
 			this.linkLabelAOSoft.Text = "linkLabel1";
-			this.linkLabelAOSoft.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelAOSoft_LinkClicked);
 			// 
 			// linkLabelAzuki
 			// 
@@ -415,7 +413,6 @@
 			this.linkLabelAzuki.TabIndex = 6;
 			this.linkLabelAzuki.TabStop = true;
 			this.linkLabelAzuki.Text = "Azuki URL";
-			this.linkLabelAzuki.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelAzuki_LinkClicked);
 			// 
 			// linkLabelFMP
 			// 
@@ -426,7 +423,6 @@
 			this.linkLabelFMP.TabIndex = 5;
 			this.linkLabelFMP.TabStop = true;
 			this.linkLabelFMP.Text = "FMP URL";
-			this.linkLabelFMP.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelFMP_LinkClicked);
 			// 
 			// label7
 			// 

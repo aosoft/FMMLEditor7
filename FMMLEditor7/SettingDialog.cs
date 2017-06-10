@@ -34,6 +34,15 @@ namespace FMMLEditor7
 			linkLabelAzuki.Text = MMLEditorResource.URL_Azuki;
 			linkLabelAOSoft.Text = MMLEditorResource.URL_AOSoft;
 			linkLabelMSDOS.Text = MMLEditorResource.URL_MSDOS;
+
+			EventHandler h = (s, e) =>
+			{
+				System.Diagnostics.Process.Start((s as LinkLabel).Text);
+			};
+			linkLabelFMP.Click += h;
+			linkLabelAzuki.Click += h;
+			linkLabelAOSoft.Click += h;
+			linkLabelMSDOS.Click += h;
 		}
 
 		/*-------------------------------------------------------------------
@@ -167,26 +176,6 @@ namespace FMMLEditor7
 				}
 				_font = fontDialog1.Font;
 			}
-		}
-
-		private void linkLabelFMP_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-		{
-			System.Diagnostics.Process.Start(MMLEditorResource.URL_FMP);
-		}
-
-		private void linkLabelAzuki_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-		{
-			System.Diagnostics.Process.Start(MMLEditorResource.URL_Azuki);
-		}
-
-		private void linkLabelAOSoft_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-		{
-			System.Diagnostics.Process.Start(MMLEditorResource.URL_AOSoft);
-		}
-
-		private void linkLabelMSDOS_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-		{
-			System.Diagnostics.Process.Start(MMLEditorResource.URL_MSDOS);
 		}
 	}
 }
