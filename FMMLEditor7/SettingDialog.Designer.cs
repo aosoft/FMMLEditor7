@@ -62,7 +62,6 @@
 			this.linkLabelFMP = new System.Windows.Forms.LinkLabel();
 			this.label7 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
-			this.label5 = new System.Windows.Forms.Label();
 			this.labelCopyright = new System.Windows.Forms.Label();
 			this.labelVersion = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
@@ -70,11 +69,15 @@
 			this.btnOK = new System.Windows.Forms.Button();
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.fontDialog1 = new System.Windows.Forms.FontDialog();
+			this.panelLinks = new System.Windows.Forms.Panel();
+			this.label5 = new System.Windows.Forms.Label();
+			this.linkLabelKajapon = new System.Windows.Forms.LinkLabel();
 			this.tabControl1.SuspendLayout();
 			this.tabpageFMPSetting.SuspendLayout();
 			this.tabpageEditorSetting.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudTextWrapWidth)).BeginInit();
 			this.tabpageAbout.SuspendLayout();
+			this.panelLinks.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tabControl1
@@ -88,7 +91,7 @@
 			this.tabControl1.Location = new System.Drawing.Point(12, 12);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(430, 391);
+			this.tabControl1.Size = new System.Drawing.Size(430, 348);
 			this.tabControl1.TabIndex = 0;
 			// 
 			// tabpageFMPSetting
@@ -113,7 +116,7 @@
 			this.tabpageFMPSetting.Location = new System.Drawing.Point(4, 22);
 			this.tabpageFMPSetting.Name = "tabpageFMPSetting";
 			this.tabpageFMPSetting.Padding = new System.Windows.Forms.Padding(3);
-			this.tabpageFMPSetting.Size = new System.Drawing.Size(422, 365);
+			this.tabpageFMPSetting.Size = new System.Drawing.Size(422, 322);
 			this.tabpageFMPSetting.TabIndex = 0;
 			this.tabpageFMPSetting.Text = "FMP / コンパイラ";
 			this.tabpageFMPSetting.UseVisualStyleBackColor = true;
@@ -356,20 +359,14 @@
 			// 
 			// tabpageAbout
 			// 
-			this.tabpageAbout.Controls.Add(this.linkLabelMSDOS);
-			this.tabpageAbout.Controls.Add(this.label12);
+			this.tabpageAbout.Controls.Add(this.panelLinks);
 			this.tabpageAbout.Controls.Add(this.linkLabelAOSoft);
-			this.tabpageAbout.Controls.Add(this.linkLabelAzuki);
-			this.tabpageAbout.Controls.Add(this.linkLabelFMP);
-			this.tabpageAbout.Controls.Add(this.label7);
-			this.tabpageAbout.Controls.Add(this.label6);
-			this.tabpageAbout.Controls.Add(this.label5);
 			this.tabpageAbout.Controls.Add(this.labelCopyright);
 			this.tabpageAbout.Controls.Add(this.labelVersion);
 			this.tabpageAbout.Controls.Add(this.label4);
 			this.tabpageAbout.Location = new System.Drawing.Point(4, 22);
 			this.tabpageAbout.Name = "tabpageAbout";
-			this.tabpageAbout.Size = new System.Drawing.Size(422, 365);
+			this.tabpageAbout.Size = new System.Drawing.Size(422, 322);
 			this.tabpageAbout.TabIndex = 2;
 			this.tabpageAbout.Text = "このアプリケーションについて";
 			this.tabpageAbout.UseVisualStyleBackColor = true;
@@ -377,7 +374,7 @@
 			// linkLabelMSDOS
 			// 
 			this.linkLabelMSDOS.AutoSize = true;
-			this.linkLabelMSDOS.Location = new System.Drawing.Point(124, 318);
+			this.linkLabelMSDOS.Location = new System.Drawing.Point(47, 188);
 			this.linkLabelMSDOS.Name = "linkLabelMSDOS";
 			this.linkLabelMSDOS.Size = new System.Drawing.Size(70, 12);
 			this.linkLabelMSDOS.TabIndex = 9;
@@ -388,7 +385,7 @@
 			// 
 			this.label12.AutoSize = true;
 			this.label12.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.label12.Location = new System.Drawing.Point(95, 296);
+			this.label12.Location = new System.Drawing.Point(18, 166);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(206, 15);
 			this.label12.TabIndex = 8;
@@ -407,7 +404,7 @@
 			// linkLabelAzuki
 			// 
 			this.linkLabelAzuki.AutoSize = true;
-			this.linkLabelAzuki.Location = new System.Drawing.Point(124, 270);
+			this.linkLabelAzuki.Location = new System.Drawing.Point(47, 140);
 			this.linkLabelAzuki.Name = "linkLabelAzuki";
 			this.linkLabelAzuki.Size = new System.Drawing.Size(59, 12);
 			this.linkLabelAzuki.TabIndex = 6;
@@ -417,7 +414,7 @@
 			// linkLabelFMP
 			// 
 			this.linkLabelFMP.AutoSize = true;
-			this.linkLabelFMP.Location = new System.Drawing.Point(124, 224);
+			this.linkLabelFMP.Location = new System.Drawing.Point(47, 46);
 			this.linkLabelFMP.Name = "linkLabelFMP";
 			this.linkLabelFMP.Size = new System.Drawing.Size(54, 12);
 			this.linkLabelFMP.TabIndex = 5;
@@ -428,7 +425,7 @@
 			// 
 			this.label7.AutoSize = true;
 			this.label7.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.label7.Location = new System.Drawing.Point(95, 248);
+			this.label7.Location = new System.Drawing.Point(18, 118);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(163, 15);
 			this.label7.TabIndex = 4;
@@ -438,21 +435,11 @@
 			// 
 			this.label6.AutoSize = true;
 			this.label6.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.label6.Location = new System.Drawing.Point(95, 200);
+			this.label6.Location = new System.Drawing.Point(18, 22);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(133, 15);
 			this.label6.TabIndex = 3;
 			this.label6.Text = "FMP archive center";
-			// 
-			// label5
-			// 
-			this.label5.AutoSize = true;
-			this.label5.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.label5.Location = new System.Drawing.Point(77, 174);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(103, 15);
-			this.label5.TabIndex = 2;
-			this.label5.Text = "Special Thanks";
 			// 
 			// labelCopyright
 			// 
@@ -487,7 +474,7 @@
 			// btnCancel
 			// 
 			this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnCancel.Location = new System.Drawing.Point(367, 409);
+			this.btnCancel.Location = new System.Drawing.Point(367, 366);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(75, 23);
 			this.btnCancel.TabIndex = 1;
@@ -498,7 +485,7 @@
 			// btnOK
 			// 
 			this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnOK.Location = new System.Drawing.Point(286, 409);
+			this.btnOK.Location = new System.Drawing.Point(286, 366);
 			this.btnOK.Name = "btnOK";
 			this.btnOK.Size = new System.Drawing.Size(75, 23);
 			this.btnOK.TabIndex = 2;
@@ -515,11 +502,51 @@
 			this.fontDialog1.AllowVerticalFonts = false;
 			this.fontDialog1.ShowEffects = false;
 			// 
+			// panelLinks
+			// 
+			this.panelLinks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.panelLinks.AutoScroll = true;
+			this.panelLinks.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.panelLinks.Controls.Add(this.linkLabelKajapon);
+			this.panelLinks.Controls.Add(this.label5);
+			this.panelLinks.Controls.Add(this.linkLabelMSDOS);
+			this.panelLinks.Controls.Add(this.label6);
+			this.panelLinks.Controls.Add(this.label7);
+			this.panelLinks.Controls.Add(this.label12);
+			this.panelLinks.Controls.Add(this.linkLabelFMP);
+			this.panelLinks.Controls.Add(this.linkLabelAzuki);
+			this.panelLinks.Location = new System.Drawing.Point(15, 177);
+			this.panelLinks.Name = "panelLinks";
+			this.panelLinks.Size = new System.Drawing.Size(392, 132);
+			this.panelLinks.TabIndex = 10;
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.label5.Location = new System.Drawing.Point(18, 70);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(120, 15);
+			this.label5.TabIndex = 10;
+			this.label5.Text = "かぢゃぽんのお部屋";
+			// 
+			// linkLabelKajapon
+			// 
+			this.linkLabelKajapon.AutoSize = true;
+			this.linkLabelKajapon.Location = new System.Drawing.Point(47, 92);
+			this.linkLabelKajapon.Name = "linkLabelKajapon";
+			this.linkLabelKajapon.Size = new System.Drawing.Size(71, 12);
+			this.linkLabelKajapon.TabIndex = 11;
+			this.linkLabelKajapon.TabStop = true;
+			this.linkLabelKajapon.Text = "Kajapon URL";
+			// 
 			// SettingDialog
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(454, 441);
+			this.ClientSize = new System.Drawing.Size(454, 398);
 			this.Controls.Add(this.btnOK);
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.tabControl1);
@@ -540,6 +567,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.nudTextWrapWidth)).EndInit();
 			this.tabpageAbout.ResumeLayout(false);
 			this.tabpageAbout.PerformLayout();
+			this.panelLinks.ResumeLayout(false);
+			this.panelLinks.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -569,7 +598,6 @@
 		private System.Windows.Forms.Label labelCopyright;
 		private System.Windows.Forms.Label labelVersion;
 		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.LinkLabel linkLabelAzuki;
@@ -588,5 +616,8 @@
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.LinkLabel linkLabelMSDOS;
 		private System.Windows.Forms.Label label12;
+		private System.Windows.Forms.Panel panelLinks;
+		private System.Windows.Forms.LinkLabel linkLabelKajapon;
+		private System.Windows.Forms.Label label5;
 	}
 }

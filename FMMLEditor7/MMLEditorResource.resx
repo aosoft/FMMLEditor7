@@ -247,4 +247,7 @@ FMP7 へのパスが正しく設定されているか確認してください。
   <data name="URL_MSDOS" xml:space="preserve">
     <value>http://takeda-toshiya.my.coocan.jp/msdos/</value>
   </data>
+  <data name="URL_Kajapon" xml:space="preserve">
+    <value>http://www5.airnet.ne.jp/kajapon/</value>
+  </data>
 </root>

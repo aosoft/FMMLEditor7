@@ -428,6 +428,15 @@ namespace FMMLEditor7 {
         }
         
         /// <summary>
+        ///   http://www5.airnet.ne.jp/kajapon/ に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string URL_Kajapon {
+            get {
+                return ResourceManager.GetString("URL_Kajapon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   http://takeda-toshiya.my.coocan.jp/msdos/ に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string URL_MSDOS {

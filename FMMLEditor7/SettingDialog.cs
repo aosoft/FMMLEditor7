@@ -34,6 +34,7 @@ namespace FMMLEditor7
 			linkLabelAzuki.Text = MMLEditorResource.URL_Azuki;
 			linkLabelAOSoft.Text = MMLEditorResource.URL_AOSoft;
 			linkLabelMSDOS.Text = MMLEditorResource.URL_MSDOS;
+			linkLabelKajapon.Text = MMLEditorResource.URL_Kajapon;
 
 			EventHandler h = (s, e) =>
 			{
@@ -43,6 +44,7 @@ namespace FMMLEditor7
 			linkLabelAzuki.Click += h;
 			linkLabelAOSoft.Click += h;
 			linkLabelMSDOS.Click += h;
+			linkLabelKajapon.Click += h;
 		}
 
 		/*-------------------------------------------------------------------
