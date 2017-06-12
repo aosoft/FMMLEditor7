@@ -1,6 +1,10 @@
-## FMP7 MML Editor 更新履歴
+## MML Editor 7 (FMP7 MML Editor) 更新履歴
 
 [README](README.md)
+
+### Ver.2.0.0.0 2017/6/xx
+* FMPv4, PMD にネイティブ対応しました。運用には別途各種コンポーネントの導入が必要になります。
+* アプリケーション名を "MML Editor 7" に改名しました。
 
 ### Ver.1.2.0.0 2017/2/5
 * TargetFramework を 4.5.2 に変更。

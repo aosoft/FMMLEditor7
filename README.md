@@ -1,5 +1,5 @@
 
-FMP7 MML Editor
+MML Editor 7
 =====
 Copyright (C)2010-2017 TAN-Y
 
@@ -11,14 +11,41 @@ FMP archive center http://archive.fmp.jp/
 
 ## このソフトについて
 
-このソフトは FMP7 専用に特化した MML エディッタです。FMP MML Editor の FMP7 版です。  
-このエディッタ上で MML の編集をしながら、コンパイル、再生制御が行えます。
+このソフトは FMP7, FMP4, PMD に対応した MML エディッターです。FMP MML Editor の後継になります。  
+このエディッター上で MML の編集をしながら、コンパイル、再生制御が行えます。
 
 
 ## 対応環境
 
 * FMP7 Ver.7.10a 以降が動作する環境
 * .NET Framework 4.5.2 以降がインストールされている環境
+
+## 必要コンポーネント
+
+MML Editor 7 てはアプリ単体ではただのテキストエディターとしか機能しません。  
+有効に活用するには各種コンポーネントの導入が必要になります。
+
+### MML コンパイラ関連
+
+| コンポーネント名 | 目的、用途 | 頒布先 |
+|:--|:--|:--|
+|FMC7|FMP7 形式の MML コンパイルに使用します。|[FMP archive center](http://archive.fmp.jp/)|
+|MS-DOS Player for Win32-x64|FMP4, PMD のコンパイルに使用します。これらのコンパイラは MS-DOS 用の 16bit アプリのため、 MS-DOS Player を通して実行します。|[MS-DOS Player for Win32-x64](http://takeda-toshiya.my.coocan.jp/msdos/)|
+|FMC|FMP4 形式の MML コンパイルに使用します。 FMC7 とは異なりますので注意。|[FMP archive center](http://archive.fmp.jp/)|
+|MC|PMD 形式の MML コンパイルに使用します。|[[かぢゃぽんのお部屋]](http://www5.airnet.ne.jp/kajapon/)
+
+### プレイヤー関連
+
+| コンポーネント名 | 目的、用途 | 頒布先 |
+|:--|:--|:--|
+|FMP7|コンパイルした曲データの演奏に使用します。|[FMP archive center](http://archive.fmp.jp/)|
+|exFMP4|FMP4 形式の曲データを FMP7 上で再生するための FMP7 addon です。|[FMP archive center](http://archive.fmp.jp/)|
+|WinFMP|FMP4 の Windows 用ドライバー本体です。|[Ｃ６０のページ](http://c60.la.coocan.jp/)|
+|exPMD|PMD 形式の曲データを FMP7 上で再生するための FMP7 addon です。|[FMP archive center](http://archive.fmp.jp/)|
+|PMDWin|PMD の Windows 用ドライバー本体です。|[Ｃ６０のページ](http://c60.la.coocan.jp/)|
+
+プレイヤー機能は FMP7 に依存しています。  
+詳細は FMP7 の各種ドキュメントを参照してください。
 
 ## インストール、初期設定
 
@@ -60,6 +87,19 @@ FMP archive center http://archive.fmp.jp/
 | MML ソースへ移動 | F8 |
 | コンパイル結果へ移動 | F9 |
 | エラーリストへ移動 | F10 |
+
+## MML 拡張子
+
+MML Editor 7 はソースファイルの拡張子から MML のフォーマットを判別します。
+
+| MML 拡張子 | 曲データ拡張子 | フォーマット |
+|:--|:--|:--|
+|\*.mwi|\*.owi|FMP7|
+|\*.mpi, \*.mvi, \*.mzi|\*.opi, \*.ovi, \*.ozi|FMP4|
+|*.mml|\*.m,\*.m2,\*.mp,\*.mz etc.|PMD|
+
+PMD は MML 中の #FileName でコンパイルデータのファイル名、拡張子を指定できます。
+PMD は MML 中の #FileName でコンパイルデータのファイル名、拡張子を指定できます。
 
 ## ソースについて
 
