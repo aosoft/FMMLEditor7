@@ -22,17 +22,17 @@ FMP archive center http://archive.fmp.jp/
 
 ## 必要コンポーネント
 
-MML Editor 7 てはアプリ単体ではただのテキストエディターとしか機能しません。  
+MML Editor 7 はアプリ単体ではただのテキストエディターとしか機能しません。  
 有効に活用するには各種コンポーネントの導入が必要になります。
 
 ### MML コンパイラ関連
 
 | コンポーネント名 | 目的、用途 | 頒布先 |
 |:--|:--|:--|
-|FMC7|FMP7 形式の MML コンパイルに使用します。|[FMP archive center](http://archive.fmp.jp/)|
-|MS-DOS Player for Win32-x64|FMP4, PMD のコンパイルに使用します。これらのコンパイラは MS-DOS 用の 16bit アプリのため、 MS-DOS Player を通して実行します。|[MS-DOS Player for Win32-x64](http://takeda-toshiya.my.coocan.jp/msdos/)|
-|FMC|FMP4 形式の MML コンパイルに使用します。 FMC7 とは異なりますので注意。|[FMP archive center](http://archive.fmp.jp/)|
-|MC|PMD 形式の MML コンパイルに使用します。|[[かぢゃぽんのお部屋]](http://www5.airnet.ne.jp/kajapon/)
+|FMC7 (fmc7.dll)|FMP7 の MML コンパイラです。|[FMP archive center](http://archive.fmp.jp/)|
+|MS-DOS Player for Win32-x64 (msdos.exe)|FMP4, PMD のコンパイルに使用します。これらのコンパイラは MS-DOS 用の 16bit アプリのため、 MS-DOS Player を通して実行します。|[MS-DOS Player for Win32-x64](http://takeda-toshiya.my.coocan.jp/msdos/)|
+|FMC (fmc.exe)|FMP4 の MML コンパイラです。 FMC7 とは異なりますので注意。|[FMP archive center](http://archive.fmp.jp/)|
+|MC (mc.exe)|PMD の MML コンパイラです。|[[かぢゃぽんのお部屋]](http://www5.airnet.ne.jp/kajapon/)
 
 ### プレイヤー関連
 
@@ -51,10 +51,10 @@ MML Editor 7 てはアプリ単体ではただのテキストエディターと�
 
 インストーラはありません。アーカイブを展開し、インストールしたい場所にコピーしてください。
 
-最初に FMP7 の各種モジュールへのパス設定が必要になります。  
-デフォルトは FMP7 MML Editor と同じディレクトリにモジュールがあるものとして起動します。 （従って FMP7 本体と同じディレクトリにコピーすることをお勧めします）
+最初に FMP7 及び各種コンポーネントへのパス設定が必要になります。  
+デフォルトは FMP7 MML Editor と同じディレクトリにあるものとして起動します。 （従って FMP7 本体と同じディレクトリにコピーすることをお勧めします）
 
-モジュールが認識できなかった場合、エラーが表示されます。設定画面を出して、パス設定を行ってください。
+コンポーネントが認識できなかった場合、エラーが表示されます。設定画面を出して、パス設定を行ってください。
 
 
 ## ショートカットキー
@@ -98,8 +98,7 @@ MML Editor 7 はソースファイルの拡張子から MML のフォーマッ�
 |\*.mpi, \*.mvi, \*.mzi|\*.opi, \*.ovi, \*.ozi|FMP4|
 |*.mml|\*.m,\*.m2,\*.mp,\*.mz etc.|PMD|
 
-PMD は MML 中の #FileName でコンパイルデータのファイル名、拡張子を指定できます。
-PMD は MML 中の #FileName でコンパイルデータのファイル名、拡張子を指定できます。
+PMD は MML 中の #Filename でコンパイルデータのファイル名、拡張子を指定できます。
 
 ## ソースについて
 
