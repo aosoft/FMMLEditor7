@@ -271,24 +271,6 @@ namespace FMMLEditor7
 			return Compiler.GetCompilerType(path).CompilerType != CompilerType.Unknown;
 		}
 
-		private void CheckCompilerDllSettingAndUpdate()
-		{
-			try
-			{
-				if (_setting.FMC7Path != _compiler.DllPathFMC7)
-				{
-					_compiler.InitializeFMC7();
-				}
-			}
-			catch (Exception e)
-			{
-				ShowErrorDialog(
-					string.Format(
-						MMLEditorResource.Error_LoadCompilerModule,
-						e.Message));
-			}
-		}
-
 		private void UpdateCompileResult(CompileResult result)
 		{
 			listviewCompileResult.Items.Clear();
@@ -551,8 +533,6 @@ namespace FMMLEditor7
 
 				UpdateEditorFont();
 				UpdateEditorState();
-
-				CheckCompilerDllSettingAndUpdate();
 
 				timer1.Start();
 			}
@@ -825,7 +805,6 @@ namespace FMMLEditor7
 			{
 				UpdateEditorFont();
 				UpdateEditorState();
-				CheckCompilerDllSettingAndUpdate();
 			}
 		}
 

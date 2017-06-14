@@ -130,7 +130,19 @@ namespace FMMLEditor7
 					{
 						if (_compilerFMC7.IsInitialized == false)
 						{
-							throw new Exception(MMLEditorResource.Error_NotInitializedCompiler);
+							try
+							{
+								InitializeFMC7();
+							}
+							catch (Exception e)
+							{
+								throw new Exception(
+									string.Format(
+										MMLEditorResource.Error_LoadCompilerModule,
+										e.Message));
+							}
+
+							InitializeFMC7();
 						}
 
 						return new CompileResult(

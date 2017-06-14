@@ -163,6 +163,9 @@
     <value>MC.EXE</value>
   </data>
   <data name="SettingFile" xml:space="preserve">
+    <value>aosoft\MML Editor 7\FMMLEditor7Setting.xml</value>
+  </data>
+  <data name="SettingFileOld" xml:space="preserve">
     <value>FMP\FMP7 MML Editor\FMPMMLEditor7Setting.xml</value>
   </data>
   <data name="Error_LoadCompilerModule" xml:space="preserve">

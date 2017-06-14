@@ -18,6 +18,7 @@ namespace FMMLEditor7
 		public const int MaxRecentFiles = 5;
 
 		private string _settingFilePath;
+		private string _settingFilePathOld;
 		private List<string> _recentFiles = new List<string>(MaxRecentFiles + 1);
 
 		public List<String> RecentFiles
@@ -149,6 +150,10 @@ namespace FMMLEditor7
 				Path.Combine(
 					Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
 					MMLEditorResource.SettingFile);
+			_settingFilePathOld =
+				Path.Combine(
+					Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+					MMLEditorResource.SettingFileOld);
 
 			AvailableWindowPosInfo = false;
 
@@ -184,7 +189,15 @@ namespace FMMLEditor7
 
 		public void Load()
 		{
-			var doc = new XPathDocument(_settingFilePath);
+			XPathDocument doc = null;
+			if (File.Exists(_settingFilePath))
+			{
+				doc = new XPathDocument(_settingFilePath);
+			}
+			else
+			{
+				doc = new XPathDocument(_settingFilePathOld);
+			}
 			var xnav = doc.CreateNavigator();
 
 			var xnavBase = xnav.SelectSingleNode("/Setting");

@@ -392,11 +392,20 @@ namespace FMMLEditor7 {
         }
         
         /// <summary>
-        ///   FMP\FMP7 MML Editor\FMPMMLEditor7Setting.xml に類似しているローカライズされた文字列を検索します。
+        ///   aosoft\MML Editor 7\FMMLEditor7Setting.xml に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string SettingFile {
             get {
                 return ResourceManager.GetString("SettingFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   FMP\FMP7 MML Editor\FMPMMLEditor7Setting.xml に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string SettingFileOld {
+            get {
+                return ResourceManager.GetString("SettingFileOld", resourceCulture);
             }
         }
         
