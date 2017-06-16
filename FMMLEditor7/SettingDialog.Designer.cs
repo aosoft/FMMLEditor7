@@ -55,13 +55,16 @@
 			this.checkAutoTextWrap = new System.Windows.Forms.CheckBox();
 			this.checkTextWrap = new System.Windows.Forms.CheckBox();
 			this.tabpageAbout = new System.Windows.Forms.TabPage();
+			this.panelLinks = new System.Windows.Forms.Panel();
+			this.linkLabelKajapon = new System.Windows.Forms.LinkLabel();
+			this.label5 = new System.Windows.Forms.Label();
 			this.linkLabelMSDOS = new System.Windows.Forms.LinkLabel();
-			this.label12 = new System.Windows.Forms.Label();
-			this.linkLabelAOSoft = new System.Windows.Forms.LinkLabel();
-			this.linkLabelAzuki = new System.Windows.Forms.LinkLabel();
-			this.linkLabelFMP = new System.Windows.Forms.LinkLabel();
-			this.label7 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
+			this.label7 = new System.Windows.Forms.Label();
+			this.label12 = new System.Windows.Forms.Label();
+			this.linkLabelFMP = new System.Windows.Forms.LinkLabel();
+			this.linkLabelAzuki = new System.Windows.Forms.LinkLabel();
+			this.linkLabelAOSoft = new System.Windows.Forms.LinkLabel();
 			this.labelCopyright = new System.Windows.Forms.Label();
 			this.labelVersion = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
@@ -69,9 +72,8 @@
 			this.btnOK = new System.Windows.Forms.Button();
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.fontDialog1 = new System.Windows.Forms.FontDialog();
-			this.panelLinks = new System.Windows.Forms.Panel();
-			this.label5 = new System.Windows.Forms.Label();
-			this.linkLabelKajapon = new System.Windows.Forms.LinkLabel();
+			this.label13 = new System.Windows.Forms.Label();
+			this.linkLabelC60 = new System.Windows.Forms.LinkLabel();
 			this.tabControl1.SuspendLayout();
 			this.tabpageFMPSetting.SuspendLayout();
 			this.tabpageEditorSetting.SuspendLayout();
@@ -281,7 +283,7 @@
 			this.tabpageEditorSetting.Location = new System.Drawing.Point(4, 22);
 			this.tabpageEditorSetting.Name = "tabpageEditorSetting";
 			this.tabpageEditorSetting.Padding = new System.Windows.Forms.Padding(3);
-			this.tabpageEditorSetting.Size = new System.Drawing.Size(422, 365);
+			this.tabpageEditorSetting.Size = new System.Drawing.Size(422, 322);
 			this.tabpageEditorSetting.TabIndex = 1;
 			this.tabpageEditorSetting.Text = "編集";
 			this.tabpageEditorSetting.UseVisualStyleBackColor = true;
@@ -371,45 +373,87 @@
 			this.tabpageAbout.Text = "このアプリケーションについて";
 			this.tabpageAbout.UseVisualStyleBackColor = true;
 			// 
+			// panelLinks
+			// 
+			this.panelLinks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.panelLinks.AutoScroll = true;
+			this.panelLinks.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.panelLinks.Controls.Add(this.linkLabelC60);
+			this.panelLinks.Controls.Add(this.label13);
+			this.panelLinks.Controls.Add(this.linkLabelKajapon);
+			this.panelLinks.Controls.Add(this.label5);
+			this.panelLinks.Controls.Add(this.linkLabelMSDOS);
+			this.panelLinks.Controls.Add(this.label6);
+			this.panelLinks.Controls.Add(this.label7);
+			this.panelLinks.Controls.Add(this.label12);
+			this.panelLinks.Controls.Add(this.linkLabelFMP);
+			this.panelLinks.Controls.Add(this.linkLabelAzuki);
+			this.panelLinks.Location = new System.Drawing.Point(15, 177);
+			this.panelLinks.Name = "panelLinks";
+			this.panelLinks.Size = new System.Drawing.Size(392, 132);
+			this.panelLinks.TabIndex = 10;
+			// 
+			// linkLabelKajapon
+			// 
+			this.linkLabelKajapon.AutoSize = true;
+			this.linkLabelKajapon.Location = new System.Drawing.Point(47, 92);
+			this.linkLabelKajapon.Name = "linkLabelKajapon";
+			this.linkLabelKajapon.Size = new System.Drawing.Size(71, 12);
+			this.linkLabelKajapon.TabIndex = 11;
+			this.linkLabelKajapon.TabStop = true;
+			this.linkLabelKajapon.Text = "Kajapon URL";
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.label5.Location = new System.Drawing.Point(18, 70);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(120, 15);
+			this.label5.TabIndex = 10;
+			this.label5.Text = "かぢゃぽんのお部屋";
+			// 
 			// linkLabelMSDOS
 			// 
 			this.linkLabelMSDOS.AutoSize = true;
-			this.linkLabelMSDOS.Location = new System.Drawing.Point(47, 188);
+			this.linkLabelMSDOS.Location = new System.Drawing.Point(47, 236);
 			this.linkLabelMSDOS.Name = "linkLabelMSDOS";
 			this.linkLabelMSDOS.Size = new System.Drawing.Size(70, 12);
 			this.linkLabelMSDOS.TabIndex = 9;
 			this.linkLabelMSDOS.TabStop = true;
 			this.linkLabelMSDOS.Text = "MSDOS URL";
 			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.label6.Location = new System.Drawing.Point(18, 22);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(133, 15);
+			this.label6.TabIndex = 3;
+			this.label6.Text = "FMP archive center";
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.label7.Location = new System.Drawing.Point(18, 166);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(163, 15);
+			this.label7.TabIndex = 4;
+			this.label7.Text = "Azuki Text Editor Engine";
+			// 
 			// label12
 			// 
 			this.label12.AutoSize = true;
 			this.label12.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.label12.Location = new System.Drawing.Point(18, 166);
+			this.label12.Location = new System.Drawing.Point(18, 214);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(206, 15);
 			this.label12.TabIndex = 8;
 			this.label12.Text = "MS-DOS Player for Win32-x64";
-			// 
-			// linkLabelAOSoft
-			// 
-			this.linkLabelAOSoft.AutoSize = true;
-			this.linkLabelAOSoft.Location = new System.Drawing.Point(126, 142);
-			this.linkLabelAOSoft.Name = "linkLabelAOSoft";
-			this.linkLabelAOSoft.Size = new System.Drawing.Size(56, 12);
-			this.linkLabelAOSoft.TabIndex = 7;
-			this.linkLabelAOSoft.TabStop = true;
-			this.linkLabelAOSoft.Text = "linkLabel1";
-			// 
-			// linkLabelAzuki
-			// 
-			this.linkLabelAzuki.AutoSize = true;
-			this.linkLabelAzuki.Location = new System.Drawing.Point(47, 140);
-			this.linkLabelAzuki.Name = "linkLabelAzuki";
-			this.linkLabelAzuki.Size = new System.Drawing.Size(59, 12);
-			this.linkLabelAzuki.TabIndex = 6;
-			this.linkLabelAzuki.TabStop = true;
-			this.linkLabelAzuki.Text = "Azuki URL";
 			// 
 			// linkLabelFMP
 			// 
@@ -421,25 +465,25 @@
 			this.linkLabelFMP.TabStop = true;
 			this.linkLabelFMP.Text = "FMP URL";
 			// 
-			// label7
+			// linkLabelAzuki
 			// 
-			this.label7.AutoSize = true;
-			this.label7.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.label7.Location = new System.Drawing.Point(18, 118);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(163, 15);
-			this.label7.TabIndex = 4;
-			this.label7.Text = "Azuki Text Editor Engine";
+			this.linkLabelAzuki.AutoSize = true;
+			this.linkLabelAzuki.Location = new System.Drawing.Point(47, 188);
+			this.linkLabelAzuki.Name = "linkLabelAzuki";
+			this.linkLabelAzuki.Size = new System.Drawing.Size(59, 12);
+			this.linkLabelAzuki.TabIndex = 6;
+			this.linkLabelAzuki.TabStop = true;
+			this.linkLabelAzuki.Text = "Azuki URL";
 			// 
-			// label6
+			// linkLabelAOSoft
 			// 
-			this.label6.AutoSize = true;
-			this.label6.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.label6.Location = new System.Drawing.Point(18, 22);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(133, 15);
-			this.label6.TabIndex = 3;
-			this.label6.Text = "FMP archive center";
+			this.linkLabelAOSoft.AutoSize = true;
+			this.linkLabelAOSoft.Location = new System.Drawing.Point(126, 142);
+			this.linkLabelAOSoft.Name = "linkLabelAOSoft";
+			this.linkLabelAOSoft.Size = new System.Drawing.Size(56, 12);
+			this.linkLabelAOSoft.TabIndex = 7;
+			this.linkLabelAOSoft.TabStop = true;
+			this.linkLabelAOSoft.Text = "linkLabel1";
 			// 
 			// labelCopyright
 			// 
@@ -502,45 +546,25 @@
 			this.fontDialog1.AllowVerticalFonts = false;
 			this.fontDialog1.ShowEffects = false;
 			// 
-			// panelLinks
+			// label13
 			// 
-			this.panelLinks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.panelLinks.AutoScroll = true;
-			this.panelLinks.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.panelLinks.Controls.Add(this.linkLabelKajapon);
-			this.panelLinks.Controls.Add(this.label5);
-			this.panelLinks.Controls.Add(this.linkLabelMSDOS);
-			this.panelLinks.Controls.Add(this.label6);
-			this.panelLinks.Controls.Add(this.label7);
-			this.panelLinks.Controls.Add(this.label12);
-			this.panelLinks.Controls.Add(this.linkLabelFMP);
-			this.panelLinks.Controls.Add(this.linkLabelAzuki);
-			this.panelLinks.Location = new System.Drawing.Point(15, 177);
-			this.panelLinks.Name = "panelLinks";
-			this.panelLinks.Size = new System.Drawing.Size(392, 132);
-			this.panelLinks.TabIndex = 10;
+			this.label13.AutoSize = true;
+			this.label13.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.label13.Location = new System.Drawing.Point(18, 118);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(86, 15);
+			this.label13.TabIndex = 12;
+			this.label13.Text = "Ｃ６０のページ";
 			// 
-			// label5
+			// linkLabelC60
 			// 
-			this.label5.AutoSize = true;
-			this.label5.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.label5.Location = new System.Drawing.Point(18, 70);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(120, 15);
-			this.label5.TabIndex = 10;
-			this.label5.Text = "かぢゃぽんのお部屋";
-			// 
-			// linkLabelKajapon
-			// 
-			this.linkLabelKajapon.AutoSize = true;
-			this.linkLabelKajapon.Location = new System.Drawing.Point(47, 92);
-			this.linkLabelKajapon.Name = "linkLabelKajapon";
-			this.linkLabelKajapon.Size = new System.Drawing.Size(71, 12);
-			this.linkLabelKajapon.TabIndex = 11;
-			this.linkLabelKajapon.TabStop = true;
-			this.linkLabelKajapon.Text = "Kajapon URL";
+			this.linkLabelC60.AutoSize = true;
+			this.linkLabelC60.Location = new System.Drawing.Point(47, 140);
+			this.linkLabelC60.Name = "linkLabelC60";
+			this.linkLabelC60.Size = new System.Drawing.Size(51, 12);
+			this.linkLabelC60.TabIndex = 13;
+			this.linkLabelC60.TabStop = true;
+			this.linkLabelC60.Text = "C60 URL";
 			// 
 			// SettingDialog
 			// 
@@ -619,5 +643,7 @@
 		private System.Windows.Forms.Panel panelLinks;
 		private System.Windows.Forms.LinkLabel linkLabelKajapon;
 		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.LinkLabel linkLabelC60;
+		private System.Windows.Forms.Label label13;
 	}
 }

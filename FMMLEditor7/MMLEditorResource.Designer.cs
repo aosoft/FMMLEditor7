@@ -428,6 +428,15 @@ namespace FMMLEditor7 {
         }
         
         /// <summary>
+        ///   http://c60.la.coocan.jp/ に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string URL_C60 {
+            get {
+                return ResourceManager.GetString("URL_C60", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   http://archive.fmp.jp/ に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string URL_FMP {
