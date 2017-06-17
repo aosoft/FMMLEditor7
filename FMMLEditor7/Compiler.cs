@@ -51,7 +51,7 @@ namespace FMMLEditor7
 
 		public CompileResult Compile(string mmlPath, bool compileAndPlay)
 		{
-			var ci = GetCompilerType(mmlPath);
+			var ci = CompileInfo.Analyze(mmlPath);
 			switch (ci.CompilerType)
 			{
 				case CompilerType.FMP7:
@@ -75,26 +75,26 @@ namespace FMMLEditor7
 
 						return new CompileResult(
 							_compilerFMC7.Compile(mmlPath, compileAndPlay),
-							GetCompiledFilePath(mmlPath),
+							ci.CompiledFilePath,
 							null);
 					}
 
 				case CompilerType.FMPv4:
 				case CompilerType.PMD:
 					{
-						return StartCompilerProcess(ci.CompilerType, mmlPath, compileAndPlay);
+						return StartCompilerProcess(ci, compileAndPlay);
 					}
 			}
 
 			return new CompileResult(new FMC7Result(FMC7Status.ErrorNoData, null), null, null);
 		}
 
-		private CompileResult StartCompilerProcess(CompilerType ct, string mmlPath, bool compileAndPlay)
+		private CompileResult StartCompilerProcess(CompileInfo ci, bool compileAndPlay)
 		{
 			CheckExePath(_setting.MSDOSPlayerPath);
 
 			string compilerExe = null;
-			switch (ct)
+			switch (ci.CompilerType)
 			{
 				case CompilerType.FMPv4:
 					{
@@ -118,8 +118,8 @@ namespace FMMLEditor7
 
 			var psi = new ProcessStartInfo();
 			psi.FileName = _setting.MSDOSPlayerPath;
-			psi.Arguments = string.Format("\"{0}\" \"{1}\"", compilerExe, mmlPath);
-			psi.WorkingDirectory = Path.GetDirectoryName(mmlPath);
+			psi.Arguments = string.Format("\"{0}\" \"{1}\"", compilerExe, ci.MmlFilePath);
+			psi.WorkingDirectory = Path.GetDirectoryName(ci.MmlFilePath);
 			psi.CreateNoWindow = true;
 			psi.UseShellExecute = false;
 			psi.RedirectStandardOutput = true;
@@ -139,9 +139,9 @@ namespace FMMLEditor7
 							compileAndPlay ? FMC7Status.ErrorPlay : FMC7Status.Success :
 							FMC7Status.ErrorCompile,
 						GetFMC7InfoFromErrorString(
-							mmlPath,
-							ct == CompilerType.FMPv4 ? stderr : stdout)),
-					GetCompiledFilePath(mmlPath),
+							ci.MmlFilePath,
+							ci.CompilerType == CompilerType.FMPv4 ? stderr : stdout)),
+					ci.CompiledFilePath,
 					string.Format("{0}{2}{2}{1}", stderr, stdout, Environment.NewLine).Trim());
 			}
 		}
@@ -201,44 +201,6 @@ namespace FMMLEditor7
 		}
 
 
-		static public CompileInfo GetCompilerType(string mmlPath)
-		{
-			try
-			{
-				switch (Path.GetExtension(mmlPath).ToLower())
-				{
-					case ".mwi":
-						{
-							return new CompileInfo(CompilerType.FMP7, CompiledFileType.FMP7_owi);
-						}
-
-					case ".mpi":
-						{
-							return new CompileInfo(CompilerType.FMPv4, CompiledFileType.FMPv4_opi);
-						}
-
-					case ".mvi":
-						{
-							return new CompileInfo(CompilerType.FMPv4, CompiledFileType.FMPv4_ovi);
-						}
-
-					case ".mzi":
-						{
-							return new CompileInfo(CompilerType.FMPv4, CompiledFileType.FMPv4_ozi);
-						}
-
-					case ".mml":
-						{
-							return new CompileInfo(CompilerType.PMD, CompiledFileType.PMD_m);
-						}
-				}
-			}
-			catch
-			{
-			}
-			return new CompileInfo(CompilerType.Unknown, CompiledFileType.Unknown);
-		}
-
 		static private void CheckExePath(string path)
 		{
 			if (string.IsNullOrEmpty(path))
@@ -252,111 +214,6 @@ namespace FMMLEditor7
 			}
 		}
 
-		static public string GetCompiledFilePath(string mmlPath)
-		{
-			try
-			{
-				var basepath =
-					Path.Combine(
-						Path.GetDirectoryName(mmlPath),
-						Path.GetFileNameWithoutExtension(mmlPath));
 
-				switch (GetCompilerType(mmlPath).CompiledFileType)
-				{
-					case CompiledFileType.FMP7_owi:
-						{
-							return basepath + ".owi";
-						}
-
-					case CompiledFileType.FMPv4_opi:
-						{
-							return basepath + ".opi";
-						}
-
-					case CompiledFileType.FMPv4_ovi:
-						{
-							return basepath + ".ovi";
-						}
-
-					case CompiledFileType.FMPv4_ozi:
-						{
-							return basepath + ".ozi";
-						}
-
-					case CompiledFileType.PMD_m:
-						{
-							//	ソースを読み込み、中の #Filename をチェックする
-
-							var path = GetPMDFilenameOptionValue(mmlPath);
-							if (path != null)
-							{
-								return path;
-							}
-
-							return basepath + ".m";
-						}
-				}
-			}
-			catch
-			{
-			}
-			return null;
-		}
-
-		static private string GetPMDFilenameOptionValue(string pmdMmlPath)
-		{
-			try
-			{
-				string filename = null;
-				using (var sr = new StreamReader(pmdMmlPath))
-				{
-					while (true)
-					{
-						var l = sr.ReadLine();
-						if (l == null)
-						{
-							break;
-						}
-						var splits = l.Split(' ', '\t');
-
-						int count = splits.Length - 1;
-						for (int i = 0; i < count; i++)
-						{
-							if (splits[i] != null &&
-								splits[i].Equals("#Filename", StringComparison.OrdinalIgnoreCase))
-							{
-								filename = splits[i + 1];
-								break;
-							}
-						}
-					}
-				}
-
-				if (string.IsNullOrEmpty(filename) == false)
-				{
-					if (filename[0] == '.')
-					{
-						//	指定が拡張子のみ
-						return
-							Path.Combine(
-								Path.GetDirectoryName(pmdMmlPath),
-								Path.GetFileNameWithoutExtension(pmdMmlPath) + filename);
-					}
-					else
-					{
-						//	指定がファイル名
-						return
-							Path.Combine(
-								Path.GetDirectoryName(pmdMmlPath),
-								filename);
-					}
-				}
-			}
-			catch
-			{
-			}
-
-			return null;
-		}
 	}
 }

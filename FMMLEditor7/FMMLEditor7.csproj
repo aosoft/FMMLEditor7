@@ -64,7 +64,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompileInfo.cs" />
     <Compile Include="Compiler.cs" />
+    <Compile Include="CompileResult.cs" />
     <Compile Include="FastForward.cs" />
     <Compile Include="FMP7Compiler.cs" />
     <Compile Include="FMPMMLAnalyzer.cs" />

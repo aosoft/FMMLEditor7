@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FMMLEditor7
 {
-	struct FMPMMLAnalyzer
+	class FMPMMLAnalyzer
 	{
 		public string ADPCMPCMFile
 		{

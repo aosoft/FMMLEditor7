@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FMMLEditor7
 {
-	struct PMDMMLAnalyzer
+	class PMDMMLAnalyzer
 	{
 		public string CompiledFileName
 		{
@@ -19,6 +19,7 @@ namespace FMMLEditor7
 		{
 			var ret = new PMDMMLAnalyzer();
 
+			string filename = null;
 			using (var sr = new StreamReader(mmlPath))
 			{
 				while (true)
@@ -36,10 +37,30 @@ namespace FMMLEditor7
 						if (splits[i] != null &&
 							splits[i].Equals("#Filename", StringComparison.OrdinalIgnoreCase))
 						{
-							ret.CompiledFileName = splits[i + 1];
+							filename = splits[i + 1];
 							break;
 						}
 					}
+				}
+			}
+
+			if (string.IsNullOrEmpty(filename) == false)
+			{
+				if (filename[0] == '.')
+				{
+					//	指定が拡張子のみ
+					ret.CompiledFileName =
+						Path.Combine(
+							Path.GetDirectoryName(mmlPath),
+							Path.GetFileNameWithoutExtension(mmlPath) + filename);
+				}
+				else
+				{
+					//	指定がファイル名
+					ret.CompiledFileName =
+						Path.Combine(
+							Path.GetDirectoryName(mmlPath),
+							filename);
 				}
 			}
 

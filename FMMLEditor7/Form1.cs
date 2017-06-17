@@ -266,11 +266,6 @@ namespace FMMLEditor7
 			}
 		}
 
-		private bool CheckSupportMMLExt(string path)
-		{
-			return Compiler.GetCompilerType(path).CompilerType != CompilerType.Unknown;
-		}
-
 		private void UpdateCompileResult(CompileResult result)
 		{
 			listviewCompileResult.Items.Clear();
