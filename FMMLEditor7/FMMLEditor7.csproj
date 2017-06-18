@@ -64,7 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CompileInfo.cs" />
+    <Compile Include="MMLAnalyzer.cs" />
     <Compile Include="Compiler.cs" />
     <Compile Include="CompileResult.cs" />
     <Compile Include="FastForward.cs" />
@@ -82,6 +82,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MMLEditorResource.resx</DependentUpon>
     </Compile>
+    <Compile Include="MMLInfo.cs" />
     <Compile Include="PMDMMLAnalyzer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -25,15 +25,9 @@ namespace FMMLEditor7
 		PMD_m
 	}
 
-	class CompileInfo
+	class MMLAnalyzer
 	{
-		public CompilerType CompilerType
-		{
-			get;
-			private set;
-		}
-
-		public CompiledFileType CompiledFileType
+		public MMLInfo Info
 		{
 			get;
 			private set;
@@ -63,13 +57,13 @@ namespace FMMLEditor7
 			private set;
 		}
 
-		private CompileInfo()
+		private MMLAnalyzer()
 		{
 		}
 
-		static public CompileInfo Analyze(string mmlPath)
+		static public MMLAnalyzer Analyze(string mmlPath)
 		{
-			var ret = new CompileInfo();
+			var ret = new MMLAnalyzer();
 
 			ret.MmlFilePath = mmlPath;
 			var basepath =
@@ -78,52 +72,8 @@ namespace FMMLEditor7
 					Path.GetFileNameWithoutExtension(mmlPath));
 
 			//	CompilerType / CompiledFileType
-			switch (Path.GetExtension(mmlPath).ToLower())
-			{
-				case ".mwi":
-					{
-						ret.CompilerType = CompilerType.FMP7;
-						ret.CompiledFileType = CompiledFileType.FMP7_owi;
-					}
-					break;
-
-				case ".mpi":
-					{
-						ret.CompilerType = CompilerType.FMPv4;
-						ret.CompiledFileType = CompiledFileType.FMPv4_opi;
-					}
-					break;
-
-				case ".mvi":
-					{
-						ret.CompilerType = CompilerType.FMPv4;
-						ret.CompiledFileType = CompiledFileType.FMPv4_ovi;
-					}
-					break;
-
-				case ".mzi":
-					{
-						ret.CompilerType = CompilerType.FMPv4;
-						ret.CompiledFileType = CompiledFileType.FMPv4_ozi;
-					}
-					break;
-
-				case ".mml":
-					{
-						ret.CompilerType = CompilerType.PMD;
-						ret.CompiledFileType = CompiledFileType.PMD_m;
-					}
-					break;
-
-				default:
-					{
-						ret.CompilerType = CompilerType.Unknown;
-						ret.CompiledFileType = CompiledFileType.Unknown;
-					}
-					break;
-			}
-
-			switch (ret.CompilerType)
+			ret.Info = MMLInfo.GetMMLInfo(mmlPath);
+			switch (ret.Info.CompilerType)
 			{
 				case CompilerType.FMP7:
 					{
@@ -136,10 +86,10 @@ namespace FMMLEditor7
 						ret.FMPMML = FMPMMLAnalyzer.Analyze(mmlPath);
 						if (ret.FMPMML.PPZPCMFile != null)
 						{
-							ret.CompiledFileType = CompiledFileType.FMPv4_ozi;
+							ret.Info = new MMLInfo(CompilerType.FMPv4, CompiledFileType.FMPv4_ozi);
 						}
 
-						switch (ret.CompiledFileType)
+						switch (ret.Info.CompiledFileType)
 						{
 							case CompiledFileType.FMPv4_opi:
 								{

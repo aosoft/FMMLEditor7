@@ -67,6 +67,12 @@ namespace FMMLEditor7
 				MessageBoxIcon.Error);
 		}
 
+		private bool CheckSupportMMLExt(string path)
+		{
+			return MMLInfo.GetMMLInfo(path).CompilerType != CompilerType.Unknown;
+		}
+
+
 		private void UpdateEditorState()
 		{
 			if (_setting.EditorTextWrap)

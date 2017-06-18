@@ -51,8 +51,8 @@ namespace FMMLEditor7
 
 		public CompileResult Compile(string mmlPath, bool compileAndPlay)
 		{
-			var ci = CompileInfo.Analyze(mmlPath);
-			switch (ci.CompilerType)
+			var ci = MMLAnalyzer.Analyze(mmlPath);
+			switch (ci.Info.CompilerType)
 			{
 				case CompilerType.FMP7:
 					{
@@ -89,12 +89,12 @@ namespace FMMLEditor7
 			return new CompileResult(new FMC7Result(FMC7Status.ErrorNoData, null), null, null);
 		}
 
-		private CompileResult StartCompilerProcess(CompileInfo ci, bool compileAndPlay)
+		private CompileResult StartCompilerProcess(MMLAnalyzer ci, bool compileAndPlay)
 		{
 			CheckExePath(_setting.MSDOSPlayerPath);
 
 			string compilerExe = null;
-			switch (ci.CompilerType)
+			switch (ci.Info.CompilerType)
 			{
 				case CompilerType.FMPv4:
 					{
@@ -140,7 +140,7 @@ namespace FMMLEditor7
 							FMC7Status.ErrorCompile,
 						GetFMC7InfoFromErrorString(
 							ci.MmlFilePath,
-							ci.CompilerType == CompilerType.FMPv4 ? stderr : stdout)),
+							ci.Info.CompilerType == CompilerType.FMPv4 ? stderr : stdout)),
 					ci.CompiledFilePath,
 					string.Format("{0}{2}{2}{1}", stderr, stdout, Environment.NewLine).Trim());
 			}
