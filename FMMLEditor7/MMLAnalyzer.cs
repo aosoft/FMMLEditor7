@@ -7,24 +7,6 @@ using System.Threading.Tasks;
 
 namespace FMMLEditor7
 {
-	enum CompilerType : int
-	{
-		Unknown = 0,
-		FMP7,
-		FMPv4,
-		PMD
-	}
-
-	enum CompiledFileType : int
-	{
-		Unknown = 0,
-		FMP7_owi,
-		FMPv4_opi,
-		FMPv4_ovi,
-		FMPv4_ozi,
-		PMD_m
-	}
-
 	class MMLAnalyzer
 	{
 		public MMLInfo Info
@@ -33,7 +15,7 @@ namespace FMMLEditor7
 			private set;
 		}
 
-		public string MmlFilePath
+		public string MMLFilePath
 		{
 			get;
 			private set;
@@ -65,13 +47,13 @@ namespace FMMLEditor7
 		{
 			var ret = new MMLAnalyzer();
 
-			ret.MmlFilePath = mmlPath;
+			ret.MMLFilePath = mmlPath;
 			var basepath =
 				Path.Combine(
 					Path.GetDirectoryName(mmlPath),
 					Path.GetFileNameWithoutExtension(mmlPath));
 
-			//	CompilerType / CompiledFileType
+			//	CompilerType / FlieExtType
 			ret.Info = MMLInfo.GetMMLInfo(mmlPath);
 			switch (ret.Info.CompilerType)
 			{
@@ -86,24 +68,25 @@ namespace FMMLEditor7
 						ret.FMPMML = FMPMMLAnalyzer.Analyze(mmlPath);
 						if (ret.FMPMML.PPZPCMFile != null)
 						{
-							ret.Info = new MMLInfo(CompilerType.FMPv4, CompiledFileType.FMPv4_ozi);
+							ret.Info = new MMLInfo(
+								ret.Info.CompilerType, ret.Info.MMLFileExtType, CompiledFileExtType.FMPv4_ozi);
 						}
 
-						switch (ret.Info.CompiledFileType)
+						switch (ret.Info.CompiledFileExtType)
 						{
-							case CompiledFileType.FMPv4_opi:
+							case CompiledFileExtType.FMPv4_opi:
 								{
 									ret.CompiledFilePath = basepath + ".opi";
 								}
 								break;
 
-							case CompiledFileType.FMPv4_ovi:
+							case CompiledFileExtType.FMPv4_ovi:
 								{
 									ret.CompiledFilePath = basepath + ".ovi";
 								}
 								break;
 
-							case CompiledFileType.FMPv4_ozi:
+							case CompiledFileExtType.FMPv4_ozi:
 								{
 									ret.CompiledFilePath = basepath + ".ozi";
 								}

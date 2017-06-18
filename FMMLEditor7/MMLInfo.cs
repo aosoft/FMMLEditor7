@@ -6,6 +6,34 @@ using System.Threading.Tasks;
 
 namespace FMMLEditor7
 {
+	enum CompilerType : int
+	{
+		Unknown = 0,
+		FMP7,
+		FMPv4,
+		PMD
+	}
+
+	enum MMLFileExtType : int
+	{
+		Unknown = 0,
+		FMP7_mwi,
+		FMPv4_mpi,
+		FMPv4_mvi,
+		FMPv4_mzi,
+		PMD_mml
+	}
+
+	enum CompiledFileExtType : int
+	{
+		Unknown = 0,
+		FMP7_owi,
+		FMPv4_opi,
+		FMPv4_ovi,
+		FMPv4_ozi,
+		PMD_m
+	}
+
 	struct MMLInfo
 	{
 		public CompilerType CompilerType
@@ -14,16 +42,26 @@ namespace FMMLEditor7
 			private set;
 		}
 
-		public CompiledFileType CompiledFileType
+		public MMLFileExtType MMLFileExtType
 		{
 			get;
 			private set;
 		}
 
-		public MMLInfo(CompilerType compilerType, CompiledFileType compiledFileType)
+		public CompiledFileExtType CompiledFileExtType
+		{
+			get;
+			private set;
+		}
+
+		public MMLInfo(
+			CompilerType compilerType,
+			MMLFileExtType mmlfileExtType,
+			CompiledFileExtType compiledFileExtType)
 		{
 			CompilerType = compilerType;
-			CompiledFileType = compiledFileType;
+			MMLFileExtType = mmlfileExtType;
+			CompiledFileExtType = compiledFileExtType;
 		}
 
 		static public MMLInfo GetMMLInfo(string mmlPath)
@@ -35,42 +73,48 @@ namespace FMMLEditor7
 				case ".mwi":
 					{
 						ret.CompilerType = CompilerType.FMP7;
-						ret.CompiledFileType = CompiledFileType.FMP7_owi;
+						ret.MMLFileExtType = MMLFileExtType.FMP7_mwi;
+						ret.CompiledFileExtType = CompiledFileExtType.FMP7_owi;
 					}
 					break;
 
 				case ".mpi":
 					{
 						ret.CompilerType = CompilerType.FMPv4;
-						ret.CompiledFileType = CompiledFileType.FMPv4_opi;
+						ret.MMLFileExtType = MMLFileExtType.FMPv4_mpi;
+						ret.CompiledFileExtType = CompiledFileExtType.FMPv4_opi;
 					}
 					break;
 
 				case ".mvi":
 					{
 						ret.CompilerType = CompilerType.FMPv4;
-						ret.CompiledFileType = CompiledFileType.FMPv4_ovi;
+						ret.MMLFileExtType = MMLFileExtType.FMPv4_mvi;
+						ret.CompiledFileExtType = CompiledFileExtType.FMPv4_ovi;
 					}
 					break;
 
 				case ".mzi":
 					{
 						ret.CompilerType = CompilerType.FMPv4;
-						ret.CompiledFileType = CompiledFileType.FMPv4_ozi;
+						ret.MMLFileExtType = MMLFileExtType.FMPv4_mzi;
+						ret.CompiledFileExtType = CompiledFileExtType.FMPv4_ozi;
 					}
 					break;
 
 				case ".mml":
 					{
 						ret.CompilerType = CompilerType.PMD;
-						ret.CompiledFileType = CompiledFileType.PMD_m;
+						ret.MMLFileExtType = MMLFileExtType.PMD_mml;
+						ret.CompiledFileExtType = CompiledFileExtType.PMD_m;
 					}
 					break;
 
 				default:
 					{
 						ret.CompilerType = CompilerType.Unknown;
-						ret.CompiledFileType = CompiledFileType.Unknown;
+						ret.MMLFileExtType = MMLFileExtType.Unknown;
+						ret.CompiledFileExtType = CompiledFileExtType.Unknown;
 					}
 					break;
 			}

@@ -118,8 +118,8 @@ namespace FMMLEditor7
 
 			var psi = new ProcessStartInfo();
 			psi.FileName = _setting.MSDOSPlayerPath;
-			psi.Arguments = string.Format("\"{0}\" \"{1}\"", compilerExe, ci.MmlFilePath);
-			psi.WorkingDirectory = Path.GetDirectoryName(ci.MmlFilePath);
+			psi.Arguments = string.Format("\"{0}\" \"{1}\"", compilerExe, ci.MMLFilePath);
+			psi.WorkingDirectory = Path.GetDirectoryName(ci.MMLFilePath);
 			psi.CreateNoWindow = true;
 			psi.UseShellExecute = false;
 			psi.RedirectStandardOutput = true;
@@ -139,14 +139,14 @@ namespace FMMLEditor7
 							compileAndPlay ? FMC7Status.ErrorPlay : FMC7Status.Success :
 							FMC7Status.ErrorCompile,
 						GetFMC7InfoFromErrorString(
-							ci.MmlFilePath,
+							ci,
 							ci.Info.CompilerType == CompilerType.FMPv4 ? stderr : stdout)),
 					ci.CompiledFilePath,
 					string.Format("{0}{2}{2}{1}", stderr, stdout, Environment.NewLine).Trim());
 			}
 		}
 
-		private FMC7Info[] GetFMC7InfoFromErrorString(string mmlPath, string msgstr)
+		private FMC7Info[] GetFMC7InfoFromErrorString(MMLAnalyzer analyzer, string msgstr)
 		{
 			if (msgstr == null)
 			{
@@ -155,7 +155,7 @@ namespace FMMLEditor7
 			var lines = msgstr.Split(
 				new string[]{ Environment.NewLine },
 				StringSplitOptions.RemoveEmptyEntries);
-			var fileName = Path.GetFileName(mmlPath);
+			var fileName = Path.GetFileName(analyzer.MMLFilePath);
 			for (int i = 0; i < lines.Length; i++)
 			{
 				var line = lines[i]?.Trim();
