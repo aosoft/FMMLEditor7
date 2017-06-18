@@ -146,16 +146,32 @@ namespace FMMLEditor7
 			}
 		}
 
-		private FMC7Info[] GetFMC7InfoFromErrorString(MMLAnalyzer analyzer, string msgstr)
+		private List<FMC7Info> GetFMC7InfoFromErrorString(MMLAnalyzer analyzer, string msgstr)
 		{
 			if (msgstr == null)
 			{
 				return null;
 			}
+
+			var fileName = Path.GetFileName(analyzer.MMLFilePath);
+			var ret = new List<FMC7Info>();
+
+			if (analyzer.FMPMML != null &&
+				analyzer.Info.MMLFileExtType == MMLFileExtType.FMPv4_mzi &&
+				analyzer.FMPMML.PPZPCMFile != null &&
+				analyzer.FMPMML.UseOPNASpec &&
+				analyzer.FMPMML.UseFM3Extend == false)
+			{
+				var log = new FMC7Log();
+				log.FileName = fileName;
+				log.Kind = FMC7LogKind.Warning;
+				log.Message = MMLEditorResource.Warning_OPNAPPZ;
+				ret.Add(new FMC7Info(log));
+			}
+
 			var lines = msgstr.Split(
 				new string[]{ Environment.NewLine },
 				StringSplitOptions.RemoveEmptyEntries);
-			var fileName = Path.GetFileName(analyzer.MMLFilePath);
 			for (int i = 0; i < lines.Length; i++)
 			{
 				var line = lines[i]?.Trim();
@@ -194,10 +210,10 @@ namespace FMMLEditor7
 				log.Line = linenumber;
 				log.Message = lines[i + 1];
 
-				return new FMC7Info[] { new FMC7Info(log) };
+				ret.Add(new FMC7Info(log));
 			}
 
-			return null;
+			return ret;
 		}
 
 

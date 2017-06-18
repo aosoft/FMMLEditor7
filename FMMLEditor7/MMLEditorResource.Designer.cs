@@ -462,5 +462,14 @@ namespace FMMLEditor7 {
                 return ResourceManager.GetString("URL_MSDOS", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   MML の拡張子が .mzi ですが OPNA 相当の機能が使われています。OPNA 相当機能を使う場合は拡張子を .mvi にしてください。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Warning_OPNAPPZ {
+            get {
+                return ResourceManager.GetString("Warning_OPNAPPZ", resourceCulture);
+            }
+        }
     }
 }

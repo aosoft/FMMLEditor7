@@ -187,7 +187,7 @@ namespace FMMLEditor7
 
 	class FMC7Result : IEnumerable<FMC7Info>
 	{
-		private FMC7Info[] _infos;
+		private IList<FMC7Info> _infos;
 
 		public FMC7Status Result
 		{
@@ -199,7 +199,7 @@ namespace FMMLEditor7
 		{
 			get
 			{
-				return _infos.Length;
+				return _infos.Count;
 			}
 		}
 
@@ -211,7 +211,7 @@ namespace FMMLEditor7
 			}
 		}
 
-		internal FMC7Result(FMC7Status result, FMC7Info[] infos)
+		internal FMC7Result(FMC7Status result, IList<FMC7Info> infos)
 		{
 			Result = result;
 			_infos = infos != null ? infos : new FMC7Info[0];
