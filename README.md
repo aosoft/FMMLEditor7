@@ -41,6 +41,7 @@ MML Editor 7 はアプリ単体ではただのテキストエディターとし�
 |FMP7|コンパイルした曲データの演奏に使用します。|[FMP archive center](http://archive.fmp.jp/)|
 |exFMP4|FMP4 形式の曲データを FMP7 上で再生するための FMP7 addon です。|[FMP archive center](http://archive.fmp.jp/)|
 |WinFMP|FMP4 の Windows 用ドライバー本体です。|[Ｃ６０のページ](http://c60.la.coocan.jp/)|
+|PDZF / Z8X for Windows|FMP4 で PPZ8 を用いた演奏の機能拡張をする Windows 用ドライバーです。 WinFMP と組み合わせて使用します。対応データを扱わなければ不要です。|[aosoft.jp](http://www.aosoft.jp/)|
 |exPMD|PMD 形式の曲データを FMP7 上で再生するための FMP7 addon です。|[FMP archive center](http://archive.fmp.jp/)|
 |PMDWin|PMD の Windows 用ドライバー本体です。|[Ｃ６０のページ](http://c60.la.coocan.jp/)|
 
