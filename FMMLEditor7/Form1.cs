@@ -280,6 +280,7 @@ namespace FMMLEditor7
 			textboxMessages.Text = "";
 
 			var msgs = new StringBuilder();
+			bool containsLog = false;
 
 			if (result.FMC7Result != null)
 			{
@@ -309,6 +310,7 @@ namespace FMMLEditor7
 								item.SubItems.Add(info.Log.MML?.Trim());
 
 								listviewCompileErrorReport.Items.Add(item);
+								containsLog = true;
 							}
 							break;
 
@@ -375,8 +377,9 @@ namespace FMMLEditor7
 				switch (result.FMC7Result.Result)
 				{
 					case FMC7Status.Success:
+					case FMC7Status.ErrorPlay:
 						{
-							tabControl1.SelectedIndex = 0;
+							tabControl1.SelectedIndex = containsLog ? 1 : 0;
 						}
 						break;
 
