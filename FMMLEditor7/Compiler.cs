@@ -80,16 +80,20 @@ namespace FMMLEditor7
 					}
 
 				case CompilerType.FMPv4:
+					{
+						return StartCompilerProcess(ci, compileAndPlay, true);
+					}
+
 				case CompilerType.PMD:
 					{
-						return StartCompilerProcess(ci, compileAndPlay);
+						return StartCompilerProcess(ci, compileAndPlay, false);
 					}
 			}
 
 			return new CompileResult(new FMC7Result(FMC7Status.ErrorNoData, null), null, null);
 		}
 
-		private CompileResult StartCompilerProcess(MMLAnalyzer ci, bool compileAndPlay)
+		private CompileResult StartCompilerProcess(MMLAnalyzer ci, bool compileAndPlay, bool redirectStderr)
 		{
 			CheckExePath(_setting.MSDOSPlayerPath);
 
@@ -122,13 +126,12 @@ namespace FMMLEditor7
 			psi.WorkingDirectory = Path.GetDirectoryName(ci.MMLFilePath);
 			psi.CreateNoWindow = true;
 			psi.UseShellExecute = false;
-			psi.RedirectStandardOutput = true;
-			psi.RedirectStandardError = true;
+			psi.RedirectStandardOutput = !redirectStderr;
+			psi.RedirectStandardError = redirectStderr;
 
 			using (var p = Process.Start(psi))
 			{
-				var stdout = p.StandardOutput.ReadToEnd()?.Trim();
-				var stderr = p.StandardError.ReadToEnd()?.Trim();
+				var stdout = (redirectStderr ? p.StandardError : p.StandardOutput).ReadToEnd()?.Trim();
 				p.WaitForExit();
 
 				//	compileAndPlay の場合は ErrorPlay を返すことにより
@@ -138,11 +141,9 @@ namespace FMMLEditor7
 						p.ExitCode == 0 ?
 							compileAndPlay ? FMC7Status.ErrorPlay : FMC7Status.Success :
 							FMC7Status.ErrorCompile,
-						GetFMC7InfoFromErrorString(
-							ci,
-							ci.Info.CompilerType == CompilerType.FMPv4 ? stderr : stdout)),
+						GetFMC7InfoFromErrorString(ci, stdout)),
 					ci.CompiledFilePath,
-					string.Format("{0}{2}{2}{1}", stderr, stdout, Environment.NewLine).Trim());
+					stdout.Trim());
 			}
 		}
 
