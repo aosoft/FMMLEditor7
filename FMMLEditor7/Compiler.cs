@@ -12,6 +12,8 @@ namespace FMMLEditor7
 
 	class Compiler : IDisposable
 	{
+		static private readonly string WarningStr = "Warning :";
+
 		private FMP7Compiler _compilerFMC7 = new FMP7Compiler();
 		private Settings _setting = null;
 
@@ -186,11 +188,6 @@ namespace FMMLEditor7
 					continue;
 				}
 
-				if ((i + 1) == lines.Length)
-				{
-					break;
-				}
-
 				var index1 = line.IndexOf('(') + 1;
 				var index2 = line.IndexOf(')');
 				if (index1 < 0 || index2 < 0 || index1 > index2)
@@ -205,13 +202,29 @@ namespace FMMLEditor7
 					break;
 				}
 
-				var log = new FMC7Log();
-				log.Kind = FMC7LogKind.Error;
-				log.FileName = fileName;
-				log.Line = linenumber;
-				log.Message = lines[i + 1];
+				var index3 = line.IndexOf(WarningStr);
+				if (index3 >= 0)
+				{
+					var log = new FMC7Log();
+					log.Kind = FMC7LogKind.Warning;
+					log.FileName = fileName;
+					log.Line = linenumber;
 
-				ret.Add(new FMC7Info(log));
+					index3 += WarningStr.Length;
+					log.Message = index3 < line.Length ? line.Substring(index3) : string.Empty;
+
+					ret.Add(new FMC7Info(log));
+				}
+				else
+				{
+					var log = new FMC7Log();
+					log.Kind = FMC7LogKind.Error;
+					log.FileName = fileName;
+					log.Line = linenumber;
+					log.Message = (i + 1) < lines.Length ? lines[i + 1] : string.Empty;
+
+					ret.Add(new FMC7Info(log));
+				}
 			}
 
 			return ret;
